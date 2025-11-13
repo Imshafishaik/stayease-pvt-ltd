@@ -1,7 +1,7 @@
 <?php
 $host = "localhost";
 $port = "5432";
-$dbname = "crud_db";
+$dbname = "stayease";
 $user = "shafi";
 $pass = "shafi"; 
 
