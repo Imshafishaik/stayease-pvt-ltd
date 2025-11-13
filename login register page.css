@@ -1,0 +1,176 @@
+/* 全局样式和字体设置 */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    background-color: #f0f2f5; /* 淡灰色背景 */
+    color: #333;
+}
+
+/* 页眉样式 */
+header {
+    background-color: #0d1b2a; /* 深蓝色 */
+    padding: 10px 5%;
+    border-bottom: 3px solid #007BFF; /* 蓝色底边框 */
+}
+
+.navbar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    margin-left: 25px;
+    font-weight: 500;
+}
+
+/* 主内容和表单容器 */
+.main-content {
+    display: flex;
+    justify-content: center;
+    padding: 50px 20px;
+}
+
+.forms-container {
+    display: flex;
+    gap: 30px; /* 表单列之间的间距 */
+    align-items: flex-start;
+}
+
+.form-column {
+    display: flex;
+    flex-direction: column;
+    gap: 30px; /* 同一列表单之间的间距 */
+}
+
+/* 表单通用样式 */
+.form-wrapper {
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 380px;
+}
+
+.form-wrapper h2 {
+    margin-top: 0;
+    margin-bottom: 25px;
+    text-align: center;
+    font-size: 1.5em;
+    color: #333;
+}
+
+/* 表单输入框和选择框 */
+form input[type="text"],
+form input[type="email"],
+form input[type="password"],
+form select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box; /* 让padding不影响宽度 */
+}
+
+.forgot-password {
+    display: block;
+    text-align: right;
+    margin-bottom: 20px;
+    font-size: 0.9em;
+    color: #007BFF;
+    text-decoration: none;
+}
+
+/* 按钮样式 */
+.btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.btn:hover {
+    opacity: 0.9;
+}
+
+.btn-login {
+    background-color: #ff6f61; /* 橙色 */
+}
+
+.btn-register {
+    background-color: #48c9b0; /* 青绿色 */
+}
+
+/* 文件上传自定义样式 */
+.file-upload label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: white;
+}
+
+.file-upload i {
+    color: #333;
+    font-size: 1.2em;
+}
+
+/* 表单切换链接 */
+.switch-form {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.switch-form a {
+    color: #007BFF;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* 页脚样式 */
+footer {
+    background-color: #1c1c1c; /* 深灰色 */
+    color: #f4f4f4;
+    padding: 20px 5%;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.contact-info h4 {
+    margin: 0 0 10px 0;
+}
+
+.contact-info p {
+    margin: 5px 0;
+}
+
+.social-icons a {
+    color: white;
+    margin-left: 15px;
+    font-size: 1.2em;
+    text-decoration: none;
+}
+
+/* 响应式设计：在小屏幕上垂直堆叠表单 */
+@media (max-width: 900px) {
+    .forms-container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
