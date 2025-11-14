@@ -1,0 +1,27 @@
+.nav-bar{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 32px;
+    margin: px;
+    background: #fff;
+}
+
+.nav-bar-list ul{
+    padding: 0 !important;
+}
+
+.nav-bar-list li{
+    text-decoration: none;
+    list-style-type: none;
+    float: left;
+    padding: 10px;
+    font-size: large;
+    font-family:  sans-serif;
+}
+li a{
+    text-decoration: none;
+    color: black;
+}
+li a:hover{
+    color: red;
+}
