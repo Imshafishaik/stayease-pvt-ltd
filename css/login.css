@@ -1,16 +1,15 @@
-/* 全局样式和字体设置 */
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     margin: 0;
-    background-color: #f0f2f5; /* 淡灰色背景 */
+    background-color: #f0f2f5; 
     color: #333;
 }
 
-/* 页眉样式 */
 header {
-    background-color: #0d1b2a; /* 深蓝色 */
+    background-color: #0d1b2a; 
     padding: 10px 5%;
-    border-bottom: 3px solid #007BFF; /* 蓝色底边框 */
+    border-bottom: 3px solid #007BFF; 
 }
 
 .navbar {
@@ -26,7 +25,6 @@ header {
     font-weight: 500;
 }
 
-/* 主内容和表单容器 */
 .main-content {
     display: flex;
     justify-content: center;
@@ -35,17 +33,17 @@ header {
 
 .forms-container {
     display: flex;
-    gap: 30px; /* 表单列之间的间距 */
+    gap: 30px; 
     align-items: flex-start;
 }
 
 .form-column {
     display: flex;
     flex-direction: column;
-    gap: 30px; /* 同一列表单之间的间距 */
+    gap: 30px;
 }
 
-/* 表单通用样式 */
+
 .form-wrapper {
     background-color: white;
     padding: 30px;
@@ -62,7 +60,7 @@ header {
     color: #333;
 }
 
-/* 表单输入框和选择框 */
+
 form input[type="text"],
 form input[type="email"],
 form input[type="password"],
@@ -72,7 +70,7 @@ form select {
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 8px;
-    box-sizing: border-box; /* 让padding不影响宽度 */
+    box-sizing: border-box; 
 }
 
 .forgot-password {
@@ -84,7 +82,7 @@ form select {
     text-decoration: none;
 }
 
-/* 按钮样式 */
+
 .btn {
     width: 100%;
     padding: 12px;
@@ -102,14 +100,14 @@ form select {
 }
 
 .btn-login {
-    background-color: #ff6f61; /* 橙色 */
+    background-color: #ff6f61; 
 }
 
 .btn-register {
-    background-color: #48c9b0; /* 青绿色 */
+    background-color: #48c9b0; 
 }
 
-/* 文件上传自定义样式 */
+
 .file-upload label {
     display: flex;
     justify-content: space-between;
@@ -127,7 +125,7 @@ form select {
     font-size: 1.2em;
 }
 
-/* 表单切换链接 */
+
 .switch-form {
     text-align: center;
     margin-top: 20px;
@@ -139,9 +137,9 @@ form select {
     font-weight: bold;
 }
 
-/* 页脚样式 */
+
 footer {
-    background-color: #1c1c1c; /* 深灰色 */
+    background-color: #1c1c1c; 
     color: #f4f4f4;
     padding: 20px 5%;
 }
@@ -167,7 +165,6 @@ footer {
     text-decoration: none;
 }
 
-/* 响应式设计：在小屏幕上垂直堆叠表单 */
 @media (max-width: 900px) {
     .forms-container {
         flex-direction: column;
