@@ -1,5 +1,8 @@
 <?php
 require __DIR__ . '/../src/userSchema.php';
+$stmt = $pdo->query("SELECT * FROM users");
+$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+print_r("working $results");
 ?>
 
 <!DOCTYPE html>
@@ -13,23 +16,19 @@ require __DIR__ . '/../src/userSchema.php';
         <tr>
             <th>ID</th>
             <th>Name</th>
-            <th>Email</th>
         </tr>
-        <!-- <?php
-            print_r($results);
-        ?> -->
+        
 
         <?php foreach ($results as $row): ?>
             <tr>
-                <td><?= htmlspecialchars($row['shafiid']) ?></td>
-                <td><?= htmlspecialchars($row['shafiname']) ?></td>
-                <td><?= htmlspecialchars($row['shafiemail']) ?></td>
+                <td><?= htmlspecialchars($row['user_id']) ?></td>
+                <td><?= htmlspecialchars($row['user_name']) ?></td>
             </tr>
         <?php endforeach; ?>
     </table>
+
+    <a href="../src/userPostSchema.php">post question</a>
 </body>
 </html>
 
-<?php
-include 'user.php';
-?>
+<!-- <?php include '../src/userPostSchema.php'; ?> -->

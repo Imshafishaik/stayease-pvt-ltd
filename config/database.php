@@ -10,7 +10,7 @@ try {
     $pdo = new PDO("pgsql:host=$host;port=$port;dbname=$dbname", $user, $pass, [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
     ]);
-    echo "✅ Connected to PostgreSQL successfully!";
+    // echo "✅ Connected to PostgreSQL successfully!";
 } catch (PDOException $e) {
     die("PostgreSQL connection failed: " . $e->getMessage());
 }
