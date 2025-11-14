@@ -1,10 +1,16 @@
+<?php
+require __DIR__ . "/../config/database.php";
+
+include "../common/header.php"
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="hello.css"/>
+    <link rel="stylesheet" href="../css/home.css"/>
 </head>
 <body>
     <div>
@@ -15,9 +21,9 @@
             <img src="/img/logo.jpg" height="100px" width="220px"/>
         </div>
       </div> -->
-      <div class="nav-bar">
+      <!-- <div class="nav-bar">
         <div class="nav-bar-img">
-            <img src="img/logo.jpg" height="60px"/>
+            <img src="../images/homeimages/logo.jpg" height="60px"/>
         </div>
         <div class="nav-bar-list">
           <ul>
@@ -25,13 +31,14 @@
             <li><a href="Home" target="_blank">Find Accomodation</a></li>
             <li><a href="Home"target="_blank">For Owners</a></li>
             <li><a href="Home"target="_blank">Contact us</a></li>
+            <li><a href="../auth/login.php"target="_blank">Login</a></li>
          </ul>
         </div>
-      </div>
+      </div> -->
       <div class="container">
         <div class="container-interface">
           <div class="container-interface-img">
-            <img src="/img/Eiffel-Tower-Sunset.jpg.webp" height="420px" width="95%">
+            <img src="/../images/homeimages/Eiffel-Tower-Sunset.jpg.webp" height="420px" width="95%">
           </div>
         </div>
         
@@ -43,15 +50,15 @@
         <h2 class="head-in-container">Top listings</h2>
         <div class="card-container">
             <div class="card-container-1">
-                <img src="/img/images.jpeg" height="170px" width="300px"/>
+                <img src="/../images/homeimages/images.jpeg" height="170px" width="300px"/>
                 <p>Charming Studio in paris<br>£900/month</p>
             </div>
-            <div class="card-container-2">
-                <img src="/img/image2.avif" height="170px" width="300px"/>
+            <div class="card-container-1">
+                <img src="/../images/homeimages/image2.avif" height="170px" width="300px"/>
                 <p>Cozy Appartment near university<br>£750/month</p>
             </div>
-            <div class="card-container-3">
-                <img src="/img/image3.png" height="170px" width="300px"/>
+            <div class="card-container-1">
+                <img src="/../images/homeimages/image3.png" height="170px" width="300px"/>
                 <p>Spacious flat in central paris<br>£1200/month</p>
             </div>
         </div>
@@ -78,9 +85,9 @@
             <div class="contact-info-empty"></div>
             <div class="contact-info-content-2">
                 <ul>
-                    <li><img src="/img/facebook-logo-free-png.webp" height="50px"/></li>
-                    <li><img src="/img/instagram-logo-black-and-white-transparent-background-free-png.webp"height="50px"/></li>
-                    <li><img src="/img/twitter-circle-black-logo-icon-twitter-app-transparent-background-premium-social-media-design-for-digital-download-free-png.webp"height="50px"/></li>
+                    <li><img src="/../images/homeimages/facebook-logo-free-png.webp" height="50px"/></li>
+                    <li><img src="/../images/homeimages/instagram-logo-black-and-white-transparent-background-free-png.webp"height="50px"/></li>
+                    <li><img src="/../images/homeimages/twitter-circle-black-logo-icon-twitter-app-transparent-background-premium-social-media-design-for-digital-download-free-png.webp"height="50px"/></li>
                 </ul>
                 <h3 style="color: white;">Contact us</h3>
                 <p style="color: white;">Email:info@accomodate.com</p>
