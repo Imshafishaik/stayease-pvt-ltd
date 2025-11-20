@@ -1,5 +1,7 @@
 <?php
 require __DIR__ . "/../config/database.php";
+
+include "../common/header.php"
 ?>
 
 <!DOCTYPE html>
@@ -11,25 +13,25 @@ require __DIR__ . "/../config/database.php";
     <link rel="stylesheet" href="../css/login.css">
 </head>
 <body>
-    <header>
+    <!-- <header>
         <nav class="navbar">
             <a href="signup.php" class="nav-link">Register</a>
             <a href="#" class="nav-link">Listings</a>
             <a href="#" class="nav-link">Admin</a>
         </nav>
-    </header>
+    </header> -->
     <main class="main-content">
         <div class="forms-container">
             <div class="form-column">
                 <div class="form-wrapper">
                     <h2>Login to Your Account</h2>
-                    <form>
+                    <form Method="Post">
                         <input type="email" placeholder="Email" required>
                         <input type="password" placeholder="Password" required>
                         <a href="#" class="forgot-password">forgot password?</a>
                         <button type="submit" class="btn btn-login">Login</button>
                     </form>
-                    <p class="switch-form">Don't have an account? <a href="Register.html">Register</a></p>
+                    <p class="switch-form">Don't have an account? <a href="signup.php">Register</a></p>
                 </div>
             </div>
         </div>
