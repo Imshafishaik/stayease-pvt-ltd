@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/header.css"/>
-    <title>Stayease</title>
+    <title>Document</title>
 </head>
 <body>
     <div class="nav-bar">
@@ -13,11 +13,11 @@
         </div>
         <div class="nav-bar-list">
           <ul>
-            <li><a href="../pages/home.php">Home</a></li>
-            <li><a href="../pages/contact.php" >Find Accomodation</a></li>
-            <li><a href="../pages/ownerlisting.php">For Owners</a></li>
-            <li><a href="../pages/contact.php">Contact us</a></li>
-            <li><a href="../auth/login.php">Login</a></li>
+            <li><a href="http://127.0.0.1:5500/hello.html">Home</a></li>
+            <li><a href="Home" target="_blank">Find Accomodation</a></li>
+            <li><a href="Home"target="_blank">For Owners</a></li>
+            <li><a href="Home"target="_blank">Contact us</a></li>
+            <li><a href="../auth/login.php"target="_blank">Login</a></li>
          </ul>
         </div>
       </div>
