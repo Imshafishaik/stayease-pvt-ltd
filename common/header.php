@@ -14,10 +14,10 @@
         <div class="nav-bar-list">
           <ul>
             <li><a href="http://127.0.0.1:5500/hello.html">Home</a></li>
-            <li><a href="Home" target="_blank">Find Accomodation</a></li>
-            <li><a href="Home"target="_blank">For Owners</a></li>
-            <li><a href="Home"target="_blank">Contact us</a></li>
-            <li><a href="../auth/login.php"target="_blank">Login</a></li>
+            <li><a href="Home" >Find Accomodation</a></li>
+            <li><a href="Home">For Owners</a></li>
+            <li><a href="Home">Contact us</a></li>
+            <li><a href="../auth/login.php">Login</a></li>
          </ul>
         </div>
       </div>

@@ -45,7 +45,7 @@ require __DIR__ . "/../config/database.php";
                         </div>
                         <button type="submit" class="btn btn-register">Register</button>
                     </form>
-                    <p class="switch-form">Already Have an account? <a href="Login.html">Login</a></p>
+                    <p class="switch-form">Already Have an account? <a href="/auth/login.php">Login</a></p>
                 </div>
             </div>
 

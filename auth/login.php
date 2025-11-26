@@ -29,7 +29,7 @@ require __DIR__ . "/../config/database.php";
                         <a href="#" class="forgot-password">forgot password?</a>
                         <button type="submit" class="btn btn-login">Login</button>
                     </form>
-                    <p class="switch-form">Don't have an account? <a href="Register.html">Register</a></p>
+                    <p class="switch-form">Don't have an account? <a href="/auth/signup.php">Register</a></p>
                 </div>
             </div>
         </div>
