@@ -1,5 +1,7 @@
 <?php
 require __DIR__ . "/../config/database.php";
+
+require __DIR__ . "/../common/header.php";
 ?>
 
 <!DOCTYPE html>
@@ -12,11 +14,11 @@ require __DIR__ . "/../config/database.php";
 </head>
 <body>
     <header>
-        <nav class="navbar">
+        <!-- <nav class="navbar">
             <a href="signup.php" class="nav-link">Register</a>
             <a href="#" class="nav-link">Listings</a>
             <a href="#" class="nav-link">Admin</a>
-        </nav>
+        </nav> -->
     </header>
     <main class="main-content">
         <div class="forms-container">
