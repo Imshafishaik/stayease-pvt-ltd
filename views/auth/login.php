@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . "/../config/database.php";
+require __DIR__ . "/../../config/database.php";
 
 require __DIR__ . "/../common/header.php";
 ?>
@@ -10,16 +10,16 @@ require __DIR__ . "/../common/header.php";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
-    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="../../css/login.css">
 </head>
 <body>
-    <header>
+    <!-- <header> -->
         <!-- <nav class="navbar">
             <a href="signup.php" class="nav-link">Register</a>
             <a href="#" class="nav-link">Listings</a>
             <a href="#" class="nav-link">Admin</a>
         </nav> -->
-    </header>
+    <!-- </header> -->
     <main class="main-content">
         <div class="forms-container">
             <div class="form-column">
@@ -31,13 +31,13 @@ require __DIR__ . "/../common/header.php";
                         <a href="#" class="forgot-password">forgot password?</a>
                         <button type="submit" class="btn btn-login">Login</button>
                     </form>
-                    <p class="switch-form">Don't have an account? <a href="/auth/signup.php">Register</a></p>
+                    <p class="switch-form">Don't have an account? <a href="/views/auth/signup.php">Register</a></p>
                 </div>
             </div>
         </div>
     </main>
 
-    <footer>
+    <!-- <footer>
         <div class="footer-content">
             <div class="contact-info">
                 <h4>Contact Us</h4>
@@ -50,6 +50,6 @@ require __DIR__ . "/../common/header.php";
                 <a href="#"><i class="fab fa-instagram"></i></a>
             </div>
         </div>
-    </footer>
+    </footer> -->
 </body>
 </html>
