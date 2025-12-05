@@ -1,7 +1,7 @@
 <?php
-require __DIR__ . "/../../config/database.php";
+require __DIR__ . "/../config/database.php";
 
-require __DIR__ . "/../common/header.php";
+include "./header.php";
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +31,7 @@ require __DIR__ . "/../common/header.php";
                         <a href="#" class="forgot-password">forgot password?</a>
                         <button type="submit" class="btn btn-login">Login</button>
                     </form>
-                    <p class="switch-form">Don't have an account? <a href="/views/auth/signup.php">Register</a></p>
+                    <p class="switch-form">Don't have an account? <a href="/views/signup.php">Register</a></p>
                 </div>
             </div>
         </div>

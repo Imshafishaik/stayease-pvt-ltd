@@ -1,7 +1,7 @@
 <?php
-require __DIR__ . "/../../config/database.php";
+require __DIR__ . "/../config/database.php";
 
-require __DIR__ . "/../common/header.php";
+include "./header.php";
 ?>
 
 <!DOCTYPE html>
@@ -47,7 +47,7 @@ require __DIR__ . "/../common/header.php";
                         </div>
                         <button type="submit" class="btn btn-register">Register</button>
                     </form>
-                    <p class="switch-form">Already Have an account? <a href="/auth/login.php">Login</a></p>
+                    <p class="switch-form">Already Have an account? <a href="/views/login.php">Login</a></p>
                 </div>
             </div>
 
