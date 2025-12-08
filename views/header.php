@@ -17,7 +17,7 @@
             <li><a href="./contact.php" >Find Accomodation</a></li>
             <li><a href="./ownerlisting.php">For Owners</a></li>
             <li><a href="./contact.php">Contact us</a></li>
-            <li><a href="./login.php">Login</a></li>
+            <li><a href="./login.php?action=login">Login</a></li>
          </ul>
         </div>
       </div>
