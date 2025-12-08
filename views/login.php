@@ -1,7 +1,7 @@
 <?php
 require __DIR__ . "/../config/database.php";
 
-include "./header.php";
+include "./views/header.php";
 ?>
 
 <!DOCTYPE html>
@@ -25,13 +25,13 @@ include "./header.php";
             <div class="form-column">
                 <div class="form-wrapper">
                     <h2>Login to Your Account</h2>
-                    <form>
+                    <form action="">
                         <input type="email" placeholder="Email" required>
                         <input type="password" placeholder="Password" required>
                         <a href="#" class="forgot-password">forgot password?</a>
                         <button type="submit" class="btn btn-login">Login</button>
                     </form>
-                    <p class="switch-form">Don't have an account? <a href="/views/signup.php">Register</a></p>
+                    <p class="switch-form">Don't have an account? <a href="/views/signup.php?action=signup">Register</a></p>
                 </div>
             </div>
         </div>

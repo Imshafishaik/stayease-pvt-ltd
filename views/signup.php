@@ -27,27 +27,27 @@ include "./header.php";
             <div class="form-column">
                 <div class="form-wrapper">
                     <h2>Register a New Student Account</h2>
-                    <form>
-                        <input type="text" placeholder="Full Name" required>
-                        <input type="email" placeholder="Email" required>
-                        <input type="password" placeholder="Password" required>
+                    <form action="../index.php?action=signup" method="POST">
+                        <input type="text" name="name" placeholder="Full Name" required>
+                        <input type="email" name="email" placeholder="Email" required>
+                        <input type="password" name="password" placeholder="Password" required>
                         <input type="password" placeholder="Confirm Password" required>
-                        <select name="Select User Type">
+                        <select name="select_user_type">
                             <option>Student</option>
                             <option>House Owner</option>
 
                         </select>
                         <div class="file-upload">
-                            <input type="file" id="passport-upload" hidden>
+                            <input type="file" name="passport" id="passport-upload" hidden>
                             <label for="passport-upload"><span>Upload Passport</span><i class="fas fa-cloud-upload-alt"></i></label>
                         </div>
                         <div class="file-upload">
-                            <input type="file" id="visa-upload" hidden>
+                            <input type="file" name="visa"  id="visa-upload" hidden>
                             <label for="visa-upload"><span>Upload Visa</span><i class="fas fa-cloud-upload-alt"></i></label>
                         </div>
                         <button type="submit" class="btn btn-register">Register</button>
                     </form>
-                    <p class="switch-form">Already Have an account? <a href="/views/login.php">Login</a></p>
+                    <p class="switch-form">Already Have an account? <a href="/views/login.php?action=login">Login</a></p>
                 </div>
             </div>
 
