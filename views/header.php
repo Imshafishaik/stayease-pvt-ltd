@@ -13,10 +13,10 @@
         </div>
         <div class="nav-bar-list">
           <ul>
-            <li><a href="./home.php">Home</a></li>
+            <li><a href="./home.php?action=home">Home</a></li>
             <li><a href="./contact.php" >Find Accomodation</a></li>
-            <li><a href="./ownerlisting.php">For Owners</a></li>
-            <li><a href="./contact.php">Contact us</a></li>
+            <li><a href="./ownerlisting.php?action=owner">For Owners</a></li>
+            <li><a href="./contact.php?action=contact">Contact us</a></li>
             <li><a href="./login.php?action=login">Login</a></li>
          </ul>
         </div>

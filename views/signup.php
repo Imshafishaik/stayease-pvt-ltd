@@ -1,7 +1,7 @@
 <?php
 require __DIR__ . "/../config/database.php";
 
-include "./header.php";
+include "./views/header.php";
 ?>
 
 <!DOCTYPE html>
