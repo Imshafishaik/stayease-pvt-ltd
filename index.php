@@ -25,5 +25,7 @@ switch ($action) {
     case 'owner':      $owners_controller->owner(); break;
     // case 'update':    $controller->update($id); break;
     // case 'delete':    $controller->delete($id); break;
+    case 'rentupload':     $rentupload_controller->rentupload(); break;
+    case 'adminprofile':     $adminprofile_controller->adminprofile(); break;
     default:          $home_controller->home();
 }
