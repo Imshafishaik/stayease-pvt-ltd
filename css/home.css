@@ -69,28 +69,10 @@ body {
     width: 100%;
     background-color: white;
     text-align: center;
-    /* padding-top:15px; */
     font-family:Georgia, 'Times New Roman', Times, serif;
     border-radius: 10px;
 }
-/* .card-container-2{
-    height: 240px;
-    width: 380px;
-    background-color: white;
-    text-align: center;
-    padding-top:15px;
-    border-radius: 10px;
-    font-family:Georgia, 'Times New Roman', Times, serif;
-}
-.card-container-3{
-    height: 240px;
-    width: 380px;
-    background-color: white;
-    text-align: center;
-    padding-top:15px;
-    font-family:Georgia, 'Times New Roman', Times, serif;
-    border-radius: 10px;
-} */
+
 .card-container-1 img{
     border-radius: 10px;
     width: 90%;
