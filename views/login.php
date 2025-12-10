@@ -31,7 +31,7 @@ include "./views/header.php";
                         <a href="#" class="forgot-password">forgot password?</a>
                         <button type="submit" class="btn btn-login">Login</button>
                     </form>
-                    <p class="switch-form">Don't have an account? <a href="/views/signup.php?action=signup">Register</a></p>
+                    <p class="switch-form">Don't have an account? <a href="/signup.php?action=signup">Register</a></p>
                 </div>
             </div>
         </div>
