@@ -1,6 +1,6 @@
 <?php
 
-    class SignupModel{
+    class ContactModel{
         private $pdo;
 
         public function __construct($pdo){
