@@ -1,6 +1,6 @@
 <?php
 
-    class SignupModel{
+    class OwnersModel{
         private $pdo;
 
         public function __construct($pdo){
