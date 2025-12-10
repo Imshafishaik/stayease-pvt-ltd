@@ -1,3 +1,77 @@
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 40px;
+    background: #fff;
+    border-bottom: 1px solid #e6e6e6;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1e73ff;
+}
+
+.search-box {
+    position: relative;
+}
+
+.search-box input {
+    padding: 10px 35px 10px 15px;
+    width: 260px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.search-box i {
+    position: absolute;
+    right: 12px;
+    top: 10px;
+    color: #666;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.nav-right a {
+    color: #333;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.nav-right .active {
+    font-weight: 700;
+}
+
+.upload{
+    padding: 8px 20px;
+    background: black;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.profile-pic {
+    width: 35px;
+    height: 35px;
+    background: url('user.jpg') center/cover;
+    border-radius: 50%;
+}
+
 .site_header{
     padding: 15px;
     border-bottom: thin solid #f9f9f9e7;

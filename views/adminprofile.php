@@ -1,3 +1,9 @@
+<?php
+require __DIR__ . "/../config/database.php";
+
+include "./header.php"
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,14 +16,24 @@
 </head>
 <body>
 
-    <div class="container">
-        <header class="header">
-            <div class="logo">EaseStay Admin Profile</div>
-            <nav class="top-navbar">
-                <a href="#" class="dashboard">Dashboard</a>
-                <a href="#" class="logout">Logout</a>
-            </nav>
-        </header>
+    <nav class="navbar">
+        <div class="nav-left">
+            <!-- <div class="logo">StayEase</div> -->
+            <!-- <div class="search-box">
+                <input type="text" placeholder="Search houses, amenities, and owners">
+                <i class="fa fa-search"></i>
+            </div> -->
+        </div>
+
+        <div class="nav-right">
+            <a href="ownerlisting.php?action=owner" class="active">Overview</a>
+            <a href="#">Rent</a>
+            <a href="adminprofile.php?action=adminprofile">Listings</a>
+            <a href="#">Activity</a>
+            <a href="rentupload.php?action=rentupload" class="upload-btn">Upload</a>
+            <div class="profile-pic"></div>
+        </div>
+    </nav>
 
         <main class="main">
             <div class="sidebar">

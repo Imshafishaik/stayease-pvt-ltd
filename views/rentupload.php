@@ -1,22 +1,34 @@
+<?php
+require __DIR__ . "/../config/database.php";
+
+include "./header.php"
+?>
 <!DOCTYPE html>
 
 <html>
     <head>
         <link rel="stylesheet" href="../css/rentupload.css">
     </head>
-    <header class="site_header">
-        <div class="header_button">
-            <input 
-                type="button" 
-                value="Dashboard" />
-            <input
-                type="button"
-                value="Profile" />
-            <input
-                type="button"
-                value="Logout"/>
-        </div>  
-    </header>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <!-- <div class="logo">StayEase</div> -->
+            <!-- <div class="search-box">
+                <input type="text" placeholder="Search houses, amenities, and owners">
+                <i class="fa fa-search"></i>
+            </div> -->
+        </div>
+
+        <div class="nav-right">
+            <a href="ownerlisting.php?action=owner" class="active">Overview</a>
+            <a href="#">Rent</a>
+            <a href="adminprofile.php?action=adminprofile">Listings</a>
+            <a href="#">Activity</a>
+            <a href="rentupload.php?action=rentupload" class="upload-btn">Upload</a>
+            <div class="profile-pic"></div>
+        </div>
+    </nav>
 
     <body>
         <div>

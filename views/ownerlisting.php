@@ -1,7 +1,7 @@
 <?php
 require __DIR__ . "/../config/database.php";
 
-include "./views/header.php"
+include "./header.php"
 ?>
 
 <!DOCTYPE html>
@@ -28,9 +28,9 @@ include "./views/header.php"
         <div class="nav-right">
             <a href="#" class="active">Overview</a>
             <a href="#">Rent</a>
-            <a href="#">Listings</a>
+            <a href="adminprofile.php?action=adminprofile">Listings</a>
             <a href="#">Activity</a>
-            <button class="upload-btn">Upload</button>
+            <a href="rentupload.php?action=rentupload" class="upload-btn">Upload</a>
             <div class="profile-pic"></div>
         </div>
     </nav>
