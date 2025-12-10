@@ -1,0 +1,163 @@
+.site_header{
+    padding: 15px;
+    border-bottom: thin solid #f9f9f9e7;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.header_button button{
+    display: inline-block;  
+}
+
+.header_button input{
+    background-color: black;
+    padding: 10px 25px;
+    color: white;
+    font-size: 12px;
+    opacity: 0.75;
+    transition: 0.3s;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 1px;
+}
+
+.header_button:hover input:hover{opacity: 1;}
+
+.header_button{
+    text-align: right;
+}
+
+body{
+    font-family: sans-serif;
+    text-align: center;
+}
+
+h2{
+    font-size: 28px;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 20px;
+    margin-top: 50px;
+}
+
+form{
+    margin: auto;
+    border: thin solid #f9f9f9e7;
+    border-radius: 10px;
+    padding: 25px;
+    margin-bottom: 50px;
+    font-size: 28; 
+    width: 600px;
+    height: 530px;
+    margin-top: 50px auto;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    text-align: left;
+    align-self: center;
+}
+
+form input[input=text]{
+    color: #f9f9f9e7;
+    height: 28px;
+    padding-left: 10px;
+    text-decoration: none;
+}
+
+.upload_house_input input{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    height: 40px;
+    border: 2px #f9f9f9e7;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.property_name_input input{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    height: 40px;
+    border: 2px #f9f9f9e7;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);;
+    font-size: 16px;
+}
+
+.rent_amount_input input{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    height: 40px;
+    border: 2px #f9f9f9e7;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);;
+    font-size: 16px;
+}
+
+.description_input input{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    height: 150px;
+    border: 2px #f9f9f9e7;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    font-size: 16px;
+}
+
+.availability_status input[type="checkbox"]{
+    margin-bottom: 20px;
+    height: 20px;
+    width: 20px;
+    transform: scale(1.10); 
+    cursor: pointer;
+}
+
+.availability_status {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;                                  
+}
+
+label{
+    width: 100%;
+    height: 45px;
+    border: 1px #f9f9f9e7;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.submit_button input{
+    background-color: black;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 604px;
+    font-family: sans-serif;
+    color: white;
+    text-align: center;
+    display: inline;
+    font-size: 16px;
+    font-weight: bold;
+    border:black ;
+    cursor: pointer;
+    align-self: center;
+    font-size: 12px;
+    opacity: 0.7;
+    transition: 0.3s;
+    border-radius: 3px;
+}
+
+.submit_button button{
+    align-self: center;
+}
+
+.submit_button:hover input:hover{opacity: 1;}
+
+.footer_site{
+    padding: 15px;
+    border-top: thin solid #f9f9f9e7;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
