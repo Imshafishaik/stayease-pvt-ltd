@@ -1,7 +1,7 @@
 <?php
 require __DIR__ . "/../config/database.php";
 
-include "./views/header.php";
+include "./header.php";
 ?>
 
 <!DOCTYPE html>
@@ -25,13 +25,18 @@ include "./views/header.php";
             <div class="form-column">
                 <div class="form-wrapper">
                     <h2>Login to Your Account</h2>
-                    <form action="">
+                    <!-- <form action="">
                         <input type="email" placeholder="Email" required>
                         <input type="password" placeholder="Password" required>
                         <a href="#" class="forgot-password">forgot password?</a>
                         <button type="submit" class="btn btn-login">Login</button>
+                    </form> -->
+                    <form id="loginForm">
+                        <input type="email" name="email" placeholder="Email" required>
+                        <input type="password" name="password" placeholder="Password" required>
+                        <button type="submit" class="btn btn-login">Login</button>
                     </form>
-                    <p class="switch-form">Don't have an account? <a href="/signup.php?action=signup">Register</a></p>
+                    <p class="switch-form">Don't have an account? <a href="/views/signup.php?action=signup">Register</a></p>
                 </div>
             </div>
         </div>
@@ -51,5 +56,31 @@ include "./views/header.php";
             </div>
         </div>
     </footer> -->
+    <script>
+document.getElementById("loginForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    let formData = new FormData(this);
+    let xhr = new XMLHttpRequest();
+
+    xhr.open("POST", "/index.php?action=login", true);
+
+    xhr.onload = function () {
+        console.log("RAW:", xhr.responseText);
+
+        if (xhr.status === 200) {
+            let res = JSON.parse(xhr.responseText);
+
+            if (res.status === "success") {
+                window.location.href = "/views/home.php?action=home";
+            } else {
+                document.getElementById("loginResponse").innerText = res.message;
+            }
+        }
+    };
+
+    xhr.send(formData);
+});
+</script>
 </body>
 </html>
