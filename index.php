@@ -12,10 +12,10 @@ $signup_controller = new SignupController($pdo);
 $contact_controller = new ContactController($pdo);
 $owners_controller = new OwnersController($pdo);
 
-
 $action = $_GET['action'] ?? 'index';
 
 $id = $_GET['id'] ?? null;
+
 
 switch ($action) {
     case 'create':    $controller->create(); break;
@@ -23,7 +23,5 @@ switch ($action) {
     case 'signup':     $signup_controller->signup(); break;
     case 'contact':     $contact_controller->contact(); break;
     case 'owner':      $owners_controller->owner(); break;
-    // case 'update':    $controller->update($id); break;
-    // case 'delete':    $controller->delete($id); break;
     default:          $home_controller->home();
 }

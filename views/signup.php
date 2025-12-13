@@ -1,7 +1,9 @@
 <?php
 require __DIR__ . "/../config/database.php";
 
-include "./views/header.php";
+include "./header.php";
+
+
 ?>
 
 <!DOCTYPE html>
@@ -27,26 +29,32 @@ include "./views/header.php";
             <div class="form-column">
                 <div class="form-wrapper">
                     <h2>Register a New Student Account</h2>
-                    <form action="../index.php?action=signup" method="POST">
-                        <input type="text" name="name" placeholder="Full Name" required>
-                        <input type="email" name="email" placeholder="Email" required>
-                        <input type="password" name="password" placeholder="Password" required>
-                        <input type="password" placeholder="Confirm Password" required>
-                        <select name="select_user_type">
+                        <form id="signupForm" enctype="multipart/form-data">
+                            <input type="text" name="name" placeholder="Full Name" required>
+                            <input type="email" name="email" placeholder="Email" required>
+                            <input type="password" name="password" placeholder="Password" required>
+                            <input type="password" placeholder="Confirm Password" required>
+
+                            <select name="select_user_type">
                             <option>Student</option>
                             <option>House Owner</option>
+                            </select>
 
-                        </select>
-                        <div class="file-upload">
+                            <div class="file-upload">
                             <input type="file" name="passport" id="passport-upload" hidden>
                             <label for="passport-upload"><span>Upload Passport</span><i class="fas fa-cloud-upload-alt"></i></label>
-                        </div>
-                        <div class="file-upload">
-                            <input type="file" name="visa"  id="visa-upload" hidden>
+                            </div>
+
+                            <div class="file-upload">
+                            <input type="file" name="visa" id="visa-upload" hidden>
                             <label for="visa-upload"><span>Upload Visa</span><i class="fas fa-cloud-upload-alt"></i></label>
-                        </div>
-                        <button type="submit" class="btn btn-register">Register</button>
-                    </form>
+                            </div>
+
+                            <button type="submit" class="btn btn-register">Register</button>
+                            </form>
+
+                            <div id="response"></div>
+
                     <p class="switch-form">Already Have an account? <a href="/views/login.php?action=login">Login</a></p>
                 </div>
             </div>
@@ -92,5 +100,32 @@ include "./views/header.php";
             </div>
         </div>
     </footer>
+    <script>
+document.getElementById("signupForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    let formData = new FormData(this);
+    let xhr = new XMLHttpRequest();
+
+    xhr.open("POST", "/index.php?action=signup", true);
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            console.log("..........xhr.status",xhr)
+            let res = JSON.parse(xhr.responseText);
+            console.log(".......res.status",res)
+            if (res.status == "success") {
+                console.log(".......res.status",res.status)
+                window.location.href = "/views/login.php?action=login";
+            } else {
+                document.getElementById("response").innerText = res.message;
+            }
+        }
+    };
+
+    xhr.send(formData);
+});
+</script>
+
+
 </body>
 </html>
