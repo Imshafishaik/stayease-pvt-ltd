@@ -1,7 +1,9 @@
 <?php
 require __DIR__ . "/../config/database.php";
 
-include "./views/header.php";
+$action = $_GET['action'] ?? 'index';
+
+include ($action == 'home' ? "./header.php" : "./views/header.php");
 ?>
 
 <!DOCTYPE html>
