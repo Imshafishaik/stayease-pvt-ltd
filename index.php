@@ -12,10 +12,10 @@ $signup_controller = new SignupController($pdo);
 $contact_controller = new ContactController($pdo);
 $owners_controller = new OwnersController($pdo);
 
-
 $action = $_GET['action'] ?? 'index';
 
 $id = $_GET['id'] ?? null;
+
 
 switch ($action) {
     case 'create':    $controller->create(); break;

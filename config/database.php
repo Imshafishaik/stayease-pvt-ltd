@@ -7,7 +7,7 @@ $dotenv->load();
 
 $host = "shafi-shafimern-c5d9.h.aivencloud.com";
 $port = "19448";
-$dbname = "defaultdb";
+$dbname = "stayease-pvt-ltd";
 $user = "avnadmin";
 $pass = $_ENV['DB_PASS'] ?? null;
 
@@ -16,7 +16,7 @@ try {
     $pdo = new PDO("pgsql:host=$host;port=$port;dbname=$dbname", $user, $pass, [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
     ]);
-    // echo "✅ Connected to PostgreSQL successfully!";
+    // echo "Connected to PostgreSQL successfully!";
 } catch (PDOException $e) {
     die("PostgreSQL connection failed: " . $e->getMessage());
 }
