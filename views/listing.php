@@ -5,66 +5,92 @@ include "./header.php";
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>StayEase</title>
+  <meta charset="UTF-8" />
+  <title>StayEase | Easy stays for students</title>
   <link rel="stylesheet" href="../css/listing.css">
 </head>
 <body>
 
-  <!-- <header>
-    <img src="https://i.imgur.com/2N0lIUr.png" alt="StayEase Logo"> 
-    <nav>
-      <a href="#">Home</a>
-      <a href="#">Listings</a>
-      <a href="#">Contact</a>
-    </nav>
-  </header> -->
+  <section class="filters">
+    <input type="text" placeholder="Search for houses..." />
+    
+    <select>
+      <option>All Cities</option>
+      <option>Paris</option>
+      <option>Lyon</option>
+      <option>Provence</option>
+    </select>
 
-  <div class="search-bar">
-    <input type="text" placeholder="Search for houses..">
+    <select>
+      <option>Max Price</option>
+      <option>€700</option>
+      <option>€900</option>
+      <option>€1200</option>
+    </select>
+
     <button>Search</button>
-  </div>
+  </section>
 
-  <div class="card-container">
+  <!-- Listings -->
+  <main class="cards">
+
     <div class="card">
-      <img src="https://i.imgur.com/hH3yG5R.jpg" alt="Paris Room">
+      <img src="https://images.unsplash.com/photo-1502673530728-f79b4cab31b1" />
       <div class="card-content">
-        <h3>Charming Paris Room no 1</h3>
-        <p>Located in the heart of Paris, this cozy apartment offers a unique blend of comfort and convenience.</p>
-        <p><b>Address:</b> 15 Rue Antony Thomas, Ivry-sur-seine, 94200</p>
-        <p>Price: €1200/month &nbsp;&nbsp; Furniture: Yes &nbsp;&nbsp; Available Now</p>
+        <h3>Charming Paris Apartment</h3>
+        <p>
+          Located in the heart of Paris, this cozy apartment offers a unique
+          blend of comfort and convenience.
+        </p>
+        <div class="card-footer">
+          <span>€1200/month</span>
+          <span class="status">Available Now</span>
+        </div>
       </div>
     </div>
 
     <div class="card">
-      <img src="https://i.imgur.com/f3ofFJ7.jpg" alt="Lyon Room">
+      <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85" />
       <div class="card-content">
-        <h3>Modern Lyon Room no 2</h3>
-        <p>Enjoy modern living in this spacious apartment located in a vibrant neighborhood of Lyon.</p>
-        <p><b>Address:</b> 15 Rue Antony Thomas, Ivry-sur-seine, 94200</p>
-        <p>Price: €1200/month &nbsp;&nbsp; Furniture: Yes &nbsp;&nbsp; Available Now</p>
+        <h3>Modern Lyon Apartment</h3>
+        <p>
+          Enjoy modern living in this spacious apartment located in a vibrant
+          neighborhood of Lyon.
+        </p>
+        <div class="card-footer">
+          <span>€900/month</span>
+          <span class="status muted">Available Jan 2024</span>
+        </div>
       </div>
     </div>
 
     <div class="card">
-      <img src="https://i.imgur.com/8ckC9S5.jpg" alt="Lyon Room 3">
+      <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994" />
       <div class="card-content">
-        <h3>Modern Lyon Room no 3</h3>
-        <p>Experience tranquility in this rustic cottage surrounded by the beautiful landscapes of Provence.</p>
-        <p><b>Address:</b> 15 Rue Antony Thomas, Ivry-sur-seine, 94200</p>
-        <p>Price: €1200/month &nbsp;&nbsp; Furniture: No &nbsp;&nbsp; Available Now</p>
+        <h3>Rustic Provence Cottage</h3>
+        <p>
+          Experience tranquility in this rustic cottage surrounded by the
+          beautiful landscapes of Provence.
+        </p>
+        <div class="card-footer">
+          <span>€750/month</span>
+          <span class="status">Available Now</span>
+        </div>
       </div>
     </div>
-  </div>
 
-  <footer>
-    <p><b>Contact Us</b><br>
-    Email: <a href="mailto:support@accommodateme.fr">support@accommodateme.fr</a><br>
-    Phone: +33 1 23 45 67 89</p>
-    <div class="footer-bottom">
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div>
+      <p><strong>Contact Us</strong></p>
+      <p>Email: support@accommodateme.fr</p>
+      <p>Phone: +33 1 23 45 67 89</p>
+    </div>
+    <p class="copyright">
       © 2023 AccommodateMe. All rights reserved.
-    </div>
+    </p>
   </footer>
 
 </body>
