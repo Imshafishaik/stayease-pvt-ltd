@@ -277,3 +277,6 @@ include "./header.php"
 
 </body>
 </html>
+<?php
+include "./footer.php"
+?>

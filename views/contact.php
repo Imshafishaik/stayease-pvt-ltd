@@ -66,6 +66,9 @@ include "./header.php"
 </body>
 </html>
 
+<?php
+include "./footer.php"
+?>
 
 <!-- <!DOCTYPE html>
 <html lang="en">
