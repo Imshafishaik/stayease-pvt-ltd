@@ -21,6 +21,7 @@ body {
 }
 .container-interface-img img{
     border-radius: 20px;
+    margin: 0 32px;
 }
 .head-in-container{
     margin: 20px 32px ;
@@ -106,7 +107,7 @@ padding: 15px 30px;
     margin: 0 32px;
     align-items: center;
 }
-.contact-info{
+/* .contact-info{
     height: 225px;
     background-color:black ;
     display: flex;
@@ -130,4 +131,4 @@ padding: 15px 30px;
     text-decoration: none;
     list-style: none;
     padding: 10px;
-}
+} */

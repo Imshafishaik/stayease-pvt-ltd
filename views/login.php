@@ -34,6 +34,7 @@ include "./header.php";
                     <form id="loginForm">
                         <input type="email" name="email" placeholder="Email" required>
                         <input type="password" name="password" placeholder="Password" required>
+                        <a href="#" class="forgot-password">forgot password?</a>
                         <button type="submit" class="btn btn-login">Login</button>
                     </form>
                     <p class="switch-form">Don't have an account? <a href="/views/signup.php?action=signup">Register</a></p>
