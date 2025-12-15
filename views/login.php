@@ -85,3 +85,7 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
 </script>
 </body>
 </html>
+
+<?php
+include "./footer.php"
+?>

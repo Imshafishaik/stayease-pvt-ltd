@@ -126,3 +126,7 @@ document.getElementById("signupForm").addEventListener("submit", function(e) {
 
 </body>
 </html>
+
+<?php
+include "./footer.php"
+?>

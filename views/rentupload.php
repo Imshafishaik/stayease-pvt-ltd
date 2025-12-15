@@ -1,6 +1,7 @@
 <?php
 require __DIR__ . "/../config/database.php";
-// include "./header.php"; // Uncomment if you are using your separate header file
+
+include "./header.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -115,3 +116,7 @@ require __DIR__ . "/../config/database.php";
         </footer>
     </body>
 </html>
+
+<?php
+include "./footer.php"
+?>
