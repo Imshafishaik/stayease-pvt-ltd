@@ -100,5 +100,5 @@ include ($action == 'home' ? "./header.php" : "./views/header.php");
 
 
 <?php
-include "./footer.php"
+include ($action == 'home' ? "./footer.php" : "./views/footer.php");
 ?>
