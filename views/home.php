@@ -71,8 +71,7 @@ include ($action == 'home' ? "./header.php" : "./views/header.php");
             <button>list your property</button>
         </div>
       </div>
-      <div class="contact"></div>
-         <div class="contact-info">
+         <!-- <div class="contact-info">
             <div class="contact-info-content-1">
                 <h3 style="color: white;">Accomodate me</h4>
                 <p style="color: white;">Connecting with their perfect home in france</p>
@@ -83,8 +82,6 @@ include ($action == 'home' ? "./header.php" : "./views/header.php");
                     <li>Contact us</li>
                 </ul>
             </div>
-            <div class="contact-info-empty"></div>
-            <div class="contact-info-empty"></div>
             <div class="contact-info-content-2">
                 <ul>
                     <li><img src="/../images/homeimages/facebook-logo-free-png.webp" height="50px"/></li>
@@ -95,10 +92,13 @@ include ($action == 'home' ? "./header.php" : "./views/header.php");
                 <p style="color: white;">Email:info@accomodate.com</p>
                 <p style="color: white;">Phone: +33 123 456 789</p>
             </div>
-         </div>
-       </div>
+         </div> -->
     </div>
 </body>
 </html>
 
 
+
+<?php
+include "./footer.php"
+?>

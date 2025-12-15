@@ -108,11 +108,10 @@ document.getElementById("signupForm").addEventListener("submit", function(e) {
     xhr.open("POST", "/index.php?action=signup", true);
     xhr.onload = function () {
         if (xhr.status === 200) {
-            console.log("..........xhr.status",xhr)
+
             let res = JSON.parse(xhr.responseText);
-            console.log(".......res.status",res)
+
             if (res.status == "success") {
-                console.log(".......res.status",res.status)
                 window.location.href = "/views/login.php?action=login";
             } else {
                 document.getElementById("response").innerText = res.message;
