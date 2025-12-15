@@ -1,3 +1,7 @@
+<?php 
+include "./header.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,14 +12,14 @@
 </head>
 <body>
 
-  <header>
-    <img src="https://i.imgur.com/2N0lIUr.png" alt="StayEase Logo"> <!-- Replace with your logo -->
+  <!-- <header>
+    <img src="https://i.imgur.com/2N0lIUr.png" alt="StayEase Logo"> 
     <nav>
       <a href="#">Home</a>
       <a href="#">Listings</a>
       <a href="#">Contact</a>
     </nav>
-  </header>
+  </header> -->
 
   <div class="search-bar">
     <input type="text" placeholder="Search for houses..">
