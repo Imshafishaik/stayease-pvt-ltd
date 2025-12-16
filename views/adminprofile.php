@@ -1,7 +1,7 @@
 <?php
 require __DIR__ . "/../config/database.php";
 
-include "./header.php"
+include "./views/header.php";
 ?>
 
 <!DOCTYPE html>
@@ -41,24 +41,7 @@ include "./header.php"
                 <ul class="quick-links scrollbar">
                     <li><a href="#">User Management</a></li>
                     <li><a href="#">House Management</a></li>
-                    <li><a href="#">User Management</a></li>
-                    <li><a href="#">House Management</a></li>
-                    <li><a href="#">User Management</a></li>
-                    <li><a href="#">House Management</a></li>
-                    <li><a href="#">User Management</a></li>
-                    <li><a href="#">House Management</a></li>
-                    <li><a href="#">User Management</a></li>
-                    <li><a href="#">House Management</a></li>
-                    <li><a href="#">User Management</a></li>
-                    <li><a href="#">House Management</a></li>
-                    <li><a href="#">User Management</a></li>
-                    <li><a href="#">House Management</a></li>
-                    <li><a href="#">User Management</a></li>
-                    <li><a href="#">House Management</a></li>
-                    <li><a href="#">User Management</a></li>
-                    <li><a href="#">House Management</a></li>
-      
-                                  
+                    <li><a href="#">User Management</a></li>                  
                 </ul>
             </div>
 
@@ -278,5 +261,6 @@ include "./header.php"
 </body>
 </html>
 <?php
-include "./footer.php"
+
+include "./views/footer.php";
 ?>

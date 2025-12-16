@@ -7,6 +7,7 @@ require "./controllers/contact.php";
 require "./controllers/owner.php";
 require "./controllers/listing.php";
 require "./controllers/admin.php";
+require "./controllers/adminprofile.php";
 
 $home_controller = new HomeController($pdo);
 $login_controller = new LoginController($pdo);
@@ -15,6 +16,7 @@ $contact_controller = new ContactController($pdo);
 $owners_controller = new OwnersController($pdo);
 $listing_controller = new ListingController($pdo);
 $admin_controller = new AdminController($pdo);
+$admin_profile_controller = new AdminprofileController($pdo);
 
 $action = $_GET['action'] ?? 'index';
 
@@ -32,6 +34,6 @@ switch ($action) {
     // case 'delete':    $controller->delete($id); break;
     case 'rentupload':     $rentupload_controller->rentupload(); break;
     case 'adminprofile':     $adminprofile_controller->adminprofile(); break;
-    case '7654': $admin_controller->admin(); break;
+    case '7654': $admin_profile_controller->adminprofile(); break;
     default:          $home_controller->home();
 }

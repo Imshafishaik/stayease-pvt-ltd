@@ -46,7 +46,7 @@ include "./header.php"
 
 </section>
 
-<section class="info-box">
+<!-- <section class="info-box">
     <div class="info">
         <h3>Call Us</h3>
         <p>+33 1 23 45 67 89 +33 1 98 76 54 32</p>
@@ -61,7 +61,7 @@ include "./header.php"
         <h3>Visit Our Office</h3>
         <p>123 Rue de Paris Paris,<br>France 75001</p>
     </div>
-</section>
+</section> -->
 
 </body>
 </html>
@@ -70,43 +70,3 @@ include "./header.php"
 include "./footer.php"
 ?>
 
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>CreativeSpace</title>
-    <link href="../css/contact.css" rel="stylesheet" type="text/css" />
-</head>
-<body>
-
-
-    <div class="contact_section">
-        <form>
-            <h1>
-                Contact Form
-            </h1>
-            <div class="contact_input">
-            <label>Your Name</label><br>
-            <input type="text" placeholder="Enter your full name" />
-            </div>
-            <div class="contact_input">
-            <label>Your Email</label><br>
-            <input type="text" placeholder="you@gmail.com" />
-            </div>
-
-            <div class="contact_input">
-            <label>Subject</label><br>
-            <input type="text" placeholder="Your inquiry topic" />
-            </div>
-
-            <div class="contact_input">
-            <label>Message</label><br>
-            <input type="text" placeholder="Type your message here" />
-            </div>
-            <button type="submit">Submit</button>
-        </form>
-        <div>
-            <img src="../images/contact/iseplocation.webp" />
-        </div>
-    </div>
-</body>
-</html> -->
