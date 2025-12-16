@@ -60,6 +60,10 @@ nav a {
 }
 
 /* Cards */
+
+.main_card{
+  min-height: 75vh;
+}
 .cards {
   padding: 20px 40px 60px;
   display: grid;

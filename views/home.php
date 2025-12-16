@@ -51,7 +51,50 @@ include ($action == 'home' ? "./header.php" : "./views/header.php");
         </div>
         <h2 class="head-in-container">Top listings</h2>
         <div class="card-container">
-            <div class="card-container-1">
+          <div class="card">
+      <img src="../images/homeimages/image2.avif" />
+      <div class="card-content">
+        <h3>Charming Paris Apartment</h3>
+        <p>
+          Located in the heart of Paris, this cozy apartment offers a unique
+          blend of comfort and convenience.
+        </p>
+        <div class="card-footer">
+          <span>€1200/month</span>
+          <span class="status">Available Now</span>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994" />
+      <div class="card-content">
+        <h3>Rustic Provence Cottage</h3>
+        <p>
+          Experience tranquility in this rustic cottage surrounded by the
+          beautiful landscapes of Provence.
+        </p>
+        <div class="card-footer">
+          <span>€750/month</span>
+          <span class="status">Available Now</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="../images/homeimages/image2.avif" />
+      <div class="card-content">
+        <h3>Charming Paris Apartment</h3>
+        <p>
+          Located in the heart of Paris, this cozy apartment offers a unique
+          blend of comfort and convenience.
+        </p>
+        <div class="card-footer">
+          <span>€1200/month</span>
+          <span class="status">Available Now</span>
+        </div>
+      </div>
+    </div>
+            <!-- <div class="card-container-1">
                 <img src="/../images/homeimages/images.jpeg" height="170px" width="300px"/>
                 <p>Charming Studio in paris<br>£900/month</p>
             </div>
@@ -62,37 +105,16 @@ include ($action == 'home' ? "./header.php" : "./views/header.php");
             <div class="card-container-1">
                 <img src="/../images/homeimages/image3.png" height="170px" width="300px"/>
                 <p>Spacious flat in central paris<br>£1200/month</p>
-            </div>
+            </div> -->
         </div>
         <h2 class="head-in-container">Are you a house owner?</h2>
       <div class="owner">
         <div class="owner-container">
             <p>Reach your prperty with us and reach thousands of international students looking for accomodation.</p>
-            <button>list your property</button>
+            <a href="/views/rentupload.php?action=rentupload">list your property</a>
         </div>
       </div>
-         <!-- <div class="contact-info">
-            <div class="contact-info-content-1">
-                <h3 style="color: white;">Accomodate me</h4>
-                <p style="color: white;">Connecting with their perfect home in france</p>
-                <ul style="color: white;">
-                    <li>Home</li>
-                    <li>Find accomodation </li>
-                    <li>For owners</li>
-                    <li>Contact us</li>
-                </ul>
-            </div>
-            <div class="contact-info-content-2">
-                <ul>
-                    <li><img src="/../images/homeimages/facebook-logo-free-png.webp" height="50px"/></li>
-                    <li><img src="/../images/homeimages/instagram-logo-black-and-white-transparent-background-free-png.webp"height="50px"/></li>
-                    <li><img src="/../images/homeimages/twitter-circle-black-logo-icon-twitter-app-transparent-background-premium-social-media-design-for-digital-download-free-png.webp"height="50px"/></li>
-                </ul>
-                <h3 style="color: white;">Contact us</h3>
-                <p style="color: white;">Email:info@accomodate.com</p>
-                <p style="color: white;">Phone: +33 123 456 789</p>
-            </div>
-         </div> -->
+         
     </div>
 </body>
 </html>
@@ -100,5 +122,6 @@ include ($action == 'home' ? "./header.php" : "./views/header.php");
 
 
 <?php
-include "./footer.php"
+
+include ($action == 'home' ? "./footer.php" : "./views/footer.php");
 ?>

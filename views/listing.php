@@ -32,10 +32,11 @@ include "./header.php";
   </section>
 
   <!-- Listings -->
+   <div class="main_card">
   <main class="cards">
 
     <div class="card">
-      <img src="https://images.unsplash.com/photo-1502673530728-f79b4cab31b1" />
+      <img src="../images/homeimages/image2.avif" />
       <div class="card-content">
         <h3>Charming Paris Apartment</h3>
         <p>
@@ -80,7 +81,7 @@ include "./header.php";
     </div>
 
   </main>
-
+</div>
   <!-- Footer -->
   <footer class="footer">
     <div>

@@ -82,7 +82,38 @@ include "./header.php"
                 </div>
             </div>
         </div>
+        <!-- Card 3 -->
+        <div class="listing-card">
+            <div class="image-wrapper">
+                <img src="../images/homeimages/image2.avif" alt="">
+                <button class="edit-btn">Edit</button>
+            </div>
+            <div class="listing-info">
+                <h4>Charming Paris Room no 1</h4>
+                <p>Located in the heart of Paris, this cozy apartment offers a unique blend of comfort and convenience.</p>
+                <div class="details-row">
+                    <span>€ 1500</span>
+                    <span>Favourite: Yes</span>
+                    <span>Available: Yes</span>
+                </div>
+            </div>
+        </div>
 
+        <!-- Card 4 -->
+        <div class="listing-card">
+            <div class="image-wrapper">
+                <img src="../images/homeimages/image3.png" alt="">
+            </div>
+            <div class="listing-info">
+                <h4>Cozy Cottage</h4>
+                <p>Located in the heart of Paris, this cozy apartment offers a unique blend of comfort and convenience.</p>
+                <div class="details-row">
+                    <span>€ 950</span>
+                    <span>Favourite: Yes</span>
+                    <span>Available: Yes</span>
+                </div>
+            </div>
+        </div>
     </section>
 
     <div class="load-more">
