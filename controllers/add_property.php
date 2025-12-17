@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    $sql = "INSERT INTO Accommodation (owner_id, title, description, rent_price, city, address, amenities, photos) VALUES (:owner_id, :title, :description, :rent_price, :city, :address, :amenities, :photos)";
+    $sql = "INSERT INTO "Accommodation" (owner_id, title, description, rent_price, city, address, amenities, photos) VALUES (:owner_id, :title, :description, :rent_price, :city, :address, :amenities, :photos)";
 
     try {
         $stmt = $pdo->prepare($sql);

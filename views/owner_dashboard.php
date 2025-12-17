@@ -10,13 +10,13 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'owner') {
 $owner_id = $_SESSION['user_id'];
 
 // Fetch owner's properties
-$sql_props = "SELECT * FROM Accommodation WHERE owner_id = :owner_id";
+$sql_props = 'SELECT * FROM "Accommodation" WHERE owner_id = :owner_id';
 $stmt_props = $pdo->prepare($sql_props);
 $stmt_props->execute(['owner_id' => $owner_id]);
 $properties = $stmt_props->fetchAll(PDO::FETCH_ASSOC);
 
 // Fetch inquiries for owner's properties
-$sql_inq = "SELECT i.*, s.student_name, a.title FROM Inquiry i JOIN Student s ON i.student_id = s.student_id JOIN Accommodation a ON i.accommodation_id = a.accommodation_id WHERE i.owner_id = :owner_id ORDER BY i.inquiry_date DESC";
+$sql_inq = 'SELECT i.*, s.student_name, a.title FROM "Inquiry" i JOIN "Student" s ON i.student_id = s.student_id JOIN "Accommodation" a ON i.accommodation_id = a.accommodation_id WHERE i.owner_id = :owner_id ORDER BY i.inquiry_date DESC';
 $stmt_inq = $pdo->prepare($sql_inq);
 $stmt_inq->execute(['owner_id' => $owner_id]);
 $inquiries = $stmt_inq->fetchAll(PDO::FETCH_ASSOC);

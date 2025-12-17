@@ -10,7 +10,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'student') {
 $student_id = $_SESSION['user_id'];
 
 // Fetch student's inquiries
-$sql_inq = "SELECT i.*, a.title, o.owner_name FROM Inquiry i JOIN Accommodation a ON i.accommodation_id = a.accommodation_id JOIN HouseOwner o ON i.owner_id = o.owner_id WHERE i.student_id = :student_id ORDER BY i.inquiry_date DESC";
+$sql_inq = 'SELECT i.*, a.title, o.owner_name FROM "Inquiry" i JOIN "Accommodation" a ON i.accommodation_id = a.accommodation_id JOIN "HouseOwner" o ON i.owner_id = o.owner_id WHERE i.student_id = :student_id ORDER BY i.inquiry_date DESC';
 $stmt_inq = $pdo->prepare($sql_inq);
 $stmt_inq->execute(['student_id' => $student_id]);
 $inquiries = $stmt_inq->fetchAll(PDO::FETCH_ASSOC);

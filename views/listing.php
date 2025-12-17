@@ -3,7 +3,7 @@ include 'header.php';
 require_once '../config/db_connect.php';
 
 // Base query
-$sql = "SELECT a.*, o.owner_name FROM Accommodation a JOIN HouseOwner o ON a.owner_id = o.owner_id WHERE a.is_available = true";
+$sql = 'SELECT a.*, o.owner_name FROM "Accommodation" a JOIN "HouseOwner" o ON a.owner_id = o.owner_id WHERE a.is_available = true';
 $params = [];
 
 // Search by city

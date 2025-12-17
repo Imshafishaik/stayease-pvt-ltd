@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $accommodation_id = $_POST['accommodation_id'];
     $message = $_POST['message'];
 
-    $sql = "INSERT INTO Inquiry (student_id, owner_id, accommodation_id, message) VALUES (:student_id, :owner_id, :accommodation_id, :message)";
+    $sql = 'INSERT INTO "Inquiry" (student_id, owner_id, accommodation_id, message) VALUES (:student_id, :owner_id, :accommodation_id, :message)';
 
     try {
         $stmt = $pdo->prepare($sql);

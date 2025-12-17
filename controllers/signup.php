@@ -20,9 +20,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
     if ($userType === 'student') {
-        $sql = "INSERT INTO Student (student_name, student_email, student_password) VALUES (:name, :email, :password)";
+        $sql = "INSERT INTO "Student" (student_name, student_email, student_password) VALUES (:name, :email, :password)";
     } elseif ($userType === 'owner') {
-        $sql = "INSERT INTO HouseOwner (owner_name, owner_email, owner_password) VALUES (:name, :email, :password)";
+        $sql = "INSERT INTO "HouseOwner" (owner_name, owner_email, owner_password) VALUES (:name, :email, :password)";
     } else {
         die("Invalid user type selected.");
     }

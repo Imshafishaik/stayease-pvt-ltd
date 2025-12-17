@@ -9,7 +9,7 @@ if (!isset($_GET['id'])) {
 
 $accommodation_id = $_GET['id'];
 
-$sql = "SELECT a.*, o.owner_name FROM Accommodation a JOIN HouseOwner o ON a.owner_id = o.owner_id WHERE a.accommodation_id = :id";
+$sql = 'SELECT a.*, o.owner_name FROM "Accommodation" a JOIN "HouseOwner" o ON a.owner_id = o.owner_id WHERE a.accommodation_id = :id';
 $stmt = $pdo->prepare($sql);
 $stmt->execute(['id' => $accommodation_id]);
 $accommodation = $stmt->fetch(PDO::FETCH_ASSOC);
