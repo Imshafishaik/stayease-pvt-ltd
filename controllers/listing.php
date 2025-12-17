@@ -9,6 +9,7 @@ class ListingController{
     }
 
     public function listing(){
+        $accommodations = $this->model->getAll();
         require __DIR__ . "/../views/listing.php";
     }
 }
