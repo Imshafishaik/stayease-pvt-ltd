@@ -30,7 +30,7 @@ switch ($action) {
     case 'contact':     $contact_controller->contact(); break;
     case 'owner':      $owners_controller->owner(); break;
     case 'listing': $listing_controller->listing(); break;
-    // case 'update':    $controller->update($id); break;
+    case 'forgot':    $controller->forgot(); break;
     // case 'delete':    $controller->delete($id); break;
     case 'rentupload':     $rentupload_controller->rentupload(); break;
     case 'adminprofile':     $adminprofile_controller->adminprofile(); break;

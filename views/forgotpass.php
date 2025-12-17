@@ -1,3 +1,7 @@
+<?php 
+include "./header.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,14 +12,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <header>
+    <!-- <header>
         <nav class="navbar">
             <a href="login page.html" class="nav-link">Login</a> 
             <a href="register page.html" class="nav-link">Register</a>
             <a href="#" class="nav-link">Listings</a>
             <a href="#" class="nav-link">Admin</a>
         </nav>
-    </header>
+    </header> -->
     <main class="main-content">
         <div class="forms-container">
             <div class="form-column">
@@ -26,13 +30,13 @@
                         <input type="email" placeholder="Email" required>
                         <button type="submit" class="btn btn-reset">Send Reset Link</button>
                     </form>
-                    <p class="switch-form">Remember your password? <a href="login page.html">Go back to Login</a></p>
+                    <p class="switch-form">Remember your password? <a href="/views/login.php?action=login">Go back to Login</a></p>
                 </div>
             </div>
         </div>
     </main>
 
-    <footer>
+    <!-- <footer>
         <div class="footer-content">
             <div class="contact-info">
                 <h4>Contact Us</h4>
@@ -45,6 +49,10 @@
                 <a href="#"><i class="fab fa-instagram"></i></a>
             </div>
         </div>
-    </footer>
+    </footer> -->
 </body>
 </html>
+
+<?php
+include "./footer.php"
+?>
