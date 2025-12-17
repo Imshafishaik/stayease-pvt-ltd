@@ -1,145 +1,59 @@
 <?php 
-include "./header.php";
+include 'header.php'; 
+require_once '../config/db_connect.php';
 
-require __DIR__ . "/../config/database.php";
+// Base query
+$sql = "SELECT a.*, o.owner_name FROM Accommodation a JOIN HouseOwner o ON a.owner_id = o.owner_id WHERE a.is_available = true";
+$params = [];
 
-$stmt = $pdo->query("SELECT * FROM accommodation");
+// Search by city
+if (!empty($_GET['city'])) {
+    $sql .= " AND a.city LIKE :city";
+    $params[':city'] = '%' . $_GET['city'] . '%';
+}
+
+// Filter by max rent
+if (!empty($_GET['max_rent'])) {
+    $sql .= " AND a.rent_price <= :max_rent";
+    $params[':max_rent'] = $_GET['max_rent'];
+}
+
+$stmt = $pdo->prepare($sql);
+$stmt->execute($params);
 $accommodations = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>StayEase | Easy stays for students</title>
-  <link rel="stylesheet" href="../css/listing.css">
-</head>
-<body>
+<div class="container">
+    <h2>Find Accommodation</h2>
 
-  <section class="filters">
-    <input type="text" placeholder="Search for houses..." />
+    <form action="listing.php" method="get" class="search-filter-form">
+        <input type="text" name="city" placeholder="Search by city..." value="<?php echo isset($_GET['city']) ? htmlspecialchars($_GET['city']) : ''; ?>">
+        <input type="number" name="max_rent" placeholder="Max rent..." value="<?php echo isset($_GET['max_rent']) ? htmlspecialchars($_GET['max_rent']) : ''; ?>">
+        <button type="submit">Search</button>
+    </form>
     
-    <select>
-      <option>All Cities</option>
-      <option>Paris</option>
-      <option>Lyon</option>
-      <option>Provence</option>
-    </select>
-
-    <select>
-      <option>Max Price</option>
-      <option>€700</option>
-      <option>€900</option>
-      <option>€1200</option>
-    </select>
-
-    <button>Search</button>
-  </section>
-
-  <!-- Listings -->
-   <div class="main_card">
-  <main class="cards">
-  <div class="cards">
-<?php foreach ($accommodations as $acc): ?>
-  <div class="card">
-
-    <img src="../images/homeimages/image2.avif" />
-
-    <div class="card-content">
-      <h3><?= htmlspecialchars($acc['accommodation_name']) ?></h3>
-
-      <p><?= htmlspecialchars($acc['accommodation_description']) ?></p>
-
-      <div class="card-footer">
-        <span>€<?= number_format($acc['accommodation_price'], 2) ?>/month</span>
-
-        <span class="status">
-          <?= $acc['accommodation_available'] ? 'Available Now' : 'Not Available' ?>
-        </span>
-      </div>
-
-      <div class="card-footer-btns">
-        <a href="#">Add to Favourites</a>
-        <a href="#">Book</a>
-      </div>
+    <div class="property-listings">
+        <?php if (count($accommodations) > 0): ?>
+            <?php foreach ($accommodations as $acc): ?>
+                <div class="property-card">
+                    <?php 
+                        $photos = json_decode($acc['photos']);
+                        if(!empty($photos)):
+                    ?>
+                        <img src="<?php echo htmlspecialchars($photos[0]); ?>" alt="Property Image">
+                    <?php endif; ?>
+                    <h3><?php echo htmlspecialchars($acc['title']); ?></h3>
+                    <p><strong>City:</strong> <?php echo htmlspecialchars($acc['city']); ?></p>
+                    <p><strong>Rent:</strong> €<?php echo htmlspecialchars($acc['rent_price']); ?>/month</p>
+                    <p><strong>Owner:</strong> <?php echo htmlspecialchars($acc['owner_name']); ?></p>
+                    <a href="property_details.php?id=<?php echo $acc['accommodation_id']; ?>">View Details</a>
+                </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p>No accommodations found matching your criteria.</p>
+        <?php endif; ?>
     </div>
-  </div>
-<?php endforeach; ?>
 </div>
 
-    <!-- <div class="card">
-      <img src="../images/homeimages/image2.avif" />
-      <div class="card-content">
-        <h3>Charming Paris Apartment</h3>
-        <p>
-          Located in the heart of Paris, this cozy apartment offers a unique
-          blend of comfort and convenience.
-        </p>
-        <div class="card-footer">
-          <span>€1200/month</span>
-          <span class="status">Available Now</span>
-        </div>
-        <div class="card-footer-btns">
-          <button>Add to Favourites</button>
-          <button>Book</button>
-          
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85" />
-      <div class="card-content">
-        <h3>Modern Lyon Apartment</h3>
-        <p>
-          Enjoy modern living in this spacious apartment located in a vibrant
-          neighborhood of Lyon.
-        </p>
-        <div class="card-footer">
-          <span>€900/month</span>
-          <span class="status muted">Available Jan 2024</span>
-        </div>
-        <div class="card-footer-btns">
-          <button>Add to Favourites</button>
-          <button>Book</button>
-          
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994" />
-      <div class="card-content">
-        <h3>Rustic Provence Cottage</h3>
-        <p>
-          Experience tranquility in this rustic cottage surrounded by the
-          beautiful landscapes of Provence.
-        </p>
-        <div class="card-footer">
-          <span>€750/month</span>
-          <span class="status">Available Now</span>
-        </div>
-        <div class="card-footer-btns">
-          <button>Add to Favourites</button>
-          <button>Book</button>
-          
-        </div>
-      </div>
-    </div> -->
-
-  </main>
-</div>
-  <!-- Footer -->
-  <footer class="footer">
-    <div>
-      <p><strong>Contact Us</strong></p>
-      <p>Email: support@accommodateme.fr</p>
-      <p>Phone: +33 1 23 45 67 89</p>
-    </div>
-    <p class="copyright">
-      © 2023 AccommodateMe. All rights reserved.
-    </p>
-  </footer>
-
-</body>
-</html>
+<?php include 'footer.php'; ?>

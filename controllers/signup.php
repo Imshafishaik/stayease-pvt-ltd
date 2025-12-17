@@ -1,140 +1,43 @@
 <?php
-require __DIR__ . "/../models/signup.php";
+require_once '../config/db_connect.php';
 
-class SignupController {
-    private SignupModel $model;
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $userType = $_POST['userType'];
 
-    public function __construct(PDO $pdo) {
-        $this->model = new SignupModel($pdo);
+    // Basic validation
+    if (empty($name) || empty($email) || empty($password) || empty($userType)) {
+        die("Please fill all required fields.");
     }
 
-    public function signup()
-{
-    ob_clean();
-    header('Content-Type: application/json; charset=utf-8');
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        die("Invalid email format.");
+    }
 
-    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-        echo json_encode(["status" => "error", "message" => "Invalid request"]);
-        exit;
+    // Hash the password for security
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+    if ($userType === 'student') {
+        $sql = "INSERT INTO Student (student_name, student_email, student_password) VALUES (:name, :email, :password)";
+    } elseif ($userType === 'owner') {
+        $sql = "INSERT INTO HouseOwner (owner_name, owner_email, owner_password) VALUES (:name, :email, :password)";
+    } else {
+        die("Invalid user type selected.");
     }
 
     try {
-        $name     = $_POST['name'] ?? '';
-        $email    = $_POST['email'] ?? '';
-        $password = $_POST['password'] ?? '';
-        $userType = $_POST['select_user_type'] ?? '';
-
-        if ($name === '' || $email === '' || $password === '') {
-            echo json_encode(["status" => "error", "message" => "Missing fields"]);
-            exit;
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute(['name' => $name, 'email' => $email, 'password' => $hashed_password]);
+        header("Location: ../views/login.php?signup=success");
+        exit();
+    } catch (PDOException $e) {
+        // Check for duplicate email
+        if ($e->errorInfo[1] == 1062) { // 1062 is the MySQL error code for duplicate entry
+            die("An account with this email already exists.");
+        } else {
+            die("Error: " . $e->getMessage());
         }
-
-        if ($this->model->emailExists($email)) {
-            echo json_encode(["status" => "error", "message" => "Email exists"]);
-            exit;
-        }
-
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-
-        $passport = $_FILES['passport']['name'] ?? null;
-        $visa     = $_FILES['visa']['name'] ?? null;
-
-        $this->model->insertUser(
-            $name,
-            $email,
-            $hashedPassword,
-            $userType,
-            $passport,
-            $visa
-        );
-
-        echo json_encode(["status" => "success"]);
-        exit;
-
-    } catch (Throwable $e) {
-        error_log($e->getMessage());
-        echo json_encode([
-            "status" => "error",
-            "message" => "Server error"
-        ]);
-        exit;
     }
-}
-
-    // public function signup() {
-    //     ob_clean();
-    //     header('Content-Type: application/json; charset=utf-8');
-
-    //     header('Content-Type: application/json');
-
-    //     if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    //         http_response_code(405);
-    //         echo json_encode([
-    //             "status" => "error",
-    //             "message" => "Method not allowed"
-    //         ]);
-    //         exit;
-    //     }
-
-    //     $name     = $_POST['name'] ?? '';
-    //     $email    = $_POST['email'] ?? '';
-    //     $password = $_POST['password'] ?? '';
-    //     $userType = $_POST['select_user_type'] ?? '';
-
-    //     if ($name === '' || $email === '' || $password === '') {
-    //         echo json_encode([
-    //             "status" => "error",
-    //             "message" => "All fields are required"
-    //         ]);
-    //         exit;
-    //     }
-
-    //     // Hash password
-    //     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-
-    //     // File uploads
-    //     $passportPath = null;
-    //     $visaPath = null;
-
-    //     if (!empty($_FILES['passport']['name'])) {
-    //         $passportPath = time() . "_passport_" . $_FILES['passport']['name'];
-    //         move_uploaded_file(
-    //             $_FILES['passport']['tmp_name'],
-    //             __DIR__ . "/../uploads/" . $passportPath
-    //         );
-    //     }
-
-    //     if (!empty($_FILES['visa']['name'])) {
-    //         $visaPath = time() . "_visa_" . $_FILES['visa']['name'];
-    //         move_uploaded_file(
-    //             $_FILES['visa']['tmp_name'],
-    //             __DIR__ . "/../uploads/" . $visaPath
-    //         );
-    //     }
-
-    //     // 🔍 Check email
-    //     if ($this->model->emailExists($email)) {
-    //         echo json_encode([
-    //             "status" => "error",
-    //             "message" => "Email already exists"
-    //         ]);
-    //         exit;
-    //     }
-
-    //     // ✅ Insert user
-    //     $this->model->insertUser(
-    //         $name,
-    //         $email,
-    //         $hashedPassword,
-    //         $userType,
-    //         $passportPath,
-    //         $visaPath
-    //     );
-
-    //     echo json_encode([
-    //         "status" => "success",
-    //         "message" => "User registered successfully"
-    //     ]);
-    //     exit;
-    // }
 }

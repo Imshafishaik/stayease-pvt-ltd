@@ -1,94 +1,44 @@
 <?php
-require __DIR__ . "/../models/login.php";
+require_once '../config/db_connect.php';
+session_start();
 
-class LoginController {
-    private LoginModel $model;
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
 
-    public function __construct(PDO $pdo) {
-        $this->model = new LoginModel($pdo);
-    }
+    // Attempt to find user in both tables
+    $sql_student = "SELECT * FROM Student WHERE student_email = :email";
+    $sql_owner = "SELECT * FROM HouseOwner WHERE owner_email = :email";
 
-    public function login() {
-        // Clear any previous output
-        if (ob_get_length()) ob_clean();
+    try {
+        $stmt = $pdo->prepare($sql_student);
+        $stmt->execute(['email' => $email]);
+        $user = $stmt->fetch();
+        $userType = 'student';
 
-        // Always JSON
-        header('Content-Type: application/json; charset=utf-8');
-
-        try {
-            // Only POST allowed
-            if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-                http_response_code(405);
-                echo json_encode([
-                    "status" => "error",
-                    "message" => "Method not allowed"
-                ]);
-                exit;
-            }
-
-            $email    = trim($_POST['email'] ?? '');
-            $password = $_POST['password'] ?? '';
-
-            if ($email === '' || $password === '') {
-                echo json_encode([
-                    "status" => "error",
-                    "message" => "Email and password required"
-                ]);
-                exit;
-            }
-
-            // Fetch user
-            $user = $this->model->getUserByEmail($email);
-
-            if (!$user) {
-                echo json_encode([
-                    "status" => "error",
-                    "message" => "Invalid email or password"
-                ]);
-                exit;
-            }
-
-            // Verify password
-            if (!password_verify($password, $user['user_password'])) {
-                echo json_encode([
-                    "status" => "error",
-                    "message" => "Invalid email or password"
-                ]);
-                exit;
-            }
-
-            // ✅ Start session safely
-            if (session_status() === PHP_SESSION_NONE) {
-                session_start();
-            }
-
-            $_SESSION['user_id']   = $user['user_id'];
-            $_SESSION['user_name'] = $user['user_name'];
-            $_SESSION['user_type'] = $user['user_type'];
-
-            echo json_encode([
-                "status" => "success",
-                "message" => "Login successful"
-            ]);
-            exit;
-
-        } catch (PDOException $e) {
-            // Do NOT output error directly
-            error_log($e->getMessage());
-            http_response_code(500);
-            echo json_encode([
-                "status" => "error",
-                "message" => "Server error"
-            ]);
-            exit;
-        } catch (Throwable $e) {
-            error_log($e->getMessage());
-            http_response_code(500);
-            echo json_encode([
-                "status" => "error",
-                "message" => "Unexpected error"
-            ]);
-            exit;
+        if (!$user) {
+            $stmt = $pdo->prepare($sql_owner);
+            $stmt->execute(['email' => $email]);
+            $user = $stmt->fetch();
+            $userType = 'owner';
         }
+
+        if ($user && password_verify($password, $user[$userType . '_password'])) {
+            $_SESSION['user_id'] = $user[$userType . '_id'];
+            $_SESSION['user_type'] = $userType;
+            
+            // Redirect based on user type
+            if($userType === 'owner'){
+                 header("Location: ../views/owner_dashboard.php");
+            } else {
+                 header("Location: ../views/student_dashboard.php");
+            }
+            exit();
+        } else {
+            header("Location: ../views/login.php?error=invalid_credentials");
+            exit();
+        }
+    } catch (PDOException $e) {
+        die("Error: " . $e->getMessage());
     }
 }

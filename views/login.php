@@ -1,91 +1,24 @@
-<?php
-require __DIR__ . "/../config/database.php";
+<?php include 'header.php'; ?>
 
-include "./header.php";
-?>
+<div class="container">
+    <h2>Login</h2>
+    <?php
+    if (isset($_GET['error']) && $_GET['error'] === 'invalid_credentials') {
+        echo '<p style="color:red;">Invalid email or password.</p>';
+    }
+    if (isset($_GET['signup']) && $_GET['signup'] === 'success') {
+        echo '<p style="color:green;">Signup successful! Please login.</p>';
+    }
+    ?>
+    <form action="../controllers/login.php" method="post">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    <link rel="stylesheet" href="../../css/login.css">
-</head>
-<body>
-    <!-- <header> -->
-        <!-- <nav class="navbar">
-            <a href="signup.php" class="nav-link">Register</a>
-            <a href="#" class="nav-link">Listings</a>
-            <a href="#" class="nav-link">Admin</a>
-        </nav> -->
-    <!-- </header> -->
-    <main class="main-content">
-        <div class="forms-container">
-            <div class="form-column">
-                <div class="form-wrapper">
-                    <h2>Login to Your Account</h2>
-                    <!-- <form action="">
-                        <input type="email" placeholder="Email" required>
-                        <input type="password" placeholder="Password" required>
-                        <a href="#" class="forgot-password">forgot password?</a>
-                        <button type="submit" class="btn btn-login">Login</button>
-                    </form> -->
-                    <form id="loginForm">
-                        <input type="email" name="email" placeholder="Email" required>
-                        <input type="password" name="password" placeholder="Password" required>
-                        <a href="#" class="forgot-password">forgot password?</a>
-                        <button type="submit" class="btn btn-login">Login</button>
-                    </form>
-                    <p class="switch-form">Don't have an account? <a href="/views/signup.php?action=signup">Register</a></p>
-                </div>
-            </div>
-        </div>
-    </main>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
 
-    <!-- <footer>
-        <div class="footer-content">
-            <div class="contact-info">
-                <h4>Contact Us</h4>
-                <p>Email: support@accommodateme.com</p>
-                <p>Phone: +33 1 23 45 67 89</p>
-            </div>
-            <div class="social-icons">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-            </div>
-        </div>
-    </footer> -->
-    <script>
-document.getElementById("loginForm").addEventListener("submit", function (e) {
-    e.preventDefault();
+        <button type="submit">Login</button>
+    </form>
+</div>
 
-    let formData = new FormData(this);
-    let xhr = new XMLHttpRequest();
-
-    xhr.open("POST", "/index.php?action=login", true);
-
-    xhr.onload = function () {
-        console.log("RAW:", xhr.responseText);
-
-        if (xhr.status === 200) {
-            let res = JSON.parse(xhr.responseText);
-
-            if (res.status === "success") {
-                window.location.href = "/views/home.php?action=home";
-            } else {
-                document.getElementById("loginResponse").innerText = res.message;
-            }
-        }
-    };
-
-    xhr.send(formData);
-});
-</script>
-</body>
-</html>
-
-<?php
-include "./footer.php"
-?>
+<?php include 'footer.php'; ?>
