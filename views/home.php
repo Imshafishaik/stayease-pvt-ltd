@@ -4,6 +4,9 @@ require __DIR__ . "/../config/database.php";
 $action = $_GET['action'] ?? 'index';
 
 include ($action == 'home' ? "./header.php" : "./views/header.php");
+
+$stmt = $pdo->query("SELECT * FROM accommodation");
+$accommodations = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -16,27 +19,7 @@ include ($action == 'home' ? "./header.php" : "./views/header.php");
 </head>
 <body>
     <div>
-     <!-- <div class="Head-logo">
-        <div class="empty-1"height="200px" width="350px"></div>
-        <div class="empty-2"height="200px" width="350px"></div>
-        <div class="Head-logo-img">
-            <img src="/img/logo.jpg" height="100px" width="220px"/>
-        </div>
-      </div> -->
-      <!-- <div class="nav-bar">
-        <div class="nav-bar-img">
-            <img src="../images/homeimages/logo.jpg" height="60px"/>
-        </div>
-        <div class="nav-bar-list">
-          <ul>
-            <li><a href="http://127.0.0.1:5500/hello.html">Home</a></li>
-            <li><a href="Home" target="_blank">Find Accomodation</a></li>
-            <li><a href="Home"target="_blank">For Owners</a></li>
-            <li><a href="Home"target="_blank">Contact us</a></li>
-            <li><a href="../auth/login.php"target="_blank">Login</a></li>
-         </ul>
-        </div>
-      </div> -->
+    
       <div class="container">
         <div class="container-interface">
           <div class="container-interface-img">
@@ -51,76 +34,33 @@ include ($action == 'home' ? "./header.php" : "./views/header.php");
         </div>
         <h2 class="head-in-container">Top listings</h2>
         <div class="card-container">
-          <div class="card">
-      <img src="../images/homeimages/image2.avif" />
-      <div class="card-content">
-        <h3>Charming Paris Apartment</h3>
-        <p>
-          Located in the heart of Paris, this cozy apartment offers a unique
-          blend of comfort and convenience.
-        </p>
-        <div class="card-footer">
-          <span>€1200/month</span>
-          <span class="status">Available Now</span>
-        </div>
-        <div class="card-footer-btns">
-          <button>Add to Favourites</button>
-          <button>Book</button>
-          
-        </div>
-      </div>
-    </div>
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994" />
-      <div class="card-content">
-        <h3>Rustic Provence Cottage</h3>
-        <p>
-          Experience tranquility in this rustic cottage surrounded by the
-          beautiful landscapes of Provence.
-        </p>
-        <div class="card-footer">
-          <span>€750/month</span>
-          <span class="status">Available Now</span>
-        </div>
-        <div class="card-footer-btns">
-          <button>Add to Favourites</button>
-          <button>Book</button>
-          
-        </div>
-      </div>
-    </div>
+    
 
+    <?php foreach ($accommodations as $acc): ?>
     <div class="card">
-      <img src="../images/homeimages/image2.avif" />
-      <div class="card-content">
-        <h3>Charming Paris Apartment</h3>
-        <p>
-          Located in the heart of Paris, this cozy apartment offers a unique
-          blend of comfort and convenience.
-        </p>
-        <div class="card-footer">
-          <span>€1200/month</span>
-          <span class="status">Available Now</span>
-        </div>
-        <div class="card-footer-btns">
-          <button>Add to Favourites</button>
-          <button>Book</button>
-          
-        </div>
+
+    <img src="../images/homeimages/image2.avif" />
+
+    <div class="card-content">
+      <h3><?= htmlspecialchars($acc['accommodation_name']) ?></h3>
+
+      <p><?= htmlspecialchars($acc['accommodation_description']) ?></p>
+
+      <div class="card-footer">
+        <span>€<?= number_format($acc['accommodation_price'], 2) ?>/month</span>
+
+        <span class="status">
+          <?= $acc['accommodation_available'] ? 'Available Now' : 'Not Available' ?>
+        </span>
+      </div>
+
+      <div class="card-footer-btns">
+        <a href="#">Add to Favourites</a>
+        <a href="#">Book</a>
       </div>
     </div>
-            <!-- <div class="card-container-1">
-                <img src="/../images/homeimages/images.jpeg" height="170px" width="300px"/>
-                <p>Charming Studio in paris<br>£900/month</p>
-            </div>
-            <div class="card-container-1">
-                <img src="/../images/homeimages/image2.avif" height="170px" width="300px"/>
-                <p>Cozy Appartment near university<br>£750/month</p>
-            </div>
-            <div class="card-container-1">
-                <img src="/../images/homeimages/image3.png" height="170px" width="300px"/>
-                <p>Spacious flat in central paris<br>£1200/month</p>
-            </div> -->
+      </div>
+          <?php endforeach; ?>
         </div>
         <h2 class="head-in-container">Are you a house owner?</h2>
       <div class="owner">

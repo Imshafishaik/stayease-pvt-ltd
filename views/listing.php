@@ -1,5 +1,10 @@
 <?php 
 include "./header.php";
+
+require __DIR__ . "/../config/database.php";
+
+$stmt = $pdo->query("SELECT * FROM accommodation");
+$accommodations = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -34,8 +39,35 @@ include "./header.php";
   <!-- Listings -->
    <div class="main_card">
   <main class="cards">
+  <div class="cards">
+<?php foreach ($accommodations as $acc): ?>
+  <div class="card">
 
-    <div class="card">
+    <img src="../images/homeimages/image2.avif" />
+
+    <div class="card-content">
+      <h3><?= htmlspecialchars($acc['accommodation_name']) ?></h3>
+
+      <p><?= htmlspecialchars($acc['accommodation_description']) ?></p>
+
+      <div class="card-footer">
+        <span>€<?= number_format($acc['accommodation_price'], 2) ?>/month</span>
+
+        <span class="status">
+          <?= $acc['accommodation_available'] ? 'Available Now' : 'Not Available' ?>
+        </span>
+      </div>
+
+      <div class="card-footer-btns">
+        <a href="#">Add to Favourites</a>
+        <a href="#">Book</a>
+      </div>
+    </div>
+  </div>
+<?php endforeach; ?>
+</div>
+
+    <!-- <div class="card">
       <img src="../images/homeimages/image2.avif" />
       <div class="card-content">
         <h3>Charming Paris Apartment</h3>
@@ -93,7 +125,7 @@ include "./header.php";
           
         </div>
       </div>
-    </div>
+    </div> -->
 
   </main>
 </div>

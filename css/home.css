@@ -155,8 +155,9 @@ padding: 15px 30px;
   justify-content: space-between;
 }
 
-.card-footer-btns button{
+.card-footer-btns a{
   margin-top: 10px;
+  text-decoration: none;
   border: none;
   background-color: #10b981;
   padding: 5px 15px;

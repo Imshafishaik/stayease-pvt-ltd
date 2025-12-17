@@ -1,15 +1,28 @@
 <?php
 require __DIR__ . "/../models/owner.php";
 
-class OwnersController{
-    private $model;
+class OwnersController {
+    private OwnersModel $model;
 
-    public function __construct($pdo){
+    public function __construct(PDO $pdo) {
         $this->model = new OwnersModel($pdo);
     }
 
-    public function owner(){
+    public function owner() {
+        session_start();
+
+        if (
+            !isset($_SESSION['user_id']) ||
+            $_SESSION['user_type'] !== 'House Owner'
+        ) {
+            header("Location: /index.php?action=login");
+            exit;
+        }
+
+        // ✅ FETCH DATA ONCE
+        $accommodations = $this->model->getByOwner($_SESSION['user_id']);
+
+        // ✅ PASS DATA TO VIEW
         require __DIR__ . "/../views/ownerlisting.php";
     }
 }
-?>
