@@ -174,3 +174,40 @@ footer {
         align-items: center;
     }
 }
+.form-description {
+    margin-bottom: 20px;
+    color: #666; 
+    text-align: center;
+}
+
+.btn-reset {
+    background-color: #007bff; 
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-reset:hover {
+    background-color: #0056b3;
+}
+
+body {
+    display: flex;
+    flex-direction: column; 
+    min-height: 100vh;
+    margin: 0;
+}
+
+.main-content {
+    flex-grow: 1;
+}
+
+footer {
+    width: 100%;
+}
