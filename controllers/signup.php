@@ -33,8 +33,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: ../views/login.php?signup=success");
         exit();
     } catch (PDOException $e) {
-        // Check for duplicate email
-        if ($e->errorInfo[1] == 1062) { // 1062 is the MySQL error code for duplicate entry
+        // Check for duplicate email (PostgreSQL error code for unique violation is 23505)
+        if ($e->getCode() == '23505') { 
             die("An account with this email already exists.");
         } else {
             die("Error: " . $e->getMessage());
