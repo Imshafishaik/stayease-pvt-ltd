@@ -136,7 +136,8 @@ nav a {
   justify-content: space-between;
 }
 
-.card-footer-btns button{
+.card-footer-btns a{
+  text-decoration: none;
   margin-top: 10px;
   border: none;
   background-color: #10b981;
