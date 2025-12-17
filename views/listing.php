@@ -59,8 +59,8 @@ $accommodations = $stmt->fetchAll(PDO::FETCH_ASSOC);
       </div>
 
       <div class="card-footer-btns">
-        <button>Add to Favourites</button>
-        <button>Book</button>
+        <a href="#">Add to Favourites</a>
+        <a href="#">Book</a>
       </div>
     </div>
   </div>
