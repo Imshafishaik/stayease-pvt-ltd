@@ -1,7 +1,10 @@
 <?php
 require __DIR__ . "/../config/database.php";
 
-include "./header.php"
+include "./header.php";
+
+$accommodations = $accommodations ?? [];
+echo $accommodations;
 ?>
 
 <!DOCTYPE html>
@@ -49,71 +52,29 @@ include "./header.php"
     </div>
     <!-- LISTINGS SECTION -->
     <section class="listing-container">
+<?php if (empty($accommodations)): ?>
+    <p>No accommodations found.</p>
+<?php else: ?>
+    <?php foreach ($accommodations as $acc): ?>
+        <div class="card">
+            <img src="/<?= htmlspecialchars($acc['photo_img'] ?? 'images/default.jpg') ?>" />
 
-        <!-- Card 1 -->
-        <div class="listing-card">
-            <div class="image-wrapper">
-                <img src="../images/homeimages/image2.avif" alt="">
-                <button class="edit-btn">Edit</button>
-            </div>
-            <div class="listing-info">
-                <h4>Charming Paris Room no 1</h4>
-                <p>Located in the heart of Paris, this cozy apartment offers a unique blend of comfort and convenience.</p>
-                <div class="details-row">
-                    <span>€ 1500</span>
-                    <span>Favourite: Yes</span>
-                    <span>Available: Yes</span>
-                </div>
-            </div>
-        </div>
+            <div class="card-content">
+                <h3><?= htmlspecialchars($acc['accommodation_name']) ?></h3>
+                <p><?= htmlspecialchars($acc['accommodation_description']) ?></p>
 
-        <!-- Card 2 -->
-        <div class="listing-card">
-            <div class="image-wrapper">
-                <img src="../images/homeimages/image3.png" alt="">
-            </div>
-            <div class="listing-info">
-                <h4>Cozy Cottage</h4>
-                <p>Located in the heart of Paris, this cozy apartment offers a unique blend of comfort and convenience.</p>
-                <div class="details-row">
-                    <span>€ 950</span>
-                    <span>Favourite: Yes</span>
-                    <span>Available: Yes</span>
+                <div class="card-footer">
+                    <span>€<?= number_format($acc['accommodation_price'], 2) ?>/month</span>
+                    <span class="status">
+                        <?= $acc['accommodation_available'] ? 'Available' : 'Unavailable' ?>
+                    </span>
                 </div>
             </div>
         </div>
-        <!-- Card 3 -->
-        <div class="listing-card">
-            <div class="image-wrapper">
-                <img src="../images/homeimages/image2.avif" alt="">
-                <button class="edit-btn">Edit</button>
-            </div>
-            <div class="listing-info">
-                <h4>Charming Paris Room no 1</h4>
-                <p>Located in the heart of Paris, this cozy apartment offers a unique blend of comfort and convenience.</p>
-                <div class="details-row">
-                    <span>€ 1500</span>
-                    <span>Favourite: Yes</span>
-                    <span>Available: Yes</span>
-                </div>
-            </div>
-        </div>
+    <?php endforeach; ?>
+<?php endif; ?>
 
-        <!-- Card 4 -->
-        <div class="listing-card">
-            <div class="image-wrapper">
-                <img src="../images/homeimages/image3.png" alt="">
-            </div>
-            <div class="listing-info">
-                <h4>Cozy Cottage</h4>
-                <p>Located in the heart of Paris, this cozy apartment offers a unique blend of comfort and convenience.</p>
-                <div class="details-row">
-                    <span>€ 950</span>
-                    <span>Favourite: Yes</span>
-                    <span>Available: Yes</span>
-                </div>
-            </div>
-        </div>
+        
     </section>
 
     <div class="load-more">
