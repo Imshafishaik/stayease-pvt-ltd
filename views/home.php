@@ -64,8 +64,9 @@ include ($action == 'home' ? "./header.php" : "./views/header.php");
           <span class="status">Available Now</span>
         </div>
         <div class="card-footer-btns">
-          <button>Add to Favourites</button>
-          <button>Book</button>
+          <a href="#">Add to Favourites</a>
+           <!-- <button>Write a review</button> -->
+          <a href="#">Book</a>
           
         </div>
       </div>
@@ -83,8 +84,9 @@ include ($action == 'home' ? "./header.php" : "./views/header.php");
           <span class="status">Available Now</span>
         </div>
         <div class="card-footer-btns">
-          <button>Add to Favourites</button>
-          <button>Book</button>
+          <a href="#">Add to Favourites</a>
+          <!-- <button>Write a review</button> -->
+          <a href="#">Book</a>
           
         </div>
       </div>
@@ -103,8 +105,9 @@ include ($action == 'home' ? "./header.php" : "./views/header.php");
           <span class="status">Available Now</span>
         </div>
         <div class="card-footer-btns">
-          <button>Add to Favourites</button>
-          <button>Book</button>
+          <a href="#">Add to Favourites</a>
+           <!-- <a href="/views/reviews?action=review">Write a review</a> -->
+          <a href="#">Book</a>
           
         </div>
       </div>
