@@ -130,3 +130,17 @@ nav a {
   font-size: 13px;
   color: #aaa;
 }
+
+.card-footer-btns{
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-footer-btns button{
+  margin-top: 10px;
+  border: none;
+  background-color: #10b981;
+  padding: 5px 15px;
+  border-radius: 8px;
+  color: #fff;
+}
