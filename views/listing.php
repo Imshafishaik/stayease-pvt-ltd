@@ -98,7 +98,7 @@ include "./header.php";
   </main>
 </div>
   <!-- Footer -->
-  <footer class="footer">
+  <!-- <footer class="footer">
     <div>
       <p><strong>Contact Us</strong></p>
       <p>Email: support@accommodateme.fr</p>
@@ -107,7 +107,11 @@ include "./header.php";
     <p class="copyright">
       © 2023 AccommodateMe. All rights reserved.
     </p>
-  </footer>
+  </footer> -->
 
 </body>
 </html>
+
+<?php
+include "./footer.php"
+?>
