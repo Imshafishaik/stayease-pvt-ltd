@@ -47,6 +47,11 @@ include "./header.php";
           <span>€1200/month</span>
           <span class="status">Available Now</span>
         </div>
+        <div class="card-footer-btns">
+          <button>Add to Favourites</button>
+          <button>Book</button>
+          
+        </div>
       </div>
     </div>
 
@@ -62,6 +67,11 @@ include "./header.php";
           <span>€900/month</span>
           <span class="status muted">Available Jan 2024</span>
         </div>
+        <div class="card-footer-btns">
+          <button>Add to Favourites</button>
+          <button>Book</button>
+          
+        </div>
       </div>
     </div>
 
@@ -76,6 +86,11 @@ include "./header.php";
         <div class="card-footer">
           <span>€750/month</span>
           <span class="status">Available Now</span>
+        </div>
+        <div class="card-footer-btns">
+          <button>Add to Favourites</button>
+          <button>Book</button>
+          
         </div>
       </div>
     </div>

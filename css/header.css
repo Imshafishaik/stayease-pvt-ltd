@@ -18,10 +18,10 @@
     font-size: large;
     font-family:  sans-serif;
 }
-li a{
+.nav-bar-list li a{
     text-decoration: none;
     color: black;
 }
-li a:hover{
+.nav-bar-list li a:hover{
     color: red;
 }

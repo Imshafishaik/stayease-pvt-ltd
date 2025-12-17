@@ -33,3 +33,17 @@
     list-style: none;
     padding: 10px;
 }
+
+.contact-info-content-1 ul li{
+    text-decoration: none;
+    list-style: none;
+    padding: 5px;
+    color: #fff;
+}
+
+.contact-info-content-1 ul li a{
+    text-decoration: none;
+    list-style: none;
+    padding: 5px;
+    color: #fff;
+}
