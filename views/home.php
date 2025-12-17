@@ -63,6 +63,11 @@ include ($action == 'home' ? "./header.php" : "./views/header.php");
           <span>€1200/month</span>
           <span class="status">Available Now</span>
         </div>
+        <div class="card-footer-btns">
+          <button>Add to Favourites</button>
+          <button>Book</button>
+          
+        </div>
       </div>
     </div>
     <div class="card">
@@ -76,6 +81,11 @@ include ($action == 'home' ? "./header.php" : "./views/header.php");
         <div class="card-footer">
           <span>€750/month</span>
           <span class="status">Available Now</span>
+        </div>
+        <div class="card-footer-btns">
+          <button>Add to Favourites</button>
+          <button>Book</button>
+          
         </div>
       </div>
     </div>
@@ -91,6 +101,11 @@ include ($action == 'home' ? "./header.php" : "./views/header.php");
         <div class="card-footer">
           <span>€1200/month</span>
           <span class="status">Available Now</span>
+        </div>
+        <div class="card-footer-btns">
+          <button>Add to Favourites</button>
+          <button>Book</button>
+          
         </div>
       </div>
     </div>

@@ -84,7 +84,7 @@ include "./header.php";
         </div>
     </main>
 
-    <footer>
+    <!-- <footer>
         <div class="footer-content">
             <div class="contact-info">
                 <h4>Contact Us</h4>
@@ -97,7 +97,7 @@ include "./header.php";
                 <a href="#"><i class="fab fa-instagram"></i></a>
             </div>
         </div>
-    </footer>
+    </footer> -->
     <script>
 document.getElementById("signupForm").addEventListener("submit", function(e) {
     e.preventDefault();

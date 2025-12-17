@@ -35,8 +35,7 @@ include "./header.php";
             <h2>List your Property for Rent</h2>
         </div>  
         
-        <form action="index.php?action=store_rent" method="POST" enctype="multipart/form-data">
-            
+            <form id="rentForm" enctype="multipart/form-data">
             <div class="form-group upload_house_input">
                 <label for="property_pictures">Upload House Image</label>
                 <input 
@@ -114,6 +113,37 @@ include "./header.php";
                 <p>© 2025 EaseStay. All rights reserved.</p>
             </div>
         </footer>
+
+        <script>
+document.getElementById("rentForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    let formData = new FormData(this);
+    let xhr = new XMLHttpRequest();
+
+    xhr.open("POST", "/index.php?action=rentupload", true);
+
+    xhr.onload = function () {
+        console.log("RAW:", xhr.responseText);
+
+        try {
+            let res = JSON.parse(xhr.responseText);
+
+            if (res.status === "success") {
+                alert("Property listed successfully");
+                window.location.href = "/views/ownerlisting.php?action=owner";
+            } else {
+                alert(res.message);
+            }
+        } catch (e) {
+            alert("Server error");
+        }
+    };
+
+    xhr.send(formData);
+});
+</script>
+
     </body>
 </html>
 
