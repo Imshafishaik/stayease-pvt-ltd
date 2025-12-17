@@ -28,7 +28,7 @@ include "./views/header.php";
         <div class="nav-right">
             <a href="ownerlisting.php?action=owner" class="active">Overview</a>
             <a href="#">Rent</a>
-            <a href="adminprofile.php?action=adminprofile">Listings</a>
+            <a href="#">Listings</a>
             <a href="#">Activity</a>
             <a href="rentupload.php?action=rentupload" class="upload-btn">Upload</a>
             <div class="profile-pic"></div>
