@@ -30,7 +30,7 @@ include "./views/header.php";
             <a href="#">Rent</a>
             <a href="#">Listings</a>
             <a href="#">Activity</a>
-            <a href="rentupload.php?action=rentupload" class="upload-btn">Upload</a>
+            <a href="/index.php?action=rentupload" class="upload-btn">Upload</a>
             <div class="profile-pic"></div>
         </div>
     </nav>

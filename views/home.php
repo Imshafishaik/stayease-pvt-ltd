@@ -3,10 +3,14 @@ require __DIR__ . "/../config/database.php";
 
 $action = $_GET['action'] ?? 'index';
 
-include ($action == 'home' ? "./header.php" : "./views/header.php");
+// include ($action == 'home' ? "./header.php" : "./views/header.php");
+include "./views/header.php";
 
-$stmt = $pdo->query("SELECT * FROM accommodation");
-$accommodations = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$accommodations = $accommodations ?? [];
+// if (empty($accommodations)) {
+//     header("Location: /index.php?action=home");
+//     exit;
+// }
 ?>
 
 <!DOCTYPE html>
@@ -66,7 +70,7 @@ $accommodations = $stmt->fetchAll(PDO::FETCH_ASSOC);
       <div class="owner">
         <div class="owner-container">
             <p>Reach your prperty with us and reach thousands of international students looking for accomodation.</p>
-            <a href="/views/rentupload.php?action=rentupload">list your property</a>
+            <a href="/index.php?action=rentupload">list your property</a>
         </div>
       </div>
          
@@ -77,5 +81,6 @@ $accommodations = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
 <?php
-include ($action == 'home' ? "./footer.php" : "./views/footer.php");
+include "./views/footer.php";
+// include ($action == 'home' ? "./footer.php" : "./views/footer.php");
 ?>

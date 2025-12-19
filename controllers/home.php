@@ -9,6 +9,7 @@ class HomeController{
     }
 
     public function home(){
+        $accommodations = $this->model->getTopListingAll();
         require __DIR__ . "/../views/home.php";
     }
 }

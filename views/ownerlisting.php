@@ -1,10 +1,8 @@
 <?php
 require __DIR__ . "/../config/database.php";
 
-include "./header.php";
+include "./views/header.php";
 
-$accommodations = $accommodations ?? [];
-echo $accommodations;
 ?>
 
 <!DOCTYPE html>
@@ -33,7 +31,7 @@ echo $accommodations;
             <a href="#">Rent</a>
             <a href="adminprofile.php?action=adminprofile">Listings</a>
             <a href="#">Activity</a>
-            <a href="rentupload.php?action=rentupload" class="upload-btn">Upload</a>
+            <a href="/index.php?action=rentupload" class="upload-btn">Upload</a>
             <div class="profile-pic"></div>
         </div>
     </nav>
@@ -57,8 +55,8 @@ echo $accommodations;
 <?php else: ?>
     <?php foreach ($accommodations as $acc): ?>
         <div class="card">
-            <img src="/<?= htmlspecialchars($acc['photo_img'] ?? 'images/default.jpg') ?>" />
-
+            <img src='../images/homeimages/images.jpeg' />
+<!-- /<?= htmlspecialchars($acc['photo_img'] ?? '../images/homeimages/images.jpeg') ?> -->
             <div class="card-content">
                 <h3><?= htmlspecialchars($acc['accommodation_name']) ?></h3>
                 <p><?= htmlspecialchars($acc['accommodation_description']) ?></p>
@@ -85,5 +83,5 @@ echo $accommodations;
 </html>
 
 <?php
-include "./footer.php"
+include "./views/header.php";
 ?>

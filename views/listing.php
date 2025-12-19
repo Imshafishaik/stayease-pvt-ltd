@@ -1,10 +1,10 @@
 <?php 
-include "./header.php";
+include "./views/header.php";
 
 require __DIR__ . "/../config/database.php";
 
-$stmt = $pdo->query("SELECT * FROM accommodation");
-$accommodations = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$accommodations = $accommodations ?? [];
+
 ?>
 
 <!DOCTYPE html>
@@ -145,5 +145,5 @@ $accommodations = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </html>
 
 <?php
-include "./footer.php"
+include "./views/footer.php"
 ?>

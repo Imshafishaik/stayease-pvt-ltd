@@ -1,7 +1,7 @@
 <?php
 require __DIR__ . "/../config/database.php";
 
-include "./header.php"
+include "./views/header.php"
 ?>
 
 <!DOCTYPE html>
@@ -46,27 +46,10 @@ include "./header.php"
 
 </section>
 
-<!-- <section class="info-box">
-    <div class="info">
-        <h3>Call Us</h3>
-        <p>+33 1 23 45 67 89 +33 1 98 76 54 32</p>
-    </div>
-
-    <div class="info">
-        <h3>Email Us</h3>
-        <p><a href="mailto:support@studentaccommodation.com">support@studentaccommodation.com</a></p>
-    </div>
-
-    <div class="info">
-        <h3>Visit Our Office</h3>
-        <p>123 Rue de Paris Paris,<br>France 75001</p>
-    </div>
-</section> -->
-
 </body>
 </html>
 
 <?php
-include "./footer.php"
+include "./views/footer.php"
 ?>
 

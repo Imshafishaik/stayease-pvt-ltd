@@ -121,7 +121,7 @@ document.getElementById("rentForm").addEventListener("submit", function (e) {
     let formData = new FormData(this);
     let xhr = new XMLHttpRequest();
 
-    xhr.open("POST", "/index.php?action=rentupload", true);
+    xhr.open("POST", "/index.php?action=rentuploadpage", true);
 
     xhr.onload = function () {
         console.log("RAW:", xhr.responseText);
@@ -131,7 +131,7 @@ document.getElementById("rentForm").addEventListener("submit", function (e) {
 
             if (res.status === "success") {
                 alert("Property listed successfully");
-                window.location.href = "/views/ownerlisting.php?action=owner";
+                window.location.href = "/index.php?action=owner";
             } else {
                 alert(res.message);
             }

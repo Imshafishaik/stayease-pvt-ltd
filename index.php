@@ -34,7 +34,8 @@ switch ($action) {
     case 'listing': $listing_controller->listing(); break;
     case 'forgot':    $controller->forgot(); break;
     // case 'delete':    $controller->delete($id); break;
-    case 'rentupload':     $rentupload_controller->rentupload(); break;
+    case 'rentupload':     $rentupload_controller->rentuploadpage(); break;
+    case 'rentuploadpage':     $rentupload_controller->rentupload(); break;
     case 'adminprofile':     $adminprofile_controller->adminprofile(); break;
     case '7654': $admin_profile_controller->adminprofile(); break;
     default:          $home_controller->home();

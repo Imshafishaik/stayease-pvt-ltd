@@ -65,7 +65,7 @@ nav a {
   min-height: 75vh;
 }
 .cards {
-  padding: 20px 40px 60px;
+  padding: 20px 20px 60px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 30px;

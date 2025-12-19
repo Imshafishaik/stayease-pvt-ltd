@@ -19,10 +19,11 @@ class OwnersController {
             exit;
         }
 
-        // ✅ FETCH DATA ONCE
-        $accommodations = $this->model->getByOwner($_SESSION['user_id']);
 
-        // ✅ PASS DATA TO VIEW
+        $accommodations = $this->model->getByOwner($_SESSION['user_id']);
+        // print_r( $accommodations);
+        if($accommodations){
         require __DIR__ . "/../views/ownerlisting.php";
+        }
     }
 }
