@@ -10,10 +10,9 @@ class OwnersController {
 
     public function owner() {
         session_start();
-
+ 
         if (
-            !isset($_SESSION['user_id']) ||
-            $_SESSION['user_type'] !== 'owner'
+            !isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'owner'
         ) {
             header("Location: /index.php?action=login");
             exit;

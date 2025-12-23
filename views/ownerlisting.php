@@ -1,10 +1,11 @@
 <?php
 require __DIR__ . "/../config/database.php";
 
-include "./header.php";
+include "./views/header.php";
 
 $accommodations = $accommodations ?? [];
-echo $accommodations;
+    
+
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +19,7 @@ echo $accommodations;
 </head>
 <body>
 
-    <!-- NAVBAR -->
+  <!-- NAVBAR -->
     <nav class="navbar">
         <div class="nav-left">
             <!-- <div class="logo">StayEase</div> -->
@@ -29,11 +30,11 @@ echo $accommodations;
         </div>
 
         <div class="nav-right">
-            <a href="#" class="active">Overview</a>
+            <a href="#" class="active">Overview</a> 
             <a href="#">Rent</a>
             <a href="adminprofile.php?action=adminprofile">Listings</a>
             <a href="#">Activity</a>
-            <a href="rentupload.php?action=rentupload" class="upload-btn">Upload</a>
+            <a href="/index.php?action=rentupload" class="upload-btn">Upload</a>
             <div class="profile-pic"></div>
         </div>
     </nav>
@@ -57,8 +58,14 @@ echo $accommodations;
 <?php else: ?>
     <?php foreach ($accommodations as $acc): ?>
         <div class="card">
-            <img src="/<?= htmlspecialchars($acc['photo_img'] ?? 'images/default.jpg') ?>" />
-
+            <!-- <img src='../images/homeimages/images.jpeg' /> -->
+             <!-- <?php if (!empty($acc['photo_img'])): ?>
+    <?php foreach ($acc['photo_img'] as $img): ?>
+        <img src="<?= htmlspecialchars($img) ?>" alt="Property Image">
+    <?php endforeach; ?>
+<?php endif; ?> -->
+            <img src='<?= htmlspecialchars($acc['photo_img'] ?? '../images/homeimages/images.jpeg') ?>' />
+<!-- /<?= htmlspecialchars($acc['photo_img'] ?? '../images/homeimages/images.jpeg') ?> -->
             <div class="card-content">
                 <h3><?= htmlspecialchars($acc['accommodation_name']) ?></h3>
                 <p><?= htmlspecialchars($acc['accommodation_description']) ?></p>
@@ -74,7 +81,7 @@ echo $accommodations;
     <?php endforeach; ?>
 <?php endif; ?>
 
-        
+
     </section>
 
     <div class="load-more">
@@ -82,8 +89,10 @@ echo $accommodations;
     </div>
 
 </body>
+
+</body>
 </html>
 
 <?php
-include "./footer.php"
+include "./views/footer.php"
 ?>
