@@ -55,7 +55,7 @@ include "./views/header.php";
 <?php else: ?>
     <?php foreach ($accommodations as $acc): ?>
         <div class="card">
-            <img src='../images/homeimages/images.jpeg' />
+            <img src='<?= htmlspecialchars($acc['photo_img'] ?? '../images/homeimages/images.jpeg') ?>' />
 <!-- /<?= htmlspecialchars($acc['photo_img'] ?? '../images/homeimages/images.jpeg') ?> -->
             <div class="card-content">
                 <h3><?= htmlspecialchars($acc['accommodation_name']) ?></h3>

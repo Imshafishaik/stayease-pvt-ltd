@@ -131,7 +131,7 @@ body {
 /* LISTING CARDS */
 .listing-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(400px, 2fr));
     gap: 25px;
     padding: 40px;
 }
@@ -193,4 +193,10 @@ body {
     color: white;
     border-radius: 6px;
     cursor: pointer;
+}
+
+.card img {
+  width: 400px;
+  height: 200px;
+  object-fit: cover;
 }
