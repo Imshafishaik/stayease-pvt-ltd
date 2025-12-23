@@ -21,7 +21,7 @@ if (session_status() === PHP_SESSION_NONE) {
           <ul>
             <li><a href="/index.php?action=home">Home</a></li>
             <li><a href="/index.php?action=listing" >Find Accomodation</a></li>
-            <?php if (isset($_SESSION['user_id']) && $_SESSION['user_type'] === 'House Owner'): ?>
+            <?php if (isset($_SESSION['user_id']) && $_SESSION['user_type'] === 'owner'): ?>
     <li><a href="/index.php?action=owner">For Owners</a></li>
 <?php endif; ?>
             <li><a href="/index.php?action=contact">Contact us</a></li>

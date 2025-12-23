@@ -84,12 +84,12 @@ $page = $page;
       </div>
 
       <div class="card-footer-btns">
-       <?php if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'House Owner'): ?>
+       <?php if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'owner'): ?>
           <button href="#">Add to Favourites</button>
         <?php endif; ?>
 
 
-        <?php if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'House Owner'): ?>
+        <?php if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'owner'): ?>
           <button href="#">Book</button>
         <?php endif; ?>
       </div>

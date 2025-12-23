@@ -18,7 +18,7 @@ class OwnersModel {
             FROM accommodation a
             JOIN users u ON a.renter_id = u.user_id
             LEFT JOIN documents d ON a.accommodation_id = d.accommodation_id
-            WHERE u.user_type = 'House Owner'
+            WHERE u.user_type = 'owner'
               AND u.user_id = :user_id
             GROUP BY a.accommodation_id
             ORDER BY a.accommodation_id DESC

@@ -8,6 +8,10 @@ class LoginController {
         $this->model = new LoginModel($pdo);
     }
 
+    public function loginpage(){
+        require __DIR__ . "/../views/login.php";
+    }
+
     public function login() {
         // Clear any previous output
         if (ob_get_length()) ob_clean();

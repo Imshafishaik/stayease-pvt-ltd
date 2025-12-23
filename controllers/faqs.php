@@ -35,7 +35,7 @@ class FAQController {
     public function postAnswer() {
         session_start();
 
-        if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'House Owner') {
+        if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'owner') {
             http_response_code(403);
             echo "Unauthorized";
             exit;
