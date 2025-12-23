@@ -44,7 +44,7 @@ include "./header.php";
         </p>
         <div class="card-footer">
           <span>€1200/month</span>
-          <span class="status">Available Now</span>
+          <span class="status">Available</span>
         </div>
       </div>
     </div>
