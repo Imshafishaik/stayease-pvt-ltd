@@ -1,5 +1,4 @@
 <?php
-
 class SignupModel {
     private PDO $pdo;
 
@@ -18,11 +17,12 @@ class SignupModel {
         string $email,
         string $password,
         string $userType,
-        ?string $passport,
-        ?string $visa
+        ?string $docOne,
+        ?string $docTwo
     ): bool {
         $stmt = $this->pdo->prepare("
-            INSERT INTO users (user_name, user_email, user_password, user_type, user_doc_one,user_doc_two)
+            INSERT INTO users 
+            (user_name, user_email, user_password, user_type, user_doc_one, user_doc_two)
             VALUES (?, ?, ?, ?, ?, ?)
         ");
 
@@ -31,8 +31,9 @@ class SignupModel {
             $email,
             $password,
             $userType,
-            $passport,
-            $visa
+            $docOne,
+            $docTwo
         ]);
     }
 }
+?>

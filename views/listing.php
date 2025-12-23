@@ -4,6 +4,8 @@ include "./views/header.php";
 require __DIR__ . "/../config/database.php";
 
 $accommodations = $accommodations ?? [];
+$totalPages = $totalPages ?? [];
+
 
 ?>
 
@@ -17,23 +19,28 @@ $accommodations = $accommodations ?? [];
 <body>
 
   <section class="filters">
-    <input type="text" placeholder="Search for houses..." />
-    
-    <select>
-      <option>All Cities</option>
-      <option>Paris</option>
-      <option>Lyon</option>
-      <option>Provence</option>
+    <form action="/index.php" method="get">
+    <input type="hidden" name="action" value="listing" />
+
+    <input type="text" name="search" placeholder="Search for houses..." />
+
+    <select name="city">
+        <option value="">All Cities</option>
+        <option value="Paris">Paris</option>
+        <option value="Lyon">Lyon</option>
+        <option value="Provence">Provence</option>
     </select>
 
-    <select>
-      <option>Max Price</option>
-      <option>€700</option>
-      <option>€900</option>
-      <option>€1200</option>
+    <select name="price">
+        <option value="">Max Price</option>
+        <option value="700">€700</option>
+        <option value="900">€900</option>
+        <option value="1200">€1200</option>
     </select>
 
-    <button>Search</button>
+    <button type="submit">Search</button>
+    <button type="button" id="clearFilters">Clear Filters</button>
+</form>
   </section>
 
   <!-- Listings -->
@@ -41,9 +48,9 @@ $accommodations = $accommodations ?? [];
   <main class="cards">
   <div class="cards">
 <?php foreach ($accommodations as $acc): ?>
-  <div class="card">
+  <a href="/index.php?action=accomodation_detail&id=<?= $acc['accommodation_id'] ?>" class="card">
 
-    <img src="../images/homeimages/image2.avif" />
+    <img src="<?= $acc['photo_img'] ?>" alt="Property Image" />
 
     <div class="card-content">
       <h3><?= htmlspecialchars($acc['accommodation_name']) ?></h3>
@@ -59,87 +66,57 @@ $accommodations = $accommodations ?? [];
       </div>
 
       <div class="card-footer-btns">
-        <a href="#">Add to Favourites</a>
-        <a href="#">Book</a>
+        <?php if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'House Owner'): ?>
+          <button href="#">Add to Favourites</button>
+        <?php endif; ?>
+
+
+        <?php if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'House Owner'): ?>
+          <button href="#">Book</button>
+        <?php endif; ?>
+        
       </div>
     </div>
-  </div>
+        </a>
 <?php endforeach; ?>
 </div>
 
-    <!-- <div class="card">
-      <img src="../images/homeimages/image2.avif" />
-      <div class="card-content">
-        <h3>Charming Paris Apartment</h3>
-        <p>
-          Located in the heart of Paris, this cozy apartment offers a unique
-          blend of comfort and convenience.
-        </p>
-        <div class="card-footer">
-          <span>€1200/month</span>
-          <span class="status">Available Now</span>
-        </div>
-        <div class="card-footer-btns">
-          <button>Add to Favourites</button>
-          <button>Book</button>
-          
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85" />
-      <div class="card-content">
-        <h3>Modern Lyon Apartment</h3>
-        <p>
-          Enjoy modern living in this spacious apartment located in a vibrant
-          neighborhood of Lyon.
-        </p>
-        <div class="card-footer">
-          <span>€900/month</span>
-          <span class="status muted">Available Jan 2024</span>
-        </div>
-        <div class="card-footer-btns">
-          <button>Add to Favourites</button>
-          <button>Book</button>
-          
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994" />
-      <div class="card-content">
-        <h3>Rustic Provence Cottage</h3>
-        <p>
-          Experience tranquility in this rustic cottage surrounded by the
-          beautiful landscapes of Provence.
-        </p>
-        <div class="card-footer">
-          <span>€750/month</span>
-          <span class="status">Available Now</span>
-        </div>
-        <div class="card-footer-btns">
-          <button>Add to Favourites</button>
-          <button>Book</button>
-          
-        </div>
-      </div>
-    </div> -->
-
   </main>
+  <?php if ($totalPages > 0): ?>
+<div class="pagination">
+    <?php if ($page > 1): ?>
+        <a href="?action=listing&page=<?= $page-1 ?>&search=<?= urlencode($search) ?>&city=<?= urlencode($city) ?>&price=<?= urlencode($price) ?>">
+            « Prev
+        </a>
+    <?php endif; ?>
+
+    <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+        <a 
+            href="?action=listing&page=<?= $i ?>&search=<?= urlencode($search) ?>&city=<?= urlencode($city) ?>&price=<?= urlencode($price) ?>"
+            class="<?= $i == $page ? 'active' : '' ?>">
+            <?= $i ?>
+        </a>
+    <?php endfor; ?>
+
+    <?php if ($page < $totalPages): ?>
+        <a href="?action=listing&page=<?= $page+1 ?>&search=<?= urlencode($search) ?>&city=<?= urlencode($city) ?>&price=<?= urlencode($price) ?>">
+            Next »
+        </a>
+    <?php endif; ?>
 </div>
-  <!-- Footer -->
-  <!-- <footer class="footer">
-    <div>
-      <p><strong>Contact Us</strong></p>
-      <p>Email: support@accommodateme.fr</p>
-      <p>Phone: +33 1 23 45 67 89</p>
-    </div>
-    <p class="copyright">
-      © 2023 AccommodateMe. All rights reserved.
-    </p>
-  </footer> -->
+<?php endif; ?>
+
+</div>
+
+<script>
+document.getElementById("clearFilters").addEventListener("click", function() {
+    // Redirect to the listing page without any query params
+    window.location.href = "/index.php?action=listing";
+});
+</script>
+
+
+
 
 </body>
 </html>

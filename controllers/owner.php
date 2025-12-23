@@ -15,7 +15,7 @@ class OwnersController {
             !isset($_SESSION['user_id']) ||
             $_SESSION['user_type'] !== 'House Owner'
         ) {
-            header("Location: /index.php?action=login");
+            header("Location: /index.php?action=loginpage");
             exit;
         }
 

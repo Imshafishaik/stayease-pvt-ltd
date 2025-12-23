@@ -30,7 +30,7 @@ include "./header.php";
                         <input type="email" placeholder="Email" required>
                         <button type="submit" class="btn btn-reset">Send Reset Link</button>
                     </form>
-                    <p class="switch-form">Remember your password? <a href="/views/login.php?action=login">Go back to Login</a></p>
+                    <p class="switch-form">Remember your password? <a href="/index.php?action=login">Go back to Login</a></p>
                 </div>
             </div>
         </div>
