@@ -1,4 +1,6 @@
 
 firebase_stayease.json
 
-/vendor/.env
+vendor
+.env
+config/aws.php
