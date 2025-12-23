@@ -8,9 +8,9 @@ class ContactController{
         $this->model = new ContactModel($pdo);
     }
 
-    // public function contact(){
-    //     require __DIR__ . "/../views/contact.php";
-    // }
+    public function contact(){
+        require __DIR__ . "/../views/contact.php";
+    }
 }
 
 ?>

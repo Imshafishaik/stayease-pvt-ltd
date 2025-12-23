@@ -1,3 +1,9 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,11 +19,20 @@
         </div>
         <div class="nav-bar-list">
           <ul>
-            <li><a href="/views/home.php?action=home">Home</a></li>
-            <li><a href="/views/listing.php?action=listing" >Find Accomodation</a></li>
-            <li><a href="/views/ownerlisting.php?action=owner">For Owners</a></li>
-            <li><a href="/views/contact.php?action=contact">Contact us</a></li>
-            <li><a href="/views/login.php?action=login">Login</a></li>
+            <li><a href="/index.php?action=home">Home</a></li>
+            <li><a href="/index.php?action=listing" >Find Accomodation</a></li>
+            <?php if (isset($_SESSION['user_id']) && $_SESSION['user_type'] === 'House Owner'): ?>
+    <li><a href="/index.php?action=owner">For Owners</a></li>
+<?php endif; ?>
+            <li><a href="/index.php?action=contact">Contact us</a></li>
+            
+            <?php
+                if (isset($_SESSION['user_id'])):
+                ?>
+                <li><a href="/index.php?action=logout">Logout (<?= htmlspecialchars($_SESSION['user_name']) ?>)</a></li>
+                <?php else: ?>
+                <li><a href="/index.php?action=loginpage">Login</a></li>
+                <?php endif; ?>
          </ul>
         </div>
       </div>

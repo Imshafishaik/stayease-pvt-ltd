@@ -145,3 +145,43 @@ nav a {
   border-radius: 8px;
   color: #fff;
 }
+
+
+
+.card-footer-btns button{
+  text-decoration: none;
+  margin-top: 10px;
+  border: none;
+  background-color: #10b981;
+  padding: 5px 15px;
+  border-radius: 8px;
+  color: #fff;
+}
+.listing-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 2fr));
+    gap: 25px;
+    padding: 40px;
+}
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin: 30px 0;
+    gap: 10px;
+}
+.pagination a {
+    padding: 8px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    background: #e5e7eb;
+    color: #111;
+    font-weight: bold;
+}
+.pagination a.active {
+    background: #10b981;
+    color: #fff;
+}
+.pagination a:hover {
+    background: #059669;
+    color: #fff;
+}

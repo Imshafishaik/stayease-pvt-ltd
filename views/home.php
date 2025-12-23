@@ -3,7 +3,7 @@ require __DIR__ . "/../config/database.php";
 
 $action = $_GET['action'] ?? 'index';
 
-include ($action == 'home' ? "./header.php" : "./views/header.php");
+include "./views/header.php";
 
 $stmt = $pdo->query("SELECT * FROM accommodation");
 $accommodations = $stmt->fetchAll(PDO::FETCH_ASSOC);
