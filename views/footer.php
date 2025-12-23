@@ -12,10 +12,10 @@
                 <h3 style="color: white;">Accomodate me</h4>
                 <p style="color: white;">Connecting with their perfect home in france</p>
                 <ul style="color: white;">
-                    <li><a href="/index.php?action=home">Home</a></li>
-                    <li><a href="/index.php?action=listing">Find accomodation </a></li>
-                    <li><a href="/index.php?action=owner">For owners</a></li>
-                    <li><a href="/index.php?action=contact">Contact us</a></li>
+                    <li><a href="/views/home.php?action=home">Home</a></li>
+                    <li><a href="/views/listing.php?action=listing">Find accomodation </a></li>
+                    <li><a href="/views/ownerlisting.php?action=owner">For owners</a></li>
+                    <li><a href="/views/contact.php?action=contact">Contact us</a></li>
                 </ul>
             </div>
             <div class="contact-info-empty"></div>

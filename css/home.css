@@ -165,23 +165,6 @@ padding: 15px 30px;
   color: #fff;
 }
 
-.listing-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 2fr));
-    gap: 25px;
-    padding: 40px;
-}
-
-.card-footer-btns button{
-  text-decoration: none;
-  margin-top: 10px;
-  border: none;
-  background-color: #10b981;
-  padding: 5px 15px;
-  border-radius: 8px;
-  color: #fff;
-}
-
 
 /* .contact-info{
     height: 225px;

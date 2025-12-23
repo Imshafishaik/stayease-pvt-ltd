@@ -1,7 +1,7 @@
 <?php
 require __DIR__ . "/../config/database.php";
 
-include "./views/header.php";
+include "./header.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -39,11 +39,10 @@ include "./views/header.php";
             <div class="form-group upload_house_input">
                 <label for="property_pictures">Upload House Image</label>
                 <input 
-        type="file" 
-        id="property_pictures" 
-        name="property_pictures[]" 
-        accept="image/png, image/jpeg" 
-        multiple />
+                    type="file" 
+                    id="property_pictures" 
+                    name="property_pictures" 
+                    accept="image/png, image/jpeg" />
             </div>
 
             <div class="form-group property_name_input">
@@ -149,5 +148,5 @@ document.getElementById("rentForm").addEventListener("submit", function (e) {
 </html>
 
 <?php
-include "./views/footer.php"
+include "./footer.php"
 ?>

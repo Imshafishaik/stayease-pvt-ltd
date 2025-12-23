@@ -1,7 +1,7 @@
 <?php
 require __DIR__ . "/../config/database.php";
 
-include "./views/header.php";
+include "./header.php";
 ?>
 
 <!DOCTYPE html>
@@ -34,10 +34,10 @@ include "./views/header.php";
                     <form id="loginForm">
                         <input type="email" name="email" placeholder="Email" required>
                         <input type="password" name="password" placeholder="Password" required>
-                        <a href="/index.php?action=forgot" class="forgot-password">forgot password?</a>
+                        <a href="/views/forgotpass.php?action=forgot" class="forgot-password">forgot password?</a>
                         <button type="submit" class="btn btn-login">Login</button>
                     </form>
-                    <p class="switch-form">Don't have an account? <a href="/index.php?action=signuppage">Register</a></p>
+                    <p class="switch-form">Don't have an account? <a href="/views/signup.php?action=signup">Register</a></p>
                 </div>
             </div>
         </div>
@@ -73,7 +73,7 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
             let res = JSON.parse(xhr.responseText);
 
             if (res.status === "success") {
-                window.location.href = "/index.php?action=home";
+                window.location.href = "/views/home.php?action=home";
             } else {
                 document.getElementById("loginResponse").innerText = res.message;
             }
@@ -87,5 +87,5 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
 </html>
 
 <?php
-include "./views/footer.php"
+include "./footer.php"
 ?>
