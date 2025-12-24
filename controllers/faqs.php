@@ -9,8 +9,12 @@ class FAQController {
     }
 
     public function faq() {
-        $faqs = $this->model->getAllFaqs();
         require __DIR__ . "/../views/faqs.php";
+    }
+
+    public function getFaqs(){
+         $faqs = $this->model->getAllFaqs();
+         require __DIR__ . "/../views/faqlisting.php";
     }
 
     public function postQuestion() {
@@ -41,7 +45,7 @@ class FAQController {
             exit;
         }
 
-        $faqId  = (int)$_POST['faq_id'];
+        $faqId  = (int)$_POST['faq_id'];    
         $answer = trim($_POST['answer'] ?? '');
 
         if ($answer === '') {
@@ -50,6 +54,6 @@ class FAQController {
         }
 
         $this->model->answerQuestion($faqId, $_SESSION['user_id'], $answer);
-        header("Location: /index.php?action=faqs");
+        header("Location: /index.php?action=getfaqs");
     }
 }

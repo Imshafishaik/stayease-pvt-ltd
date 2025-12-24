@@ -14,7 +14,8 @@ class AccomodationDetailController{
             header("Location: /index.php?action=listing");
             exit;
         }
-$accommodation = $this->model->getAccommodation($id);
+
+        $accommodation = $this->model->getAccommodation($id);
         $images        = $this->model->getImages($id);
         // $faqs          = $this->model->getFaqs($id);
         // $reviews       = $this->model->getReviews($id);

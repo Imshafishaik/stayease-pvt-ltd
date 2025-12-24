@@ -40,7 +40,7 @@ include "./views/header.php";
                 <h3 class="sidebar-title">Quick Links</h3>
                 <ul class="quick-links scrollbar">
                     <li><a href="#">User Management</a></li>
-                    <li><a href="#">House Management</a></li>
+                    <li><a href="#">Faq Management</a></li>
                     <li><a href="#">User Management</a></li>                  
                 </ul>
             </div>

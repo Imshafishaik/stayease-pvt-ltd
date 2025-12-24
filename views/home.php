@@ -69,7 +69,13 @@ $accommodations = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <a href="/views/rentupload.php?action=rentupload">list your property</a>
         </div>
       </div>
-         
+         <h2 class="head-in-container">Faqs?</h2>
+      <div class="owner">
+        <div class="owner-container">
+            <p>Ask your question or answers.</p>
+            <a href="/index.php?action=faqs">Faqs</a>
+        </div>
+      </div>
     </div>
 </body>
 </html>

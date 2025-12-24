@@ -1,0 +1,154 @@
+/* ===== FAQ Q&A Page ===== */
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background-color: #f5f7fa;
+    margin: 0;
+    padding: 0;
+}
+
+/* Main Section */
+.faq-qna {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 15px;
+}
+
+/* Heading */
+.faq-qna h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #222;
+}
+
+/* Question form */
+.question-form {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+    margin-bottom: 30px;
+}
+
+.question-form textarea {
+    width: 100%;
+    min-height: 90px;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    resize: vertical;
+    outline: none;
+}
+
+.question-form textarea:focus {
+    border-color: #4a90e2;
+}
+
+.question-form button {
+    margin-top: 10px;
+    padding: 10px 18px;
+    background-color: #4a90e2;
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.question-form button:hover {
+    background-color: #357abd;
+}
+
+/* Login message */
+.login-msg {
+    text-align: center;
+    color: #777;
+    font-size: 15px;
+}
+
+/* FAQ Card */
+.faq-card {
+    background: #fff;
+    padding: 18px 22px;
+    border-radius: 12px;
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.08);
+    margin-bottom: 20px;
+}
+
+/* Question */
+.faq-card .question p {
+    margin: 6px 0;
+    color: #333;
+    font-size: 15px;
+}
+
+/* Answer */
+.answer {
+    background: #f0f7ff;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #4a90e2;
+}
+
+.answer p {
+    margin: 0 0 6px;
+    font-size: 14px;
+    color: #333;
+}
+
+.answer small {
+    color: #555;
+    font-size: 12px;
+}
+
+/* Pending text */
+.pending {
+    font-size: 14px;
+    color: #999;
+    font-style: italic;
+}
+
+/* ===== FAQ Answer Form ===== */
+
+.answer-form {
+    margin-top: 15px;
+}
+
+.answer-form textarea {
+    width: 100%;
+    min-height: 80px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    resize: vertical;
+}
+
+.answer-form textarea:focus {
+    border-color: #27ae60;
+    outline: none;
+}
+
+.answer-form button {
+    margin-top: 8px;
+    padding: 8px 16px;
+    background-color: #27ae60;
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.answer-form button:hover {
+    background-color: #1e8e50;
+}
+
+
+/* Responsive */
+@media (max-width: 768px) {
+    .faq-qna {
+        margin: 20px auto;
+    }
+}

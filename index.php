@@ -11,6 +11,7 @@ require "./controllers/adminprofile.php";
 require "./controllers/rentupload.php";
 require "./controllers/detail.php";
 require "./controllers/faqs.php";
+require "./controllers/adminfaq.php";
 
 $home_controller = new HomeController($pdo);
 $login_controller = new LoginController($pdo);
@@ -23,6 +24,7 @@ $rentupload_controller = new RentController($pdo);
 $admin_profile_controller = new AdminprofileController($pdo);
 $accomodation_detail_controller = new AccomodationDetailController($pdo);
 $faq_controller = new FAQController($pdo);
+$faq_admin_controller = new AdminFaqController($pdo);
 
 $action = $_GET['action'] ?? 'index';
 
@@ -43,6 +45,10 @@ switch ($action) {
     case 'forgot':    $controller->forgot(); break;
     // case 'delete':    $controller->delete($id); break;
     case 'faqs':    $faq_controller->faq(); break;
+    case 'getfaqs': $faq_controller->getFaqs(); break;
+    case 'postfaq':    $faq_controller->postQuestion(); break;
+    case 'postanswer':    $faq_controller->postAnswer(); break;
+    case 'adminfaq': $faq_admin_controller->adminfaq(); break;
     case 'rentupload':     $rentupload_controller->rentuploadpage(); break;
     case 'rentuploadpage':     $rentupload_controller->rentupload(); break;
     case 'adminprofile':     $adminprofile_controller->adminprofile(); break;
