@@ -47,26 +47,46 @@ class RentController {
 
         try {
             $name        = $_POST['property_name'] ?? '';
-            $address     = $_POST['property_address'] ?? '';
             $price       = $_POST['rent_cost'] ?? 0;
             $description = $_POST['property_description'] ?? '';
             $furnished   = isset($_POST['is_furnished']) ? 1 : 0;
             $available   = isset($_POST['availability_status']) ? 1 : 0;
 
-            if ($name === '' || $address === '' || $price <= 0) {
+            $locationName = trim($_POST['location_name'] ?? '');
+            $city         = trim($_POST['city'] ?? '');
+            $state        = trim($_POST['state'] ?? '');
+            $country      = trim($_POST['country'] ?? '');
+            $pincode      = trim($_POST['pincode'] ?? '');
+
+            if ($locationName === '' || $city === '' || $country === '') {
+                echo json_encode(["status"=>"error","message"=>"Location fields required"]);
+                exit;
+            }
+
+
+            if ($name === '' || $price <= 0) {
                 echo json_encode(["status"=>"error","message"=>"Missing fields"]);
                 exit;
             }
 
-            $accommodationId = $this->model->insertAccommodation(
+            $locationId = $this->model->insertLocation(
+                $locationName,
+                $city,
+                $state,
+                $country,
+                $pincode
+            );
+
+           $accommodationId = $this->model->insertAccommodation(
                 $name,
                 $description,
-                $address,
                 $price,
                 $furnished,
                 $available,
-                $_SESSION['user_id']
+                $_SESSION['user_id'],
+                $locationId
             );
+
 
             // --- Multiple Images Upload ---
             if (!empty($_FILES['property_pictures']['name'][0])) {
@@ -105,8 +125,11 @@ class RentController {
             exit;
 
         } catch (Throwable $e) {
-            error_log($e->getMessage());
-            echo json_encode(["status"=>"error","message"=>"Server error"]);
+            error_log($e);
+            echo json_encode([
+                "status" => "error",
+                "message" => $e->getMessage() // TEMP only
+            ]);
             exit;
         }
     }
