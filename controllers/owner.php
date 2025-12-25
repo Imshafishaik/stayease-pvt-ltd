@@ -18,6 +18,8 @@ class OwnersController {
             exit;
         }
 
+        $owner_info = $this->model->getOwnerInfo($_SESSION['user_id']);
+
         // ✅ FETCH DATA ONCE
         $accommodations = $this->model->getByOwner($_SESSION['user_id']);
 

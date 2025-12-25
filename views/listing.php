@@ -73,6 +73,7 @@ $page = $page;
     <div class="card-content">
       <h3><?= htmlspecialchars($acc['accommodation_name']) ?></h3>
 
+      <span><?= htmlspecialchars($acc['city']) ?></span>, <span><?= htmlspecialchars($acc['state']) ?></span>,<span><?= htmlspecialchars($acc['country']) ?></span>
       <p><?= htmlspecialchars($acc['accommodation_description']) ?></p>
 
       <div class="card-footer">

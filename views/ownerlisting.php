@@ -5,7 +5,7 @@ include "./views/header.php";
 
 $accommodations = $accommodations ?? [];
     
-
+$owner_info = $owner_info ?? [];
 ?>
 
 <!DOCTYPE html>
@@ -31,11 +31,7 @@ $accommodations = $accommodations ?? [];
 
         <div class="nav-right">
             <a href="#" class="active">Overview</a> 
-            <a href="#">Rent</a>
-            <a href="adminprofile.php?action=adminprofile">Listings</a>
-            <a href="#">Activity</a>
             <a href="/index.php?action=rentupload" class="upload-btn">Upload</a>
-            <div class="profile-pic"></div>
         </div>
     </nav>
 
@@ -45,9 +41,8 @@ $accommodations = $accommodations ?? [];
         <img class="backgound-imgs" src="../images/homeimages/image3.png" alt="header">
         <div class="profile-wrapper">
             <img class="backgound-img" src="../images/homeimages/image3.png" class="profile-avatar" alt="avatar">
-            <h2>Sunny Villa</h2>
-            <p>Barcelona, Spain</p>
-            <span class="count">1200 Houses</span>
+            <h2><?= htmlspecialchars($owner_info['user_name']) ?></h2>
+            <span class="count"><?= $owner_info['house_count'] ?> Houses</span>
         </div>
     </header>
     </div>
@@ -68,6 +63,7 @@ $accommodations = $accommodations ?? [];
 <!-- /<?= htmlspecialchars($acc['photo_img'] ?? '../images/homeimages/images.jpeg') ?> -->
             <div class="card-content">
                 <h3><?= htmlspecialchars($acc['accommodation_name']) ?></h3>
+                <span><?= htmlspecialchars($acc['city']) ?></span>, <span><?= htmlspecialchars($acc['state']) ?></span>,<span><?= htmlspecialchars($acc['country']) ?></span>
                 <p><?= htmlspecialchars($acc['accommodation_description']) ?></p>
 
                 <div class="card-footer">
