@@ -16,7 +16,7 @@ include "./views/header.php";
     Admin page
     <div class="add_blocks">
         <div class="add_block">
-            <p>Manage Users</p>
+            <p>Manage Students</p>
 
             <a href="/manage/users">Manage Users</a>
         </div>
@@ -25,7 +25,7 @@ include "./views/header.php";
             <a href="/manage/users">Manage Faqs</a>
         </div>
         <div class="add_block">
-            <p>Manage Users</p>
+            <p>Manage House Owner</p>
             <a href="/manage/users">Manages</a>
         </div>
     </div>

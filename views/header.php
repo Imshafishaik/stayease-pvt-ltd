@@ -25,9 +25,9 @@ if (session_status() === PHP_SESSION_NONE) {
     <li><a href="/index.php?action=owner">For Owners</a></li>
 <?php endif; ?>
             <li><a href="/index.php?action=contact">Contact us</a></li>
-            
+            <li><a href="/index.php?action=getfaqs">FAQS</a></li>
             <?php
-                if (isset($_SESSION['user_id'])):
+                if (isset($_SESSION['user_id'])):   
                 ?>
                 <li><a href="/index.php?action=logout">Logout (<?= htmlspecialchars($_SESSION['user_name']) ?>)</a></li>
                 <?php else: ?>

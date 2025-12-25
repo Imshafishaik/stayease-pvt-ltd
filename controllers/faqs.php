@@ -33,7 +33,7 @@ class FAQController {
         }
 
         $this->model->addQuestion($_SESSION['user_id'], $question);
-        header("Location: /index.php?action=faqs");
+        header("Location: /index.php?action=getfaqs");
     }
 
     public function postAnswer() {

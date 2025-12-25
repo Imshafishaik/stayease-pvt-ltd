@@ -51,7 +51,10 @@ switch ($action) {
     case 'adminfaq': $faq_admin_controller->adminfaq(); break;
     case 'rentupload':     $rentupload_controller->rentuploadpage(); break;
     case 'rentuploadpage':     $rentupload_controller->rentupload(); break;
-    case 'adminprofile':     $adminprofile_controller->adminprofile(); break;
-    case '7654': $admin_profile_controller->adminprofile(); break;
+    case 'adminprofile':     $admin_profile_controller->adminprofile(); break;
+    case '7654': $admin_controller->adminLoginPage(); break;
+    case 'admin_register': $admin_controller->adminRegisterPage(); break;
+    case 'admin_registering': $admin_controller->adminRegister(); break;
+    case 'admin_logining': $admin_controller->adminLogin(); break;
     default:          $home_controller->home();
 }

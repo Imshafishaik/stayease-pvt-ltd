@@ -1,7 +1,7 @@
 <?php include "./views/header.php";
 
 $faqs = $faqs ?? [];
-print_r($faqs);
+
 ?>
 
 <!DOCTYPE html>
@@ -13,39 +13,48 @@ print_r($faqs);
     <title>Document</title>
 </head>
 <body>
-    
-</body>
-</html>
-
-<section class="faq-qna">
+    <section class="faq-qna">
 
   <h1>Community Questions & Answers</h1>
 
-  <!-- FAQ LIST -->
+  <div class="faq-accordion">
   <?php foreach ($faqs as $faq): ?>
-    <div class="faq-card">
-      <!-- <div class="question">
-        <strong><?= htmlspecialchars($faq['asker']) ?></strong>
-        <p><?= htmlspecialchars($faq['question']) ?></p>
-      </div> -->
-
-      <?php if ($faq['answer']): ?>
-        <div class="answer">
+    <div class="faq-item">
+      <div class="faq-question"><?= htmlspecialchars($faq['question']) ?></div>
+      <div class="faq-answer">
+        <?php if ($faq['answer']): ?>
           <p><?= htmlspecialchars($faq['answer']) ?></p>
           <small>Answered</small>
-        </div>
-      <?php elseif (isset($_SESSION['user_type']) && $_SESSION['user_type'] === 'owner'): ?>
-        <form method="post" action="/index.php?action=postanswer" class="answer-form">
-          <input type="hidden" name="faq_id" value="<?= $faq['faq_id'] ?>">
-          <textarea name="answer" placeholder="Write an answer..." required></textarea>
-          <button type="submit">Answer</button>
-        </form>
-      <?php else: ?>
-        <p class="pending">Waiting for answer</p>
-      <?php endif; ?>
+        <?php elseif (isset($_SESSION['user_type']) && $_SESSION['user_type'] === 'owner'): ?>
+          <form method="post" action="/index.php?action=postanswer" class="answer-form">
+            <input type="hidden" name="faq_id" value="<?= $faq['faq_id'] ?>">
+            <textarea name="answer" placeholder="Write an answer..." required></textarea>
+            <button type="submit">Answer</button>
+          </form>
+        <?php else: ?>
+          <p class="pending">Waiting for answer</p>
+        <?php endif; ?>
+      </div>
     </div>
   <?php endforeach; ?>
+</div>
 
+<div class="ask-doubt-container">
+  <h3>Ask your question & get it clarified</h3>
+  <a href="/index.php?action=faqs">Ask Your Doubt</a>
+</div>
 </section>
+<script>
+document.querySelectorAll('.faq-item').forEach((item) => {
+  const question = item.querySelector('.faq-question');
+  question.addEventListener('click', () => {
+    item.classList.toggle('active');
+  });
+});
+</script>
+</body>
+</html>
+
+
 
 <?php include "./views/footer.php"; ?>
