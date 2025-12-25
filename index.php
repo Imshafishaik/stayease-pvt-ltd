@@ -48,7 +48,7 @@ switch ($action) {
     case 'getfaqs': $faq_controller->getFaqs(); break;
     case 'postfaq':    $faq_controller->postQuestion(); break;
     case 'postanswer':    $faq_controller->postAnswer(); break;
-    case 'adminfaq': $faq_admin_controller->adminfaq(); break;
+    // case 'adminfaq': $faq_admin_controller->adminfaq(); break;
     case 'rentupload':     $rentupload_controller->rentuploadpage(); break;
     case 'rentuploadpage':     $rentupload_controller->rentupload(); break;
     case 'adminprofile':     $admin_profile_controller->adminprofile(); break;
@@ -56,5 +56,6 @@ switch ($action) {
     case 'admin_register': $admin_controller->adminRegisterPage(); break;
     case 'admin_registering': $admin_controller->adminRegister(); break;
     case 'admin_logining': $admin_controller->adminLogin(); break;
+    case 'adm_mng_faq': $faq_admin_controller->adminfaq(); break;
     default:          $home_controller->home();
 }

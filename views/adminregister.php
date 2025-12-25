@@ -1,7 +1,7 @@
 <?php
 require __DIR__ . "/../config/database.php";
 
-include "./views/header.php";
+// include "./views/header.php";
 ?>
 
 <!DOCTYPE html>
@@ -23,7 +23,7 @@ include "./views/header.php";
         <input type="password" name="admin_password" placeholder="Password" required>
         <input type="password" name="confirm_password" placeholder="Confirm Password" required>
         <button type="submit">Register</button>
-        <p class="switch-form">Already have an account? <a href="/index.php?action=admin_login">Login</a></p>
+        <p class="switch-form">Already have an account? <a href="/index.php?action=7654">Login</a></p>
     </form>
 </div>
 </div>
@@ -54,5 +54,5 @@ document.getElementById('admin-register-form').addEventListener('submit', functi
 </html>
 
 <?php
-include "./views/footer.php"
+// include "./views/footer.php"
 ?>

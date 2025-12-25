@@ -25,7 +25,7 @@ class AdminFaqController {
     public function answer() {
         session_start();
 
-        if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'Admin') {
+        if (!isset($_SESSION['user_id']) || ($_SESSION['user_type'] == 'student' && $_SESSION['user_type'] == 'owner')) {
             http_response_code(403);
             echo json_encode(['status' => 'error', 'message' => 'Unauthorized']);
             exit;

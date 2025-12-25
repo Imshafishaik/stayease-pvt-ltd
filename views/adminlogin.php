@@ -1,7 +1,7 @@
 <?php
 require __DIR__ . "/../config/database.php";
 
-include "./views/header.php";
+// include "./views/header.php";
 ?>
 
 <!DOCTYPE html>
@@ -53,5 +53,5 @@ document.getElementById('admin-login-form').addEventListener('submit', function(
 </html>
 
 <?php
-include "./views/footer.php"
+// include "./views/footer.php"
 ?>

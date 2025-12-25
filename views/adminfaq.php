@@ -1,4 +1,6 @@
-<?php include "./header.php"; ?>
+<?php 
+// include "./views/header.php";
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,12 +11,35 @@
     <title>Document</title>
 </head>
 <body>
-    
-</body>
-</html>
+<nav class="navbar">
+        <div class="nav-left">
+            <!-- <div class="logo">StayEase</div> -->
+            <!-- <div class="search-box">
+                <input type="text" placeholder="Search houses, amenities, and owners">
+                <i class="fa fa-search"></i>
+            </div> -->
+        </div>
 
-<h2>Unanswered FAQs</h2>
+        <div class="nav-right">
+            <a href="ownerlisting.php?action=owner" class="active">Overview</a>
+            <a href="#">Rent</a>
+            <a href="#">Listings</a>
+            <a href="#">Activity</a>
+            <a href="rentupload.php?action=rentupload" class="upload-btn">Upload</a>
+            <div class="profile-pic"></div>
+        </div>
+    </nav>
+    <main class="main">
+            <div class="sidebar">
+                <h3 class="sidebar-title">Quick Links</h3>
+                <ul class="quick-links scrollbar">
+                    <li><a href="/index.php?action=adminprofile">User Management</a></li>
+                    <li><a href="/index.php?action=adm_mng_faq">Faq Management</a></li>
+                    <li><a href="#">User Management</a></li>                  
+                </ul>
+            </div>
 
+<section class="content">
 <?php if (empty($faqs)): ?>
     <p>All FAQs are answered</p>
 <?php endif; ?>
@@ -27,7 +52,8 @@
         <button onclick="submitAnswer(<?= $faq['faq_id'] ?>)">Submit</button>
     </div>
 <?php endforeach; ?>
-
+</section>
+</main>
 <script>
 function submitAnswer(faqId) {
     const answer = document.getElementById("answer-" + faqId).value;
@@ -47,5 +73,9 @@ function submitAnswer(faqId) {
     });
 }
 </script>
+</body>
+</html>
 
-<?php include "./footer.php"; ?>
+
+
+<!-- <?php include "./views/footer.php"; ?> -->
