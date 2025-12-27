@@ -1,0 +1,174 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Tahoma, sans-serif;
+}
+
+/* PAGE WRAPPER */
+body {
+    background: #f4f6f8;
+    color: #333;
+}
+
+/* NAVBAR */
+.navbar {
+    background: #ffffff;
+    border-bottom: 1px solid #ddd;
+    padding: 14px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-right a {
+    margin-left: 15px;
+    text-decoration: none;
+    color: #555;
+    font-weight: 500;
+}
+
+.nav-right a.active {
+    color: #007bff;
+}
+
+.upload-btn {
+    background: #007bff;
+    color: #fff !important;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+/* CONTAINER */
+h2 {
+    margin: 30px;
+    font-size: 26px;
+}
+
+.request-card {
+    background: #ffffff;
+    margin: 20px 30px;
+    padding: 22px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* TITLE */
+.request-card h3 {
+    font-size: 20px;
+    color: #222;
+}
+
+/* INFO TEXT */
+.request-card p {
+    line-height: 1.6;
+    font-size: 15px;
+    color: #555;
+}
+
+/* STATUS */
+.request-card p strong {
+    color: #000;
+}
+
+/* DOCUMENT IMAGES */
+.request-card img {
+    width: 140px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    margin-right: 12px;
+}
+
+/* DOCUMENTS WRAPPER */
+.request-card div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* BUTTONS */
+.request-card form {
+    display: flex;
+    gap: 12px;
+}
+
+.request-card button {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* ACCEPT */
+.request-card button[value="accepted"] {
+    background: #28a745;
+    color: #fff;
+}
+
+/* REJECT */
+.request-card button[value="rejected"] {
+    background: #dc3545;
+    color: #fff;
+}
+
+/* DISABLED STATE */
+.request-card button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+/* EMPTY STATE */
+p {
+    margin: 30px;
+    font-size: 16px;
+}
+
+/* ----------------- */
+/* RESPONSIVE DESIGN */
+/* ----------------- */
+
+@media (max-width: 900px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .nav-right a {
+        margin-left: 0;
+        margin-right: 12px;
+    }
+
+    .request-card {
+        margin: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    h2 {
+        margin: 20px;
+        font-size: 22px;
+    }
+
+    .request-card img {
+        width: 100%;
+        height: auto;
+    }
+
+    .request-card form {
+        flex-direction: column;
+    }
+
+    .request-card button {
+        width: 100%;
+    }
+}

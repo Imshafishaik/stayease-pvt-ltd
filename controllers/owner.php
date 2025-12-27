@@ -26,4 +26,5 @@ class OwnersController {
         // ✅ PASS DATA TO VIEW
         require __DIR__ . "/../views/ownerlisting.php";
     }
+    
 }

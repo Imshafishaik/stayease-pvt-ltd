@@ -12,6 +12,8 @@ require "./controllers/rentupload.php";
 require "./controllers/detail.php";
 require "./controllers/faqs.php";
 require "./controllers/adminfaq.php";
+require "./controllers/review.php";
+require "./controllers/orders.php";
 
 $home_controller = new HomeController($pdo);
 $login_controller = new LoginController($pdo);
@@ -25,6 +27,8 @@ $admin_profile_controller = new AdminprofileController($pdo);
 $accomodation_detail_controller = new AccomodationDetailController($pdo);
 $faq_controller = new FAQController($pdo);
 $faq_admin_controller = new AdminFaqController($pdo);
+$review_controller= new ReviewController($pdo);
+$orders_controller= new OrderController($pdo);
 
 $action = $_GET['action'] ?? 'index';
 
@@ -57,5 +61,11 @@ switch ($action) {
     case 'admin_registering': $admin_controller->adminRegister(); break;
     case 'admin_logining': $admin_controller->adminLogin(); break;
     case 'adm_mng_faq': $faq_admin_controller->adminfaq(); break;
+    case 'review': $review_controller->review(); break;
+    case 'orders': $orders_controller->ordersPage(); break;
+    case 'placeOrder': $orders_controller->placeOrder(); break;
+    case 'ownerdashboard': $orders_controller->getOwnerDashboard(); break;
+    case 'updateorderstatus' : $orders_controller->updateOrderStatus(); break;
+    case 'updatebooking': $orders_controller->updateBooking(); break;
     default:          $home_controller->home();
 }

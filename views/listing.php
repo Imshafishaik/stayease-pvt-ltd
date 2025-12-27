@@ -4,8 +4,13 @@ include "./views/header.php";
 require __DIR__ . "/../config/database.php";
 
 $accommodations = $accommodations ?? [];
-$totalPages = $totalPages ?? [];
-$page = $page;
+$totalPages = $totalPages ?? 0;
+$page = $page ?? 1;
+
+$search = $_GET['search'] ?? '';
+$city   = $_GET['city'] ?? '';
+$price  = $_GET['price'] ?? '';
+
 ?>
 
 <!DOCTYPE html>
@@ -66,12 +71,12 @@ $page = $page;
   <main class="cards">
   <div class="cards">
 <?php foreach ($accommodations as $acc): ?>
-  <a href="/index.php?action=accomodation_detail&id=<?= $acc['accommodation_id'] ?>" class="card">
+  <div  class="card">
 
     <img src="<?= $acc['photo_img'] ?>" alt="Property Image" />
 
     <div class="card-content">
-      <h3><?= htmlspecialchars($acc['accommodation_name']) ?></h3>
+      <a href="/index.php?action=accomodation_detail&id=<?= $acc['accommodation_id'] ?>"><?= htmlspecialchars($acc['accommodation_name']) ?></a>
 
       <span><?= htmlspecialchars($acc['city']) ?></span>, <span><?= htmlspecialchars($acc['state']) ?></span>,<span><?= htmlspecialchars($acc['country']) ?></span>
       <p><?= htmlspecialchars($acc['accommodation_description']) ?></p>
@@ -85,17 +90,19 @@ $page = $page;
       </div>
 
       <div class="card-footer-btns">
-       <?php if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'owner'): ?>
+       <?php if (isset($_SESSION['user_id']) && $_SESSION['user_type'] !== 'owner'): ?>
           <button href="#">Add to Favourites</button>
         <?php endif; ?>
 
 
-        <?php if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'owner'): ?>
-          <button href="#">Book</button>
+        <?php if (isset($_SESSION['user_id']) && $_SESSION['user_type'] !== 'owner'): ?>
+          <button onclick="bookNow(<?= $acc['accommodation_id'] ?>)">
+            Book Now
+          </button>
         <?php endif; ?>
       </div>
     </div>
-</a>
+</div>
 <?php endforeach; ?>
 </main>
 
@@ -135,11 +142,35 @@ document.getElementById("clearFilters").addEventListener("click", function() {
     // Redirect to the listing page without any query params
     window.location.href = "/index.php?action=listing";
 });
+
+function bookNow(accommodationId) {
+  console.log("........accommodationId",accommodationId);
+  
+    fetch('/index.php?action=placeOrder', {
+        method: 'POST',
+        headers: {'X-Requested-With': 'XMLHttpRequest'},
+        body: new URLSearchParams({ accommodation_id: accommodationId })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.status === 'login') {
+            window.location.href = '/index.php?action=login';
+        } else if (data.status === 'docs') {
+            alert('Please upload required documents first.');
+            window.location.href = '/index.php?action=profile';
+        } else if (data.status === 'success') {
+            alert('Booking request sent to owner.');
+        } else {
+            alert(data.message);
+        }
+    });
+}
 </script>
 
 </body>
 </html>
 
 <?php
-include "./footer.php"
+include "./views/footer.php";
+
 ?>
