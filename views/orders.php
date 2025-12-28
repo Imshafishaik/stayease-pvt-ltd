@@ -8,6 +8,7 @@ include "./views/header.php";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/orders.css">
     <title>Document</title>
 </head>
 <body>
@@ -33,6 +34,8 @@ include "./views/header.php";
                 </span>
             </p>
             <small><?= date('d M Y', strtotime($order['created_at'])) ?></small>
+
+            <a href="/index.php?action=review&id=<?= htmlspecialchars($order['accommodation_id']) ?>">Write Review</a>
         </div>
     <?php endforeach; ?>
 </section>

@@ -28,17 +28,6 @@
     €<?= number_format($accommodation['accommodation_price'], 2) ?>/month
   </div>
 
-  <!-- FAQS -->
-  <section class="faqs">
-    <h2>FAQs</h2>
-    <?php foreach ($faqs as $faq): ?>
-      <details>
-        <summary><?= htmlspecialchars($faq['question']) ?></summary>
-        <p><?= htmlspecialchars($faq['answer']) ?></p>
-      </details>
-    <?php endforeach; ?>
-  </section>
-
   <!-- REVIEWS -->
   <section class="reviews">
     <h2>Reviews</h2>
@@ -47,9 +36,9 @@
     <?php else: ?>
       <?php foreach ($reviews as $review): ?>
         <div class="review">
-          <strong><?= htmlspecialchars($review['name']) ?></strong>
+          <!-- <strong><?= htmlspecialchars($review['name']) ?></strong> -->
           <span><?= str_repeat("⭐", (int)$review['rating']) ?></span>
-          <p><?= htmlspecialchars($review['comment']) ?></p>
+          <p><?= htmlspecialchars($review['review_text']) ?></p>
           <small><?= date("d M Y", strtotime($review['created_at'])) ?></small>
         </div>
       <?php endforeach; ?>

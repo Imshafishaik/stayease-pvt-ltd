@@ -23,8 +23,9 @@ class ReviewController {
             $_POST['rating'],
             $_POST['review']
         );
-
-        echo json_encode(['status' => 'success']);
+require __DIR__ . '/../views/review.php';
+        // echo json_encode(['status' => 'success']);
+        
     }
 
     public function review(){

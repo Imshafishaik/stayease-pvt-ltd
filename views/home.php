@@ -36,31 +36,26 @@ $accommodations = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="card-container">
     
 
-    <?php foreach ($accommodations as $acc): ?>
-    <div class="card">
+   <div class="listing-grid">
+<?php foreach ($topListings as $item): ?>
+    <div class="listing-card">
+        <img src="<?= htmlspecialchars($item['photo_img']) ?>" alt="Property">
 
-    <img src="../images/homeimages/image2.avif" />
+        <h3><?= htmlspecialchars($item['accommodation_name']) ?></h3>
 
-    <div class="card-content">
-      <h3><?= htmlspecialchars($acc['accommodation_name']) ?></h3>
+        <p>€<?= htmlspecialchars($item['accommodation_price']) ?> / month</p>
 
-      <p><?= htmlspecialchars($acc['accommodation_description']) ?></p>
+        <p>
+            ⭐ <?= number_format($item['avg_rating'], 1) ?>
+            (<?= $item['total_reviews'] ?> reviews)
+        </p>
 
-      <div class="card-footer">
-        <span>€<?= number_format($acc['accommodation_price'], 2) ?>/month</span>
-
-        <span class="status">
-          <?= $acc['accommodation_available'] ? 'Available Now' : 'Not Available' ?>
-        </span>
-      </div>
-
-      <div class="card-footer-btns">
-        <a href="#">Add to Favourites</a>
-        <a href="#">Book</a>
-      </div>
+        <a href="/index.php?action=details&id=<?= $item['accommodation_id'] ?>">
+            View Details
+        </a>
     </div>
-      </div>
-          <?php endforeach; ?>
+<?php endforeach; ?>
+</div>
         </div>
         <h2 class="head-in-container">Are you a house owner?</h2>
       <div class="owner">

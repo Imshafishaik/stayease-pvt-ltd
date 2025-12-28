@@ -76,17 +76,18 @@ class OrderModel {
         SELECT o.order_id, u.user_name, u.user_email,
                u.user_doc_one, u.user_doc_two,
                a.accommodation_name,
-               o.total_price, o.booking_status
+               o.total_price, o.order_status
         FROM orders o
         JOIN users u ON o.user_id = u.user_id
         JOIN accommodation a ON o.accommodation_id = a.accommodation_id
         WHERE a.renter_id = ?
-          AND o.booking_status = 'requested'
+          AND o.order_status = 'pending'
     ";
     $stmt = $this->pdo->prepare($sql);
     $stmt->execute([$userId]);
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
+}
+
 
     public function getOrderWithEmails($orderId) {
     $sql = "

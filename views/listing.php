@@ -47,18 +47,17 @@ $price  = $_GET['price'] ?? '';
 
     <input type="text" name="search" placeholder="Search for houses..." />
 
-    <select name="city">
-        <option value="">All Cities</option>
-        <option value="Paris">Paris</option>
-        <option value="Lyon">Lyon</option>
-        <option value="Provence">Provence</option>
-    </select>
+    <select name="city"> 
+      <option value="">Select City  </option> 
+      <?php foreach ($locations as $loc): ?> 
+        <option value="<?= htmlspecialchars($loc['city']) ?>"><?= htmlspecialchars($loc['city']) ?></option>
+       <?php endforeach; ?> </select>
 
     <select name="price">
         <option value="">Max Price</option>
-        <option value="700">€700</option>
-        <option value="900">€900</option>
-        <option value="1200">€1200</option>
+        <?php foreach ($prices as $price): ?> 
+          <option value="<?= htmlspecialchars($price['accommodation_price']) ?>"><?= htmlspecialchars($price['accommodation_price']) ?></option> 
+        <?php endforeach; ?>
     </select>
 
     <button type="submit">Search</button>

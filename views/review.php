@@ -1,7 +1,11 @@
 <?php
-$avgRating = $avgRating ?? "";
-$accommodationId=$accommodationId ?? "";
-$reviews = $reviews ?? [];
+include "./views/header.php"; 
+
+// $avgRating = $avgRating ?? "";
+// $accommodationId=$accommodationId ?? "";
+// $reviews = $reviews ?? [];
+
+$id = $_GET['id'] ?? null;
 ?>
 
 <!DOCTYPE html>
@@ -16,52 +20,36 @@ $reviews = $reviews ?? [];
    <section class="reviews">
     <h2>Reviews</h2>
 
-    <div class="avg-rating">
+    <!-- <div class="avg-rating">
         ⭐ <?= $avgRating ?: 'No ratings yet' ?>
-    </div>
+    </div> -->
 
-    <?php if (isset($_SESSION['user_id'])): ?>
-    <form id="reviewForm">
-        <input type="hidden" name="accommodation_id" value="<?= $accommodationId ?>">
+    <form method="post" action="/index.php?action=submitReview">
+
+        <input type="hidden" name="accommodation_id" value="<?= $id ?>">
         
+        <label>Rating</label>
         <select name="rating" required>
-            <option value="">Rating</option>
-            <?php for ($i=1;$i<=5;$i++): ?>
-                <option value="<?= $i ?>"><?= $i ?> ⭐</option>
-            <?php endfor; ?>
+            <option value="">Select</option>
+            <option value="5">⭐⭐⭐⭐⭐</option>
+            <option value="4">⭐⭐⭐⭐</option>
+            <option value="3">⭐⭐⭐</option>
+            <option value="2">⭐⭐</option>
+            <option value="1">⭐</option>
         </select>
 
-        <textarea name="review" placeholder="Write your review"></textarea>
+        <label>Comment</label>
+        <textarea name="review" required placeholder="Write your review..."></textarea>
+
         <button type="submit">Submit Review</button>
     </form>
-    <?php else: ?>
-        <p>Please login to review.</p>
-    <?php endif; ?>
-
-    <div class="review-list">
-        <?php foreach ($reviews as $r): ?>
-            <div class="review-card">
-                <strong><?= htmlspecialchars($r['user_name']) ?></strong>
-                <span><?= str_repeat('⭐', $r['rating']) ?></span>
-                <p><?= htmlspecialchars($r['review_text']) ?></p>
-            </div>
-        <?php endforeach; ?>
-    </div>
+    
 </section>
-<script>
-document.getElementById('reviewForm')?.addEventListener('submit', function(e){
-    e.preventDefault();
-    fetch('/index.php?action=submitReview', {
-        method: 'POST',
-        body: new FormData(this)
-    })
-    .then(res => res.json())
-    .then(data => {
-        if(data.status === 'success') location.reload();
-        else alert(data.message);
-    });
-});
-</script>
+
 
 </body>
 </html>
+
+<?php
+    include "./views/footer.php";
+?>

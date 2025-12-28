@@ -1,6 +1,7 @@
 <?php
 require __DIR__ . "/../models/orders.php";
 require __DIR__ . "/../models/user.php";
+require __DIR__ . "/../helpers/email.php";
 
 class OrderController {
     private OrderModel $model;
@@ -76,48 +77,61 @@ class OrderController {
         require __DIR__ . '/../views/ownerdashboard.php';
     }
 
-    public function updateOrderStatus() {
-    session_start();
-    header('Content-Type: application/json');
+    // public function updateOrderStatus() {
+    //     session_start();
+    //     header('Content-Type: application/json');
 
-    if (!isset($_SESSION['user_id'])) {
-        echo json_encode(['status' => 'unauthorized']);
-        exit;
-    }
+    //     if (!isset($_SESSION['user_id'])) {
+    //         echo json_encode(['status' => 'unauthorized']);
+    //         exit;
+    //     }
 
-    $orderId = (int)$_POST['order_id'];
-    $status  = $_POST['status'];
+    //     $orderId = (int)$_POST['order_id'];
+    //     $status  = $_POST['status'];
 
-    if (!in_array($status, ['accepted', 'rejected'])) {
-        echo json_encode(['status' => 'error']);
-        exit;
-    }
+    //     if (!in_array($status, ['accepted', 'rejected'])) {
+    //         echo json_encode(['status' => 'error']);
+    //         exit;
+    //     }
 
-    $this->model->updateStatus($orderId, $status);
+    //     $this->model->updateStatus($orderId, $status);
 
-    echo json_encode(['status' => 'success']);
-}
+    //     echo json_encode(['status' => 'success']);
+    // }
 
 public function updateBooking() {
     session_start();
 
-    $orderId = $_POST['order_id'];
-    $status = $_POST['status'];
-
-    $this->model->updateStatus($orderId, $status);
-
-    if ($status === 'accepted') {
-        $order = $this->model->getOrderWithEmails($orderId);
-
-        mail(
-            $order['user_email'],
-            "Booking Accepted",
-            "Your booking is accepted.\nYou can now contact the house owner at: ".$order['owner_email']
-        );
+    if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'owner') {
+        header('Location: /index.php?action=login');
+        exit;
     }
 
-    // header('Location: /index.php?action=updatebooking');
+    $orderId = (int) $_POST['order_id'];
+    $status  = $_POST['status'];
+
+    if (!in_array($status, ['accepted', 'rejected'])) {
+        die("Invalid status");
+    }
+
+    // Update order
+    $this->model->updateStatus($orderId, $status);
+
+    // Get emails
+    $emails = $this->model->getOrderWithEmails($orderId);
+
+    if ($status === 'accepted') {
+        sendBookingMail(
+            $emails['student_email'],
+            "Your booking has been accepted",
+            "Congratulations! Your booking request was accepted."
+        );
+    }
+require __DIR__ . '/../views/ownerdashboard.php';
+    // header("Location: /index.php?action=ownerdashboard");
+    exit;
 }
+
 
 
 }

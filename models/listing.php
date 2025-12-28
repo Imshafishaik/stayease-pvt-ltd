@@ -89,5 +89,25 @@ public function countFiltered($search, $city, $price) {
     return (int)$stmt->fetchColumn();
 }
 
+    public function getLocations(){
+        $sql = "
+        SELECT * from locations;
+    ";
+    $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getPrice(){
+        $sql = "
+        SELECT accommodation_price from accommodation;
+    ";
+    $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
+
     }
 ?>
