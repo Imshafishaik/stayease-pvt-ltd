@@ -1,5 +1,6 @@
 <?php 
 // include "./views/header.php";
+
 ?>
 
 <!DOCTYPE html>
@@ -48,8 +49,14 @@
     <div class="faq-box">
         <p><strong>Q:</strong> <?= htmlspecialchars($faq['question']) ?></p>
 
-        <textarea id="answer-<?= $faq['faq_id'] ?>" placeholder="Write answer..."></textarea>
-        <button onclick="submitAnswer(<?= $faq['faq_id'] ?>)">Submit</button>
+        <?php if (!$faq['answer']): ?>
+    <button onclick="submitAnswer(<?= $faq['faq_id'] ?>)">Submit</button>
+<?php else: ?>
+    <p> <?= htmlspecialchars($faq['answer']) ?></p>
+    <small class="answered-label">Answered</small>
+<?php endif; ?>
+
+        <!-- <button onclick="submitAnswer(<?= $faq['faq_id'] ?>)">Submit</button> -->
     </div>
 <?php endforeach; ?>
 </section>
@@ -58,11 +65,15 @@
 function submitAnswer(faqId) {
     const answer = document.getElementById("answer-" + faqId).value;
 
-    fetch("/index.php?action=answer_faq", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: `faq_id=${faqId}&answer=${encodeURIComponent(answer)}`
-    })
+    fetch("/index.php?action=admin_answer_faq", {
+    method: "POST",
+    credentials: "same-origin", // ⭐ REQUIRED FOR SESSION
+    headers: {
+        "Content-Type": "application/x-www-form-urlencoded"
+    },
+    body: `faq_id=${faqId}&answer=${encodeURIComponent(answer)}`
+})
+
     .then(res => res.json())
     .then(data => {
         if (data.status === "success") {
@@ -78,4 +89,4 @@ function submitAnswer(faqId) {
 
 
 
-<!-- <?php include "./views/footer.php"; ?> -->
+<?php include "./views/footer.php"; ?>

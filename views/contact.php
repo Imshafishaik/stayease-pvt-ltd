@@ -67,6 +67,6 @@ include "./views/header.php"
 </html>
 
 <?php
-include "./footer.php"
+include "./views/footer.php"
 ?>
 

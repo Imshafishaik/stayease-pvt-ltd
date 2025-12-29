@@ -10,9 +10,8 @@ class AdminFaqModel {
     // Get all unanswered FAQs
     public function getUnanswered(): array {
         $sql = "
-            SELECT faq_id, question
+            SELECT faq_id, question,answer
             FROM faqs
-            WHERE answer IS NULL
             ORDER BY faq_id DESC
         ";
         return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);

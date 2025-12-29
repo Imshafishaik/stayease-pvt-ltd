@@ -34,7 +34,7 @@ include "./views/header.php";
                     <form id="loginForm">
                         <input type="email" name="email" placeholder="Email" required>
                         <input type="password" name="password" placeholder="Password" required>
-                        <a href="/views/forgotpass.php?action=forgot" class="forgot-password">forgot password?</a>
+                        <a href="/index.php?action=forgot" class="forgot-password">forgot password?</a>
                         <p id="loginResponse" style="color:red;"></p>
                         <button type="submit" class="btn btn-login">Login</button>
                     </form>

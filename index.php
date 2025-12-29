@@ -68,5 +68,6 @@ switch ($action) {
     case 'updateorderstatus' : $orders_controller->updateOrderStatus(); break;
     case 'updateBooking': $orders_controller->updateBooking(); break;
     case 'submitReview': $review_controller->submitReview(); break;
+    case 'admin_answer_faq': $faq_admin_controller->answer(); break;
     default:          $home_controller->home();
 }

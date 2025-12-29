@@ -22,30 +22,45 @@ class AdminFaqController {
     }
 
     // Handle answering FAQ
-    public function answer() {
-        session_start();
+   public function answer() {
+    session_start();
 
-        if (!isset($_SESSION['user_id']) || ($_SESSION['user_type'] == 'student' && $_SESSION['user_type'] == 'owner')) {
-            http_response_code(403);
-            echo json_encode(['status' => 'error', 'message' => 'Unauthorized']);
-            exit;
-        }
-
-        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-            echo json_encode(['status' => 'error', 'message' => 'Invalid request']);
-            exit;
-        }
-
-        $faqId  = (int) $_POST['faq_id'];
-        $answer = trim($_POST['answer']);
-
-        if ($answer === '') {
-            echo json_encode(['status' => 'error', 'message' => 'Answer required']);
-            exit;
-        }
-
-        $this->model->answerFaq($faqId, $answer, $_SESSION['user_id']);
-
-        echo json_encode(['status' => 'success']);
+    if (!isset($_SESSION['admin_id'])) {
+        http_response_code(403);
+        echo json_encode([
+            'status' => 'error',
+            'message' => 'Unauthorized'
+        ]);
+        exit;
     }
+
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+        echo json_encode([
+            'status' => 'error',
+            'message' => 'Invalid request'
+        ]);
+        exit;
+    }
+
+    $faqId  = (int) ($_POST['faq_id'] ?? 0);
+    $answer = trim($_POST['answer'] ?? '');
+
+    if ($faqId <= 0 || $answer === '') {
+        echo json_encode([
+            'status' => 'error',
+            'message' => 'Answer required'
+        ]);
+        exit;
+    }
+
+    $this->model->answerFaq($faqId, $answer, $_SESSION['admin_id']);
+
+    echo json_encode(['status' => 'success']);
+    exit;
+}
+
+public function getAllAdminFaqs(){
+    
+}
+
 }

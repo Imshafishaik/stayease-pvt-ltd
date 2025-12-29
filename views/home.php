@@ -33,10 +33,10 @@ $accommodations = $stmt->fetchAll(PDO::FETCH_ASSOC);
           <button class="container-search-button">Search</button>
         </div>
         <h2 class="head-in-container">Top listings</h2>
-        <div class="card-container">
+        <!-- <div class="card-container"> -->
     
 
-   <div class="listing-grid">
+  <div class="listing-grid">
 <?php foreach ($topListings as $item): ?>
     <div class="listing-card">
         <img src="<?= htmlspecialchars($item['photo_img']) ?>" alt="Property">
@@ -50,18 +50,19 @@ $accommodations = $stmt->fetchAll(PDO::FETCH_ASSOC);
             (<?= $item['total_reviews'] ?> reviews)
         </p>
 
-        <a href="/index.php?action=details&id=<?= $item['accommodation_id'] ?>">
+        <a href="/index.php?action=accomodation_detail&id=<?= $item['accommodation_id'] ?>">
             View Details
         </a>
     </div>
 <?php endforeach; ?>
 </div>
-        </div>
+
+        <!-- </div> -->
         <h2 class="head-in-container">Are you a house owner?</h2>
       <div class="owner">
         <div class="owner-container">
             <p>Reach your prperty with us and reach thousands of international students looking for accomodation.</p>
-            <a href="/views/rentupload.php?action=rentupload">list your property</a>
+            <a href="/index.php?action=rentupload">list your property</a>
         </div>
       </div>
          <h2 class="head-in-container">Faqs?</h2>

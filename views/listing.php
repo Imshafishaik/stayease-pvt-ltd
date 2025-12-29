@@ -22,25 +22,6 @@ $price  = $_GET['price'] ?? '';
 </head>
 <body>
 
-  <!-- <section class="filters">
-    <input type="text" placeholder="Search for houses..." />
-    
-    <select>
-      <option>All Cities</option>
-      <option>Paris</option>
-      <option>Lyon</option>
-      <option>Provence</option>
-    </select>
-
-    <select>
-      <option>Max Price</option>
-      <option>€700</option>
-      <option>€900</option>
-      <option>€1200</option>
-    </select>
-
-    <button>Search</button>
-  </section> -->
 <section class="filters">
   <form action="/index.php" method="get">
     <input type="hidden" name="action" value="listing" />
@@ -143,9 +124,8 @@ document.getElementById("clearFilters").addEventListener("click", function() {
 });
 
 function bookNow(accommodationId) {
-  console.log("........accommodationId",accommodationId);
   
-    fetch('/index.php?action=placeOrder', {
+    fetch('/index.php?action=placeOrde r', {
         method: 'POST',
         headers: {'X-Requested-With': 'XMLHttpRequest'},
         body: new URLSearchParams({ accommodation_id: accommodationId })
