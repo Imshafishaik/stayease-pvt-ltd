@@ -134,7 +134,7 @@ body {
     background: #fff;
     border-bottom: 1px solid #e6e6e6;
     position: sticky;
-    top: 0;
+    top: 70px;
     z-index: 20;
 }
 

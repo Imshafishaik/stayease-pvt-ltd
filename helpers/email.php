@@ -1,6 +1,9 @@
 <?php
 require __DIR__ . '/../vendor/autoload.php';
 
+$dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
+$dotenv->load();
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -16,12 +19,12 @@ function sendBookingMail(
     try {
         // SMTP CONFIG
         $mail->isSMTP();
-        $mail->Host       = $_ENV['SMTP_HOST'];      // smtp.gmail.com
+        $mail->Host       = $_ENV['SMTP_HOST'];
         $mail->SMTPAuth   = true;
-        $mail->Username   = $_ENV['SMTP_USER'];      // your gmail
-        $mail->Password   = $_ENV['SMTP_PASS'];      // app password
+        $mail->Username   = $_ENV['SMTP_USER'];
+        $mail->Password   = $_ENV['SMTP_PASS'];
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port       = $_ENV['SMTP_PORT'];      // 587
+        $mail->Port       = $_ENV['SMTP_PORT'];
 
         // SENDER
         $mail->setFrom($_ENV['SMTP_USER'], 'StayEase');
@@ -35,10 +38,13 @@ function sendBookingMail(
         $mail->Body    = $htmlBody;
 
         $mail->send();
-        return true;
+
+        return true;   // ✅ ALWAYS return true on success
 
     } catch (Exception $e) {
         error_log('SMTP Mail Error: ' . $mail->ErrorInfo);
-        return false;
+
+        return false;  // ✅ ALWAYS return false on failure
     }
 }
+

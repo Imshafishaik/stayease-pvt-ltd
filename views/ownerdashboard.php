@@ -13,13 +13,23 @@ $orders = $orders ?? [];
 
 <body>
 
+
+
 <nav class="navbar">
-    <div class="nav-right">
-        <a href="#" class="active">Overview</a>
-        <a href="/index.php?action=rentupload" class="upload-btn">Upload</a>
-        <a href="/index.php?action=ownerdashboard" class="upload-btn">My Dashboard</a>
-    </div>
-</nav>
+        <div class="nav-left">
+            <!-- <div class="logo">StayEase</div> -->
+            <!-- <div class="search-box">
+                <input type="text" placeholder="Search houses, amenities, and owners">
+                <i class="fa fa-search"></i>
+            </div> -->
+        </div>
+
+        <div class="nav-right">
+            
+            <a href="/index.php?action=rentupload" class="upload-btn">Upload</a>
+            <a href="/index.php?action=ownerdashboard" class="upload-btn">My Dashboard</a>
+        </div>
+    </nav>
 
 <h2>Booking Requests</h2>
 
@@ -36,15 +46,55 @@ $orders = $orders ?? [];
         <a href="<?= htmlspecialchars($req['user_doc_one']) ?>" target="_blank">Document 1</a>
         <a href="<?= htmlspecialchars($req['user_doc_two']) ?>" target="_blank">Document 2</a>
 
-        <form method="post" action="/index.php?action=updateBooking">
-            <input type="hidden" name="order_id" value="<?= $req['order_id'] ?>">
+       <div class="booking-actions">
+    <button 
+        class="booking-btn accept"
+        onclick="updateBooking(<?= $req['order_id'] ?>, 'accepted')">
+        Accept
+    </button>
 
-            <button type="submit" name="status" value="accepted">Accept</button>
-            <button type="submit" name="status" value="rejected">Reject</button>
-        </form>
+    <button 
+        class="booking-btn reject"
+        onclick="updateBooking(<?= $req['order_id'] ?>, 'rejected')">
+        Reject
+    </button>
+</div>
 
     </div>
 <?php endforeach; ?>
+
+<script>
+function updateBooking(orderId, status) {
+    fetch('/index.php?action=updateBooking', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'X-Requested-With': 'XMLHttpRequest'
+        },
+        body: new URLSearchParams({
+            order_id: orderId,
+            status: status
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.status === 'success') {
+            alert('Booking updated successfully!');
+            window.location.href = data.redirect;
+        } else if (data.redirect) {
+            window.location.href = data.redirect;
+        } else {
+            alert(data.message || 'Something went wrong');
+        }
+    })
+    .catch(err => {
+        console.error(err);
+        alert('Server error');
+    });
+}
+
+</script>
+
 
 </body>
 </html>

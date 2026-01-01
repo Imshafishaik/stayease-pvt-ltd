@@ -9,6 +9,8 @@ class AdminprofileController{
     }
 
     public function adminprofile(){
+        $students_admin = $this->model->studentVerify();
+        $owner_admin = $this->model->ownerVerify();
         require __DIR__ . "/../views/adminprofile.php";
     }
 }

@@ -21,7 +21,36 @@ $price  = $_GET['price'] ?? '';
   <link rel="stylesheet" href="../css/listing.css">
 </head>
 <body>
+<script>
 
+
+function bookNow(accommodationId) {
+    console.log("......working fine",accommodationId);
+    
+    fetch('/index.php?action=placeOrder', {
+        method: 'POST',
+        headers: {'X-Requested-With': 'XMLHttpRequest'},
+        body: new URLSearchParams({ accommodation_id: accommodationId })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.status === 'login') {
+            window.location.href = '/index.php?action=login';
+        } else if (data.status === 'docs') {
+            alert('Please upload required documents first.'); 
+            window.location.href = '/index.php?action=profile';
+        } else if (data.status === 'success') {
+            alert('Booking request sent to owner.');
+        } else {
+            alert(data.message);
+        }
+    });
+}
+function onClearFilters(){
+  window.location.href = "/index.php?action=listing";
+}
+
+</script>
 <section class="filters">
   <form action="/index.php" method="get">
     <input type="hidden" name="action" value="listing" />
@@ -42,7 +71,7 @@ $price  = $_GET['price'] ?? '';
     </select>
 
     <button type="submit">Search</button>
-    <button type="button" id="clearFilters">Clear Filters</button>
+    <button type="button" onclick="onClearFilters()">Clear Filters</button>
 </form>
  </section>
 
@@ -117,34 +146,7 @@ $price  = $_GET['price'] ?? '';
 </div>
   
 
-  <script>
-document.getElementById("clearFilters").addEventListener("click", function() {
-    // Redirect to the listing page without any query params
-    window.location.href = "/index.php?action=listing";
-});
-
-function bookNow(accommodationId) {
   
-    fetch('/index.php?action=placeOrde r', {
-        method: 'POST',
-        headers: {'X-Requested-With': 'XMLHttpRequest'},
-        body: new URLSearchParams({ accommodation_id: accommodationId })
-    })
-    .then(res => res.json())
-    .then(data => {
-        if (data.status === 'login') {
-            window.location.href = '/index.php?action=login';
-        } else if (data.status === 'docs') {
-            alert('Please upload required documents first.');
-            window.location.href = '/index.php?action=profile';
-        } else if (data.status === 'success') {
-            alert('Booking request sent to owner.');
-        } else {
-            alert(data.message);
-        }
-    });
-}
-</script>
 
 </body>
 </html>

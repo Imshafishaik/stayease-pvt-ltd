@@ -30,7 +30,6 @@ $owner_info = $owner_info ?? [];
         </div>
 
         <div class="nav-right">
-            <a href="#" class="active">Overview</a> 
             <a href="/index.php?action=rentupload" class="upload-btn">Upload</a>
             <a href="/index.php?action=ownerdashboard" class="upload-btn">My Dashboard</a>
         </div>

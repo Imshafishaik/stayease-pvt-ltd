@@ -14,7 +14,7 @@ if (session_status() === PHP_SESSION_NONE) {
 </head>
 
 <body>
-<header class="navbar">
+<header class="main_header_navbar">
     <div class="logo">
         <img src="../../images/homeimages/logo.jpg" alt="Stayease">
     </div>

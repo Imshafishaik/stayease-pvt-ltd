@@ -34,8 +34,8 @@ body {
 }
 
 .upload-btn {
-    background: #007bff;
-    color: #fff !important;
+    /* background: #007bff; */
+    color: #007bff !important;
     padding: 8px 14px;
     border-radius: 6px;
     font-size: 14px;
