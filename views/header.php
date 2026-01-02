@@ -75,7 +75,3 @@ document.addEventListener("click", function () {
 </body>
 </html>
 
-<?php
-
-ob_end_flush();
-?>
