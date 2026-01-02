@@ -4,7 +4,6 @@ include "./views/header.php";
 
 $orders = $orders ?? [];
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>

@@ -7,7 +7,6 @@ $owner_admin = $owner_admin ?? [];
 print_r($students_admin);
 // print_r($owner_admin);
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

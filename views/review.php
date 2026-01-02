@@ -7,7 +7,6 @@ include "./views/header.php";
 
 $id = $_GET['id'] ?? null;
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

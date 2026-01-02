@@ -12,7 +12,6 @@ $city   = $_GET['city'] ?? '';
 $price  = $_GET['price'] ?? '';
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

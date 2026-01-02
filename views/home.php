@@ -8,7 +8,6 @@ include "./views/header.php";
 $stmt = $pdo->query("SELECT * FROM accommodation");
 $accommodations = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

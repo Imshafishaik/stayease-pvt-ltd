@@ -7,7 +7,6 @@ $accommodations = $accommodations ?? [];
     
 $owner_info = $owner_info ?? [];
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

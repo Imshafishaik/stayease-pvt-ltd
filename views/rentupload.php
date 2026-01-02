@@ -2,7 +2,6 @@
 require __DIR__ . "/../config/database.php"; 
 include "./views/header.php"; 
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
