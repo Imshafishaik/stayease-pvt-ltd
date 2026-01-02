@@ -1,11 +1,10 @@
 <?php
-// Start output buffering to prevent "headers already sent" warnings
-// ob_start();
 
-// // Start session if not already started
-// if (session_status() === PHP_SESSION_NONE) {
-//     session_start();
-// }
+
+// Start session if not already started
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
