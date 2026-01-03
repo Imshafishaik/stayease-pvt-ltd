@@ -78,5 +78,5 @@ $accommodations = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
 <?php
-include ($action == 'home' ? "./footer.php" : "./views/footer.php");
+include "./views/footer.php";
 ?>

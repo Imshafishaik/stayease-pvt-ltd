@@ -23,7 +23,7 @@ class ListingController{
             $total = $this->model->countFiltered($search, $city, $price);
             $locations       = $this->model->getLocations();
             $prices       = $this->model->getPrice();
-        $totalPages = ceil($total / $limit);
+            $totalPages = ceil($total / $limit);
 
         require __DIR__ . "/../views/listing.php";
     }
