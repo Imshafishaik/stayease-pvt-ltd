@@ -10,7 +10,7 @@ class AdminFaqController {
 
     // Show FAQ management page
     public function adminfaq() {
-        session_start();
+        // session_start();
 
         // if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'Admin') {
         //     header("Location: /index.php?action=login");
@@ -23,7 +23,7 @@ class AdminFaqController {
 
     // Handle answering FAQ
    public function answer() {
-    session_start();
+    // session_start();
 
     if (!isset($_SESSION['admin_id'])) {
         http_response_code(403);

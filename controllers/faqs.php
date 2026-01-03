@@ -18,7 +18,7 @@ class FAQController {
     }
 
     public function postQuestion() {
-        session_start();
+        // session_start();
 
         if (!isset($_SESSION['user_id'])) {
             http_response_code(403);
@@ -37,7 +37,7 @@ class FAQController {
     }
 
     public function postAnswer() {
-        session_start();
+        // session_start();
 
         if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'owner') {
             http_response_code(403);

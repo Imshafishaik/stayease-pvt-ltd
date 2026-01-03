@@ -14,7 +14,7 @@ class OrderController {
 
     // Place order
    public function placeOrder() {
-    session_start();
+    // session_start();
     header('Content-Type: application/json');
 
     // 1. Check login
@@ -44,7 +44,7 @@ class OrderController {
 
     // Orders page
     public function ordersPage() {
-        session_start();
+        // session_start();
 
         if (!isset($_SESSION['user_id'])) {
             header('Location: /index.php?action=login');
@@ -61,7 +61,7 @@ class OrderController {
     }
 
     public function getOwnerDashboard(){
-     session_start();
+    //  session_start();
 
         if (!isset($_SESSION['user_id'])) {
             header('Location: /index.php?action=login');
@@ -268,7 +268,7 @@ class OrderController {
 // }
 
 public function updateBooking() {
-    session_start();
+    // session_start();
     header('Content-Type: application/json');
 
     if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'owner') {

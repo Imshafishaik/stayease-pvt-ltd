@@ -46,7 +46,7 @@ class AdminController {
 
         $admin = $this->model->login($email, $password);
         if ($admin) {
-            session_start();
+            // session_start();
             $_SESSION['admin_id'] = $admin['admin_id'];
             $_SESSION['admin_name'] = $admin['admin_name'];
             echo json_encode(['status' => 'success', 'message' => 'Login successful!']);

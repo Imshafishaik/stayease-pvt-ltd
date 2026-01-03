@@ -62,9 +62,9 @@ class LoginController {
             }
 
             // ✅ Start session safely
-            if (session_status() === PHP_SESSION_NONE) {
-                session_start();
-            }
+            // if (session_status() === PHP_SESSION_NONE) {
+            //     session_start();
+            // }
 
             $_SESSION['user_id']   = $user['user_id'];
             $_SESSION['user_name'] = $user['user_name'];
@@ -97,7 +97,7 @@ class LoginController {
     }
 
     public function logout() {
-        session_start();
+        // session_start();
         // Unset all session variables
         $_SESSION = [];
 
