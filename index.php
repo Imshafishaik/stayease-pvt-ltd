@@ -34,6 +34,10 @@ $action = $_GET['action'] ?? 'index';
 
 $id = $_GET['id'] ?? null;
 
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 
 switch ($action) {
     case 'create':    $controller->create(); break;

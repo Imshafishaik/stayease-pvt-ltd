@@ -1,6 +1,5 @@
 <?php 
 require __DIR__ . "/../config/database.php";
-session_start();
 
 include "./views/header.php";
 

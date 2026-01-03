@@ -1,10 +1,10 @@
 <?php
 
-
+require __DIR__ . "/../helpers/user.php";
 // Start session if not already started
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
+// if (session_status() === PHP_SESSION_NONE) {
+//     session_start();
+// }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,17 +27,17 @@ if (session_status() === PHP_SESSION_NONE) {
         <a href="/index.php?action=home">Home</a>
         <a href="/index.php?action=listing">Find Accommodation</a>
 
-        <?php if (isset($_SESSION['user_id']) && $_SESSION['user_type'] === 'owner'): ?>
+        <?php if (auth_user_id() && auth_user_type() === 'owner'): ?>
             <a href="/index.php?action=owner">For Owners</a>
         <?php endif; ?>
 
         <a href="/index.php?action=contact">Contact Us</a>
         <a href="/index.php?action=getfaqs">FAQs</a>
 
-        <?php if (isset($_SESSION['user_id'])): ?>
+        <?php if (auth_user_id()): ?>
             <div class="profile-dropdown">
                 <button class="profile-btn" id="profileBtn">
-                    <?= htmlspecialchars($_SESSION['user_name']) ?> ▼
+                    <?= htmlspecialchars(auth_user_name()) ?> ▼
                 </button>
                 <div class="dropdown-menu" id="profileMenu">
                     <a href="/index.php?action=myprofile">My Profile</a>
