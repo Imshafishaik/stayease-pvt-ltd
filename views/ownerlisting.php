@@ -4,6 +4,8 @@ require __DIR__ . "/../config/database.php";
 include "./views/header.php";
 
 $accommodations = $accommodations ?? [];
+$totalPages = $totalPages ?? 0;
+$page = $page ?? 1;
     
 $owner_info = $owner_info ?? [];
 ?>
@@ -50,38 +52,63 @@ $owner_info = $owner_info ?? [];
 <?php if (empty($accommodations)): ?>
     <p>No accommodations found.</p>
 <?php else: ?>
-    <?php foreach ($accommodations as $acc): ?>
-        <div class="card">
-            <!-- <img src='../images/homeimages/images.jpeg' /> -->
-             <!-- <?php if (!empty($acc['photo_img'])): ?>
-    <?php foreach ($acc['photo_img'] as $img): ?>
-        <img src="<?= htmlspecialchars($img) ?>" alt="Property Image">
-    <?php endforeach; ?>
-<?php endif; ?> -->
-            <img src='<?= htmlspecialchars($acc['photo_img'] ?? '../images/homeimages/images.jpeg') ?>' />
-<!-- /<?= htmlspecialchars($acc['photo_img'] ?? '../images/homeimages/images.jpeg') ?> -->
-            <div class="card-content">
-                <h3><?= htmlspecialchars($acc['accommodation_name']) ?></h3>
-                <span><?= htmlspecialchars($acc['city']) ?></span>, <span><?= htmlspecialchars($acc['state']) ?></span>,<span><?= htmlspecialchars($acc['country']) ?></span>
-                <p><?= htmlspecialchars($acc['accommodation_description']) ?></p>
+    <div class="listing-grid">
+<?php foreach ($accommodations as $acc): ?>
+  <div class="listing-card"> 
+    <a href="/index.php?action=accomodation_detail&id=<?= $acc['accommodation_id'] ?>">
+    <img src="<?= htmlspecialchars((!empty($acc['photo_img'] ?? '')) ? $acc['photo_img'] : 'https://media.istockphoto.com/id/1326417862/fr/photo/jeune-femme-qui-rit-tout-en-se-relaxant-%C3%A0-la-maison.jpg?s=612x612&w=0&k=20&c=9kSRtp-LQLeKGWiBqBBNNmPKpzxoO445dyE3bLWQVm4=') ?>" alt="Property Image" />
+    </a>
+    <a class="acc_name" href="/index.php?action=accomodation_detail&id=<?= $acc['accommodation_id'] ?>"><?= htmlspecialchars($acc['accommodation_name']) ?></a>
 
-                <div class="card-footer">
-                    <span>€<?= number_format($acc['accommodation_price'], 2) ?>/month</span>
-                    <span class="status">
-                        <?= $acc['accommodation_available'] ? 'Available' : 'Unavailable' ?>
-                    </span>
-                </div>
-            </div>
-        </div>
-    <?php endforeach; ?>
+    <p>
+      <?= htmlspecialchars($acc['city']) ?>, <?= htmlspecialchars($acc['state']) ?>, <?= htmlspecialchars($acc['country']) ?>
+    </p>
+
+    <p><?= htmlspecialchars($acc['accommodation_description']) ?></p>
+
+    <div class="card-footer">
+      <span>€<?= number_format($acc['accommodation_price'], 2) ?>/month</span>
+      <span class="status">
+        <?= $acc['accommodation_available'] ? 'Available Now' : 'Not Available' ?>
+      </span>
+    </div>
+
+    
+  </div>
+<?php endforeach; ?>
+</div>
 <?php endif; ?>
+
+
 
 
     </section>
 
-    <div class="load-more">
+    <!-- <div class="load-more">
         <button>Load more</button>
-    </div>
+    </div> -->
+
+    <?php if ($totalPages > 1): ?>
+  <div class="pagination">
+
+    <?php if ($page > 1): ?>
+      <a href="/index.php?action=owner&page=<?= $page-1 ?>">« Prev</a>
+    <?php endif; ?>
+
+    <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+      <a href="/index.php?action=owner&page=<?= $i ?>"
+         class="<?= $i === $page ? 'active' : '' ?>">
+        <?= $i ?>
+      </a>
+    <?php endfor; ?>
+
+    <?php if ($page < $totalPages): ?>
+      <a href="/index.php?action=owner&page=<?= $page+1 ?>">Next »</a>
+    <?php endif; ?>
+
+  </div>
+<?php endif; ?>
+
 
 </body>
 

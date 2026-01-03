@@ -81,9 +81,10 @@ function onClearFilters(){
         <div class="listing-grid">
 <?php foreach ($accommodations as $acc): ?>
   <div class="listing-card">
+    <a href="/index.php?action=accomodation_detail&id=<?= $acc['accommodation_id'] ?>">
     <img src="<?= htmlspecialchars((!empty($acc['photo_img'] ?? '')) ? $acc['photo_img'] : 'https://media.istockphoto.com/id/1326417862/fr/photo/jeune-femme-qui-rit-tout-en-se-relaxant-%C3%A0-la-maison.jpg?s=612x612&w=0&k=20&c=9kSRtp-LQLeKGWiBqBBNNmPKpzxoO445dyE3bLWQVm4=') ?>" alt="Property Image" />
-
-    <a href="/index.php?action=accomodation_detail&id=<?= $acc['accommodation_id'] ?>"><?= htmlspecialchars($acc['accommodation_name']) ?></a>
+    </a>
+    <a class="acc_name"  href="/index.php?action=accomodation_detail&id=<?= $acc['accommodation_id'] ?>"><?= htmlspecialchars($acc['accommodation_name']) ?></a>
 
     <p>
       <?= htmlspecialchars($acc['city']) ?>, <?= htmlspecialchars($acc['state']) ?>, <?= htmlspecialchars($acc['country']) ?>

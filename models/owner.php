@@ -28,34 +28,70 @@ class OwnersModel {
         ];
     }
 
-    public function getByOwner(int $userId): array {
+ 
+
+public function getByOwnerPaginated(int $userId, int $limit, int $offset): array {
     $sql = "
         SELECT 
-            a.accommodation_id,
-            a.accommodation_name,
-            a.accommodation_description,
-            a.accommodation_price,
-            a.accommodation_available,
-            MIN(d.photo_img) AS photo_img,
-            l.name AS location_name,
-            l.city,
-            l.state,
-            l.country,
-            l.pincode
-        FROM accommodation a
-        JOIN users u ON a.renter_id = u.user_id
-        LEFT JOIN documents d ON a.accommodation_id = d.accommodation_id
-        INNER JOIN locations l ON a.location_id = l.location_id
-        WHERE u.user_type = 'owner'
-          AND u.user_id = :user_id
-        GROUP BY a.accommodation_id, l.location_id
-        ORDER BY a.accommodation_id DESC
+    a.accommodation_id,
+    a.accommodation_name,
+    a.accommodation_description,
+    a.accommodation_price,
+    a.accommodation_available,
+
+    l.name    AS location_name,
+    l.city,
+    l.state,
+    l.country,
+    l.pincode,
+
+    MIN(d.photo_img) AS photo_img
+
+FROM accommodation a
+INNER JOIN locations l 
+    ON a.location_id = l.location_id
+LEFT JOIN documents d 
+    ON d.accommodation_id = a.accommodation_id
+
+WHERE a.renter_id = :user_id
+
+GROUP BY 
+    a.accommodation_id,
+    a.accommodation_name,
+    a.accommodation_description,
+    a.accommodation_price,
+    a.accommodation_available,
+    l.name,
+    l.city,
+    l.state,
+    l.country,
+    l.pincode
+
+ORDER BY a.accommodation_id DESC
+LIMIT :limit OFFSET :offset;
+
+    ";
+
+    $stmt = $this->pdo->prepare($sql);
+    $stmt->bindValue(':user_id', $userId, PDO::PARAM_INT);
+    $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+    $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+    $stmt->execute();
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+public function countByOwner(int $userId): int {
+    $sql = "
+        SELECT COUNT(*) 
+        FROM accommodation 
+        WHERE renter_id = :user_id
     ";
 
     $stmt = $this->pdo->prepare($sql);
     $stmt->execute(['user_id' => $userId]);
 
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return (int) $stmt->fetchColumn();
 }
 
 

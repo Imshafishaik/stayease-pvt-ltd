@@ -199,11 +199,11 @@ nav a {
     color: #555;
 }
 
-.listing-card a {
+.acc_name  {
     display: inline-block;
     margin-top: 10px;
     padding: 8px 14px;
-    background: #2d6cdf;
+    background: #10b981;
     color: #fff;
     border-radius: 6px;
     text-decoration: none;
