@@ -51,21 +51,26 @@ require __DIR__ . "/../helpers/user.php";
     </nav>
 </header>
 
-
-
 <script>
-/* MOBILE NAV TOGGLE */
-document.getElementById("menuToggle").addEventListener("click", function () {
-    document.getElementById("navLinks").classList.toggle("active");
+
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
+
+menuToggle.addEventListener("click", function (e) {
+    e.stopPropagation();
+    navLinks.classList.toggle("active");
+
+    // Change icon ☰ ↔ ✕
+    menuToggle.textContent = navLinks.classList.contains("active") ? "✕" : "☰";
 });
 
-/* PROFILE DROPDOWN */
+
 document.getElementById("profileBtn")?.addEventListener("click", function (e) {
     e.stopPropagation();
     document.getElementById("profileMenu").classList.toggle("show");
 });
 
-/* CLOSE DROPDOWNS ON OUTSIDE CLICK */
+
 document.addEventListener("click", function () {
     document.getElementById("profileMenu")?.classList.remove("show");
 });

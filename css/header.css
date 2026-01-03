@@ -27,7 +27,7 @@
 }
 
 .nav-links a {
-    color: blue;
+    color: #111;
     text-decoration: none;
     font-size: 15px;
 }
@@ -144,7 +144,7 @@
         display: block;
         font-size: 26px;
         cursor: pointer;
-        color: #fff;
+        color: #111;
     }
 
     .nav-links {
@@ -152,7 +152,7 @@
         top: 70px;
         left: 0;
         width: 100%;
-        background: #1c1c1c;
+        background: #fff;
         flex-direction: column;
         display: none;  /* IMPORTANT */
         padding: 15px 0;
@@ -167,7 +167,7 @@
     .profile-btn {
         padding: 12px 20px;
         width: 100%;
-        text-align: left;
+        text-align: center;
     }
 
     .profile-dropdown {
@@ -179,11 +179,11 @@
         box-shadow: none;
         width: 100%;
         display: none;
-        background: #2a2a2a;
+        background: #ccc    ;
     }
 
     .dropdown-menu a {
-        color: #fff;
+        color: #111;
         padding-left: 30px;
     }
 
