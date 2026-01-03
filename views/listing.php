@@ -45,6 +45,30 @@ function bookNow(accommodationId) {
         }
     });
 }
+
+function addToFavourites(accommodationId) {
+    fetch('/index.php?action=addFavourites', {
+        method: 'POST',
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest'
+        },
+        body: new URLSearchParams({
+            accommodation_id: accommodationId
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.status === 'login') {
+            window.location.href = '/index.php?action=login';
+        } else if (data.status === 'success') {
+            alert('❤️ Added to favourites!');
+        } else {
+            alert(data.message);
+        }
+    })
+    .catch(() => alert('Server error'));
+}
+
 function onClearFilters(){
   window.location.href = "/index.php?action=listing";
 }
@@ -101,7 +125,7 @@ function onClearFilters(){
 
     <div class="card-footer-btns">
       <?php if (isset($_SESSION['user_id']) && $_SESSION['user_type'] !== 'owner'): ?>
-        <button onclick="addToFavourites(<?= $acc['accommodation_id'] ?>)">Add to Favourites</button>
+        <button onclick="addToFavourites(<?= $acc['accommodation_id'] ?>)">❤️ Add to Favourites</button>
         <button onclick="bookNow(<?= $acc['accommodation_id'] ?>)">Book Now</button>
       <?php endif; ?>
     </div>

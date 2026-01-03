@@ -41,6 +41,7 @@ require __DIR__ . "/../helpers/user.php";
                 </button>
                 <div class="dropdown-menu" id="profileMenu">
                     <a href="/index.php?action=myprofile">My Profile</a>
+                    <a href="/index.php?action=allfavourites">My Favourites</a>
                     <a href="/index.php?action=orders">My Orders</a>
                     <a href="/index.php?action=logout" class="logout">Logout</a>
                 </div>

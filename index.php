@@ -14,6 +14,7 @@ require "./controllers/faqs.php";
 require "./controllers/adminfaq.php";
 require "./controllers/review.php";
 require "./controllers/orders.php";
+require "./controllers/addtofav.php";
 
 $home_controller = new HomeController($pdo);
 $login_controller = new LoginController($pdo);
@@ -29,6 +30,7 @@ $faq_controller = new FAQController($pdo);
 $faq_admin_controller = new AdminFaqController($pdo);
 $review_controller= new ReviewController($pdo);
 $orders_controller= new OrderController($pdo);
+$add_to_fav_controller= new FavouriteController($pdo);
 
 $action = $_GET['action'] ?? 'index';
 
@@ -47,6 +49,7 @@ switch ($action) {
     case 'signuppage':     $signup_controller->signuppage(); break;
     case 'signup':     $signup_controller->signup(); break;
     case 'contact':     $contact_controller->contact(); break;
+    case 'emailSend':     $contact_controller->emailSend(); break;
     case 'owner':      $owners_controller->owner(); break;
     case 'listing': $listing_controller->listing(); break;
     case 'accomodation_detail': $accomodation_detail_controller->detail(); break;
@@ -73,5 +76,7 @@ switch ($action) {
     case 'updateBooking': $orders_controller->updateBooking(); break;
     case 'submitReview': $review_controller->submitReview(); break;
     case 'admin_answer_faq': $faq_admin_controller->answer(); break;
+    case 'addFavourites': $add_to_fav_controller->addFavourites(); break;
+    case 'allfavourites': $add_to_fav_controller->allFavourites(); break;
     default:          $home_controller->home();
 }

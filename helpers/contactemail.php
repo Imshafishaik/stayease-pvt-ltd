@@ -1,10 +1,5 @@
 <?php
-require __DIR__ . "/../models/contact.php";
 require __DIR__ . '/../vendor/autoload.php';
-require __DIR__ . "/../helpers/contactemail.php";
-
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
 
 if (file_exists(__DIR__ . '/../.env')) {
     $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
@@ -12,50 +7,30 @@ if (file_exists(__DIR__ . '/../.env')) {
 }
 
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
-class ContactController {
+function sendContactMail(
+    string $name,
+    string $email,
+    string $subject,
+    string $message
+): bool {
 
-    private $model;
+    $mail = new PHPMailer(true);
 
-    public function __construct($pdo) {
-        $this->model = new ContactModel($pdo);
-    }
-
-    public function contact() {
-        require __DIR__ . "/../views/contact.php";
-    }
-
-    public function emailSend() {
-
-        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-            header("Location: /index.php?action=contact");
-            exit;
-        }
-
-        $name    = trim($_POST['name']);
-        $email   = trim($_POST['email']);
-        $subject = trim($_POST['subject']);
-        $message = trim($_POST['message']);
-
-        if ($name === '' || $email === '' || $subject === '' || $message === '') {
-            die("All fields are required.");
-        }
-
-        $mail = new PHPMailer(true);
-
-        try {
-            // SMTP config
-            $mail->isSMTP();
-            $mail->Host       = $_ENV['SMTP_HOST'];
-            $mail->SMTPAuth   = true;
-            $mail->Username   = $_ENV['SMTP_USER'];
-            $mail->Password   = $_ENV['SMTP_PASS'];
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            $mail->Port       = $_ENV['SMTP_PORT'];
+    try {
+        $mail->isSMTP();
+        $mail->Host       = $_ENV['SMTP_HOST'];
+        $mail->SMTPAuth   = true;
+        $mail->Username   = $_ENV['SMTP_USER'];
+        $mail->Password   = $_ENV['SMTP_PASS'];
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port       = $_ENV['SMTP_PORT'];
 
             // Sender & Receiver
             $mail->setFrom($_ENV['SMTP_USER'], 'StayEase Contact');
-            $mail->addAddress($_ENV['ADMIN_EMAIL']); // where you want messages
+            $mail->addAddress($_ENV['ADMIN_EMAIL']); 
 
             // Email content
             $mail->isHTML(true);
@@ -152,6 +127,5 @@ class ContactController {
             header("Location: /index.php?action=contact");
             exit;
         }
-    }
-
 }
+

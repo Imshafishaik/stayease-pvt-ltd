@@ -38,9 +38,9 @@ $accommodations = $stmt->fetchAll(PDO::FETCH_ASSOC);
   <div class="listing-grid">
 <?php foreach ($topListings as $item): ?>
     <div class="listing-card">
-      <a href="/index.php?action=accomodation_detail&id=<?= $item['accommodation_id'] ?>">
+      
         <img src="<?= htmlspecialchars($item['photo_img']) ?>" alt="Property">
-        </a>
+        
 
         <h3><?= htmlspecialchars($item['accommodation_name']) ?></h3>
 
