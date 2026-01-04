@@ -12,24 +12,13 @@ include "./views/header.php";
     <link rel="stylesheet" href="../../css/login.css">
 </head>
 <body>
-    <!-- <header> -->
-        <!-- <nav class="navbar">
-            <a href="signup.php" class="nav-link">Register</a>
-            <a href="#" class="nav-link">Listings</a>
-            <a href="#" class="nav-link">Admin</a>
-        </nav> -->
-    <!-- </header> -->
+    
     <main class="main-content">
         <div class="forms-container">
             <div class="form-column">
                 <div class="form-wrapper">
                     <h2>Login to Your Account</h2>
-                    <!-- <form action="">
-                        <input type="email" placeholder="Email" required>
-                        <input type="password" placeholder="Password" required>
-                        <a href="#" class="forgot-password">forgot password?</a>
-                        <button type="submit" class="btn btn-login">Login</button>
-                    </form> -->
+                    
                     <form id="loginForm">
                         <input type="email" name="email" placeholder="Email" required>
                         <input type="password" name="password" placeholder="Password" required>
@@ -43,20 +32,7 @@ include "./views/header.php";
         </div>
     </main>
 
-    <!-- <footer>
-        <div class="footer-content">
-            <div class="contact-info">
-                <h4>Contact Us</h4>
-                <p>Email: support@accommodateme.com</p>
-                <p>Phone: +33 1 23 45 67 89</p>
-            </div>
-            <div class="social-icons">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-            </div>
-        </div>
-    </footer> -->
+    
     <script>
 document.getElementById("loginForm").addEventListener("submit", function (e) {
     e.preventDefault();

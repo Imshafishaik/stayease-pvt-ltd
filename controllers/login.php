@@ -1,5 +1,6 @@
 <?php
-require __DIR__ . "/../models/login.php";
+require_once __DIR__ . "/../models/login.php";
+require_once __DIR__ . "/../helpers/resetpasswordemail.php";
 
 class LoginController {
     private LoginModel $model;
@@ -95,6 +96,52 @@ class LoginController {
             exit;
         }
     }
+    public function forgotpass(){
+        require __DIR__ . "/../views/forgotpass.php";
+    }
+    public function forgot()
+{
+    if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+        require __DIR__ . "/../views/forgotpass.php";
+        exit;
+    }
+
+    header('Content-Type: application/json');
+
+    $email = trim($_POST['email'] ?? '');
+
+    if ($email === '') {
+        echo json_encode([
+            'status' => 'error',
+            'message' => 'Email is required'
+        ]);
+        exit;
+    }
+
+    $user = $this->model->getUserByEmail($email);
+
+    if (!$user) {
+        echo json_encode([
+            'status' => 'error',
+            'message' => 'No account found with this email'
+        ]);
+        exit;
+    }
+
+    $token = bin2hex(random_bytes(32));
+    $expires = date('Y-m-d H:i:s', strtotime('+1 hour'));
+
+    $this->model->saveResetToken($user['user_id'], $token, $expires);
+
+    sendResetPasswordMail($email, $token);
+
+    echo json_encode([
+        'status' => 'success',
+        'message' => 'Reset link sent to your email'
+    ]);
+    exit;
+}
+
 
     public function logout() {
         // session_start();

@@ -15,6 +15,8 @@ require "./controllers/adminfaq.php";
 require "./controllers/review.php";
 require "./controllers/orders.php";
 require "./controllers/addtofav.php";
+require "./controllers/forgot.php";
+require "./controllers/resetpass.php";
 
 $home_controller = new HomeController($pdo);
 $login_controller = new LoginController($pdo);
@@ -31,6 +33,8 @@ $faq_admin_controller = new AdminFaqController($pdo);
 $review_controller= new ReviewController($pdo);
 $orders_controller= new OrderController($pdo);
 $add_to_fav_controller= new FavouriteController($pdo);
+$forgot_controller= new ForgotController($pdo);
+$reset_pass_controller= new PasswordResetController($pdo);
 
 $action = $_GET['action'] ?? 'index';
 
@@ -53,13 +57,14 @@ switch ($action) {
     case 'owner':      $owners_controller->owner(); break;
     case 'listing': $listing_controller->listing(); break;
     case 'accomodation_detail': $accomodation_detail_controller->detail(); break;
-    case 'forgot':    $controller->forgot(); break;
-    // case 'delete':    $controller->delete($id); break;
+    case 'forgot':    $login_controller->forgot(); break;
+    case 'forgotpass':    $login_controller->forgotpass(); break;
     case 'faqs':    $faq_controller->faq(); break;
     case 'getfaqs': $faq_controller->getFaqs(); break;
     case 'postfaq':    $faq_controller->postQuestion(); break;
     case 'postanswer':    $faq_controller->postAnswer(); break;
-    // case 'adminfaq': $faq_admin_controller->adminfaq(); break;
+    case 'resetpage': $reset_pass_controller->resetPage(); break;
+    case 'reset': $reset_pass_controller->reset(); break;
     case 'rentupload':     $rentupload_controller->rentuploadpage(); break;
     case 'rentuploadpage':     $rentupload_controller->rentupload(); break;
     case 'adminprofile':     $admin_profile_controller->adminprofile(); break;

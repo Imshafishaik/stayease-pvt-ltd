@@ -8,8 +8,8 @@ class ForgotController{
         $this->model = new ForgotModel($pdo);
     }
 
-    public function contact(){
-        require __DIR__ . "/../views/forgot.php";
+    public function forgot(){
+        require __DIR__ . "/../views/forgotpass.php";
     }
 }
 
