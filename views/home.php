@@ -25,12 +25,15 @@ $accommodations = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <img src="/../images/homeimages/Eiffel-Tower-Sunset.jpg.webp" height="420px" width="95%">
           </div>
         </div>
-        
-        <h2 class="head-in-container">Find your perfect stay</h2>
-        <div class="container-search">
-          <input type="text" class="search" placeholder="Enter place...">
-          <button class="container-search-button">Search</button>
+
+        <h2 class="head-in-container">Searching accomodations?</h2>
+      <div class="owner">
+        <div class="owner-container">
+            <p>Discover a wide range of accommodations tailored for students find your perfect stay quickly and easily.</p>
+            <a href="/index.php?action=listing">Find Accomodations</a>
         </div>
+      </div>
+      
         <h2 class="head-in-container">Top listings</h2>
         <!-- <div class="card-container"> -->
     
