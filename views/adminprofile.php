@@ -19,7 +19,7 @@ print_r($students_admin);
 </head>
 <body>
 
-    <nav class="navbar">
+    <nav class="navbar_faq">
         <div class="nav-left">
             <!-- <div class="logo">StayEase</div> -->
             <!-- <div class="search-box">
