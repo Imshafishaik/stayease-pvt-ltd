@@ -1,7 +1,13 @@
 <?php
+ob_start();
+
 session_start();
 
+ini_set('display_errors', 0);
+error_reporting(E_ALL);
+
 require "./config/database.php";
+
 require "./controllers/home.php";
 require "./controllers/login.php";
 require "./controllers/signup.php";
@@ -20,6 +26,7 @@ require "./controllers/addtofav.php";
 require "./controllers/forgot.php";
 require "./controllers/resetpass.php";
 
+// Instantiate controllers
 $home_controller = new HomeController($pdo);
 $login_controller = new LoginController($pdo);
 $signup_controller = new SignupController($pdo);
@@ -38,11 +45,11 @@ $add_to_fav_controller= new FavouriteController($pdo);
 $forgot_controller= new ForgotController($pdo);
 $reset_pass_controller= new PasswordResetController($pdo);
 
+// Get request parameters
 $action = $_GET['action'] ?? 'index';
-
 $id = $_GET['id'] ?? null;
 
-
+// Route actions
 switch ($action) {
     case 'create':    $controller->create(); break;
     case 'loginpage': $login_controller->loginpage(); break;
@@ -83,3 +90,6 @@ switch ($action) {
     case 'allfavourites': $add_to_fav_controller->allFavourites(); break;
     default:          $home_controller->home();
 }
+
+// Flush output buffer
+ob_end_flush();
