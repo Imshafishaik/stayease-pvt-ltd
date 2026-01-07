@@ -14,13 +14,6 @@ include "./views/header.php";
     <!-- NAVBAR -->
     <nav class="navbar">
         <div class="nav-left">
-            <!--
-            <div class="logo">StayEase</div>
-            <div class="search-box">
-                <input type="text" placeholder="Search houses, amenities, and owners">
-                <i class="fa fa-search"></i>
-            </div>
-            -->
         </div>
 
          <div class="nav-right">
@@ -143,7 +136,7 @@ include "./views/header.php";
 
             xhr.open("POST", "/index.php?action=rentuploadpage", true);
 
-            xhr.onload = function () {
+            xhr.onload = function () {  
                 console.log("RAW:", xhr.responseText);
 
                 try {

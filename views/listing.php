@@ -118,6 +118,12 @@ function onClearFilters(){
 
     <div class="card-footer">
       <span>€<?= number_format($acc['accommodation_price'], 2) ?>/month</span>
+      <div>
+      Furnished:
+      <span class="status">
+         <?= $acc['accommodation_is_furnished'] ? 'True' : 'False' ?>
+      </span>
+      </div>
       <span class="status">
         <?= $acc['accommodation_available'] ? 'Available Now' : 'Not Available' ?>
       </span>

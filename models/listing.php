@@ -16,6 +16,7 @@
             a.accommodation_description,
             a.accommodation_price,
             a.accommodation_available,
+            a.accommodation_is_furnished,
             d.photo_img,
             l.city,
             l.state,

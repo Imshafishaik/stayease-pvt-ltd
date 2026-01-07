@@ -38,8 +38,8 @@ class RentuploadModel
     string $name,
     string $description,
     float $price,
-    bool $furnished,
-    bool $available,
+    int $furnished,
+    int $available,
     int $renterId,
     int $locationId
 ): int {
