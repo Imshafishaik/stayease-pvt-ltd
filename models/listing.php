@@ -29,12 +29,12 @@
     $params = [];
 
     if ($search !== '') {
-        $sql .= " AND a.accommodation_name ILIKE :search";
+        $sql .= " AND a.accommodation_name  LIKE :search";
         $params['search'] = "%$search%";
     }
 
     if ($city !== '') {
-        $sql .= " AND l.city ILIKE :city";
+        $sql .= " AND l.city LIKE :city";
         $params['city'] = "%$city%";
     }
 
@@ -91,7 +91,9 @@ public function countFiltered($search, $city, $price) {
 
     public function getLocations(){
         $sql = "
-        SELECT * from locations;
+        SELECT DISTINCT ON (city) *
+        FROM locations
+        ORDER BY city, location_id;
     ";
     $stmt = $this->pdo->prepare($sql);
         $stmt->execute([]);
