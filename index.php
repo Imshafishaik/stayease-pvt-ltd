@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 require "./config/database.php";
 require "./controllers/home.php";
 require "./controllers/login.php";
@@ -39,10 +41,6 @@ $reset_pass_controller= new PasswordResetController($pdo);
 $action = $_GET['action'] ?? 'index';
 
 $id = $_GET['id'] ?? null;
-
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
 
 
 switch ($action) {
