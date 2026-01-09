@@ -1,5 +1,6 @@
 <?php
 require __DIR__ . "/../models/signup.php";
+require __DIR__ . "/../helpers/filesize.php";
 require __DIR__ . "/../vendor/autoload.php";
 
 use Aws\S3\S3Client;
@@ -87,10 +88,56 @@ class SignupController {
         }
     }
 
+    private function uploadErrorMessage(int $errorCode): string
+{
+    return match ($errorCode) {
+        UPLOAD_ERR_INI_SIZE   => 'File exceeds server upload_max_filesize',
+        UPLOAD_ERR_FORM_SIZE  => 'File exceeds form MAX_FILE_SIZE',
+        UPLOAD_ERR_PARTIAL    => 'File was only partially uploaded',
+        UPLOAD_ERR_NO_FILE    => 'No file was uploaded',
+        UPLOAD_ERR_NO_TMP_DIR => 'Missing temporary folder',
+        UPLOAD_ERR_CANT_WRITE => 'Failed to write file to disk',
+        UPLOAD_ERR_EXTENSION  => 'File upload blocked by PHP extension',
+        default               => 'Unknown upload error',
+    };
+}
+
+    private function validateUpload(array $file): void
+{
+
+    if ($file['error'] !== UPLOAD_ERR_OK) {
+        throw new Exception($this->uploadErrorMessage($file['error']));
+    }
+
+
+    $uploadMax = phpSizeToBytes(ini_get('upload_max_filesize'));
+    $postMax   = phpSizeToBytes(ini_get('post_max_size'));
+    $memoryMax = phpSizeToBytes(ini_get('memory_limit'));
+
+    if ($file['size'] > $uploadMax) {
+        throw new Exception("File exceeds upload_max_filesize (" . ini_get('upload_max_filesize') . ")");
+    }
+
+    if ($file['size'] > $postMax) {
+        throw new Exception("File exceeds post_max_size (" . ini_get('post_max_size') . ")");
+    }
+
+    if ($file['size'] > ($memoryMax / 2)) {
+        throw new Exception("File too large for available memory");
+    }
+
+    if ((int)ini_get('max_execution_time') < 300) {
+        throw new Exception("Server execution time too low for upload");
+    }
+}
+
+
     private function uploadFile(array $file, string $folder): string {
-        if ($file['error'] !== UPLOAD_ERR_OK) {
-            throw new Exception("File upload failed: " . $file['name']);
-        }
+            // if ($file['error'] !== UPLOAD_ERR_OK) {
+            //     throw new Exception("File upload failed: " . $file['name'],$folder);
+            // }
+
+        $this->validateUpload($file);   
 
         $key = $folder . '/' . time() . '_' . basename($file['name']);
 

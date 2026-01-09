@@ -19,11 +19,11 @@ class SignupModel {
         string $password,
         string $userType,
         ?string $docOne,
-        ?string $docTwo
+        ?string $docTwo,
     ): bool {
         $stmt = $this->pdo->prepare("
-            INSERT INTO users (user_name, user_email, user_password, user_type, user_doc_one,user_doc_two)
-            VALUES (?, ?, ?, ?, ?, ?)
+            INSERT INTO users (user_name, user_email, user_password, user_type, user_doc_one,user_doc_two,user_check)
+            VALUES (?, ?, ?, ?, ?, ?,false)
         ");
 
         return $stmt->execute([
