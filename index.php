@@ -25,6 +25,7 @@ require "./controllers/orders.php";
 require "./controllers/addtofav.php";
 require "./controllers/forgot.php";
 require "./controllers/resetpass.php";
+require "./controllers/profile.php";
 
 // Instantiate controllers
 $home_controller = new HomeController($pdo);
@@ -44,6 +45,7 @@ $orders_controller= new OrderController($pdo);
 $add_to_fav_controller= new FavouriteController($pdo);
 $forgot_controller= new ForgotController($pdo);
 $reset_pass_controller= new PasswordResetController($pdo);
+$profile_controller = new ProfileController($pdo);
 
 // Get request parameters
 $action = $_GET['action'] ?? 'index';
@@ -89,6 +91,9 @@ switch ($action) {
     case 'addFavourites': $add_to_fav_controller->addFavourites(); break;
     case 'allfavourites': $add_to_fav_controller->allFavourites(); break;
     case 'approveDocument': $admin_profile_controller->approveDocument(); break;
+    case 'myprofile': $profile_controller->myProfile(); break;
+    case 'editprofile': $profile_controller->editProfilePage(); break;
+    case 'updateprofile':$profile_controller->updateProfile();break;
     default:          $home_controller->home();
 }
 

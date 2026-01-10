@@ -1,10 +1,6 @@
 <?php
 
 require __DIR__ . "/../helpers/user.php";
-// Start session if not already started
-// if (session_status() === PHP_SESSION_NONE) {
-//     session_start();
-// }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,8 +37,12 @@ require __DIR__ . "/../helpers/user.php";
                 </button>
                 <div class="dropdown-menu" id="profileMenu">
                     <a href="/index.php?action=myprofile">My Profile</a>
+                     <?php if (auth_user_id() && auth_user_type() !== 'owner'): ?>
                     <a href="/index.php?action=allfavourites">My Favourites</a>
+                    <?php endif; ?>
+                     <?php if (auth_user_id() && auth_user_type() !== 'owner'): ?>
                     <a href="/index.php?action=orders">My Orders</a>
+                    <?php endif; ?>
                     <a href="/index.php?action=logout" class="logout">Logout</a>
                 </div>
             </div>
