@@ -59,6 +59,7 @@ switch ($action) {
     case 'logout': $login_controller->logout(); break;
     case 'signuppage':     $signup_controller->signuppage(); break;
     case 'signup':     $signup_controller->signup(); break;
+    case 'terms':     $signup_controller->terms(); break;
     case 'contact':     $contact_controller->contact(); break;
     case 'emailSend':     $contact_controller->emailSend(); break;
     case 'owner':      $owners_controller->owner(); break;

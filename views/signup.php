@@ -48,6 +48,16 @@ include "./views/header.php";
                         <input type="file" name="house-registration" id="house-registration-upload">
                     </div>
 
+                    <div class="terms-box">
+                        <label>
+                            <input type="checkbox" name="terms_accepted" required>
+                            I agree to the 
+                            <a href="/index.php?action=terms" target="_blank">
+                                Terms & Conditions
+                            </a>
+                        </label>
+                    </div>
+
                     <button type="submit" class="btn btn-register">Register</button>
                 </form>
 

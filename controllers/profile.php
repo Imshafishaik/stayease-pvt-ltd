@@ -14,11 +14,6 @@ class ProfileController {
 
     public function __construct(PDO $pdo) {
 
-        if (!isset($_SESSION['user_id'])) {
-            header("Location: /index.php?action=loginpage");
-            exit;
-        }
-
         $this->model = new ProfileModel($pdo);
 
         $this->s3 = new S3Client([

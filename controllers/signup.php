@@ -31,6 +31,10 @@ class SignupController {
         require __DIR__ . "/../views/signup.php";
     }
 
+    public function terms() {
+        require __DIR__ . "/../views/terms.php";
+    }
+
     public function signup() {
         ob_clean();
         header('Content-Type: application/json; charset=utf-8');
@@ -45,9 +49,14 @@ class SignupController {
             $email = trim($_POST['email'] ?? '');
             $password = $_POST['password'] ?? '';
             $userType = $_POST['select_user_type'] ?? '';
+            $termsAccepted = isset($_POST['terms_accepted']);
 
             if ($name === '' || $email === '' || $password === '' || $userType === '') {
                 throw new Exception("All fields are required");
+            }
+
+            if (!$termsAccepted) {
+                throw new Exception("You must accept the Terms & Conditions");
             }
 
             if ($this->model->emailExists($email)) {
