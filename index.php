@@ -88,6 +88,7 @@ switch ($action) {
     case 'admin_answer_faq': $faq_admin_controller->answer(); break;
     case 'addFavourites': $add_to_fav_controller->addFavourites(); break;
     case 'allfavourites': $add_to_fav_controller->allFavourites(); break;
+    case 'approveDocument': $admin_profile_controller->approveDocument(); break;
     default:          $home_controller->home();
 }
 

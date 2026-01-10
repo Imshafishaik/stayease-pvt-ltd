@@ -10,7 +10,6 @@ class OrderModel {
     // Create order
     public function createOrder(int $userId, int $accommodationId): bool {
 
-        // 1️⃣ Get accommodation price
         $stmt = $this->pdo->prepare("
             SELECT accommodation_price
             FROM accommodation
@@ -23,7 +22,6 @@ class OrderModel {
             throw new Exception('Invalid accommodation');
         }
 
-        // 2️⃣ Insert order with total_price
         $stmt = $this->pdo->prepare("
             INSERT INTO orders (user_id, accommodation_id, order_status, total_price)
             VALUES (?, ?, 'pending', ?)

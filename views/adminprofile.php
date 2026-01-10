@@ -2,10 +2,8 @@
 require __DIR__ . "/../config/database.php";
 
 // include "./views/header.php";
-$students_admin = $users ?? [];
+$students_admin = $students_admin ?? [];
 $owner_admin = $owner_admin ?? [];
-print_r($students_admin);
-// print_r($owner_admin);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,124 +51,163 @@ print_r($students_admin);
                     <h2 class="documents-header">User Documents</h2>
                     <div class="scrollbar">
                     <div class="student-documents">
-                        <h3><?= htmlspecialchars($students_admin['user_name']) ?>'s Documents</h3>
 
                         <?php foreach ($students_admin as $stu_adm): ?>
                             <div class="document-card">
                                 <div class="document-info">
-                                    <img src="<?= htmlspecialchars($stu_adm['user_doc_one']) ?>" alt="<?= htmlspecialchars($stu_adm['type']) ?>" class="profile-pic">
+                                    <a href="<?= htmlspecialchars($stu_adm['user_doc_one']) ?>">
+                                        <img src="<?= htmlspecialchars($stu_adm['user_doc_one']) ?>" class="profile-pic">
+                                    </a>
+
+                                    <a href="<?= htmlspecialchars($stu_adm['user_doc_two']) ?>">
+                                        <img src="<?= htmlspecialchars($stu_adm['user_doc_two']) ?>" class="profile-pic">
+                                    </a>
+
                                     <div class="document-details">
-                                        <p class="document-owner"><?= htmlspecialchars($students_admin['user_name']) ?></p>
-                                        <p class="document-type"><?= htmlspecialchars($stu_adm['type']) ?></p>
+                                        <p class="document-owner">
+                                            <?= htmlspecialchars($stu_adm['user_name']) ?>
+                                        </p>
+                                        <p class="document-type">Student</p>
                                     </div>
                                 </div>
+
                                 <div class="document-actions">
-                                    <form method="post" action="/index.php?action=approveDocument">
-                                        <input type="hidden" name="user_id" value="<?= $students_admin['user_id'] ?>">
-                                        <input type="hidden" name="doc_type" value="<?= htmlspecialchars($stu_adm['type']) ?>">
-                                        <button type="submit" name="action" value="accept" class="action accept">Accept</button>
-                                        <button type="submit" name="action" value="reject" class="action reject">Reject</button>
-                                    </form>
+                                    <!-- <button
+                                        type="button"
+                                        class="action accept"
+                                        onclick="updateDocument(<?= (int)$stu_adm['user_id'] ?>, 'student', 'accept')">
+                                        Accept
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        class="action reject"
+                                        onclick="updateDocument(<?= (int)$stu_adm['user_id'] ?>, 'student', 'reject')">
+                                        Reject
+                                    </button> -->
+
+                                    <button class="action accept" onclick="updateDocument(<?= (int)$stu_adm['user_id'] ?>,'accept')">
+                                        Accept
+                                    </button>
+
+                                    <button class="action reject" onclick="updateDocument(<?= (int)$stu_adm['user_id'] ?>,'reject')">
+                                        Reject
+                                    </button>
                                 </div>
                             </div>
                         <?php endforeach; ?>
-                    </div>
 
-                    
-
-                    
-
-                    
-
-    
-
-                    <div class="document-card">
-                        <div class="document-info">
-                            <img src="https://media.istockphoto.com/id/1326417862/fr/photo/jeune-femme-qui-rit-tout-en-se-relaxant-%C3%A0-la-maison.jpg?s=612x612&w=0&k=20&c=9kSRtp-LQLeKGWiBqBBNNmPKpzxoO445dyE3bLWQVm4=" alt="Emily Johnson" class="profile-pic">
-                            <div class="document-details">
-                                <p class="document-owner">Emily Johnson</p>
-                                <p class="document-type">Visa</p>
-                            </div>
-                        </div>
-                        <div class="document-actions">
-                            <button class="action accept">Accept</button>
-                            <button class="action reject">Reject</button>
-                        </div>
-                    </div>
                     </div>
                 </div>
+            </section>
 
-                <div class="documents">
-                    <h2 class="documents-header">House Documents</h2>
+            <section class="content">
+
+                <div class="documents" >
+                    <h2 class="documents-header">House Owner Documents</h2>
                     <div class="scrollbar">
-                    <div class="document-card">
-                        <div class="document-info">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWeSGMK9-ESewPZwZuUxlj5RrLl9HWVGknog&s" alt="Michael Brown Document" class="profile-pic">
-                            <div class="document-details">
-                                <p class="document-owner">Michael Brown</p>
-                                <p class="document-type">Registration Document</p>
+                    <div class="student-documents">
+
+                        <?php foreach ($owner_admin as $own_admin): ?>
+                            <div class="document-card">
+                                <div class="document-info">
+                                    <a href="<?= htmlspecialchars($own_admin['user_doc_one']) ?>">
+                                        <img src="<?= htmlspecialchars($own_admin['user_doc_one']) ?>" class="profile-pic">
+                                    </a>
+
+                                    <a href="<?= htmlspecialchars($own_admin['user_doc_two']) ?>">
+                                        <img src="<?= htmlspecialchars($own_admin['user_doc_two']) ?>" class="profile-pic">
+                                    </a>
+
+                                    <div class="document-details">
+                                        <p class="document-owner">
+                                            <?= htmlspecialchars($own_admin['user_name']) ?>
+                                        </p>
+                                        <p class="document-type">Student</p>
+                                    </div>
+                                </div>
+
+                                <div class="document-actions">
+                                    <!-- <button
+                                        type="button"
+                                        class="action accept"
+                                        onclick="updateDocument(<?= (int)$own_admin['user_id'] ?>, 'student', 'accept')">
+                                        Accept
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        class="action reject"
+                                        onclick="updateDocument(<?= (int)$own_admin['user_id'] ?>, 'student', 'reject')">
+                                        Reject
+                                    </button> -->
+
+                                    <button class="action accept" onclick="updateDocument(<?= (int)$own_admin['user_id'] ?>,'accept')">
+                                        Accept
+                                    </button>
+
+                                    <button class="action reject" onclick="updateDocument(<?= (int)$own_admin['user_id'] ?>,'reject')">
+                                        Reject
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                        <div class="document-actions">
-                            <button class="action accept">Accept</button>
-                            <button class="action reject">Reject</button>
-                        </div>
+                        <?php endforeach; ?>
+
                     </div>
-
-                    <div class="document-card">
-                        <div class="document-info">
-                            <img src="https://media.gettyimages.com/id/685132223/fr/photo/businesswoman-with-braided-hair-over-white.jpg?s=612x612&w=gi&k=20&c=ttZAIqd70SLAm1JgkkSDX5xcG4uXahLd1DpIYuF9J3E=" alt="Sarah Lewis Document" class="profile-pic">
-                            <div class="document-details">
-                                <p class="document-owner">Sarah Lewis</p>
-                                <p class="document-type">Registration Document</p>
-                            </div>
-                        </div>
-                        <div class="document-actions">
-                            <button class="action accept">Accept</button>
-                            <button class="action reject">Reject</button>
-                        </div>
-                    </div>
-
-                    <div class="document-card">
-                        <div class="document-info">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWeSGMK9-ESewPZwZuUxlj5RrLl9HWVGknog&s" alt="Michael Brown Document" class="profile-pic">
-                            <div class="document-details">
-                                <p class="document-owner">Michael Brown</p>
-                                <p class="document-type">Registration Document</p>
-                            </div>
-                        </div>
-                        <div class="document-actions">
-                            <button class="action accept">Accept</button>
-                            <button class="action reject">Reject</button>
-                        </div>
-                    </div>
-
-                    
-
-                    <div class="document-card">
-                        <div class="document-info">
-                            <img src="https://media.gettyimages.com/id/685132223/fr/photo/businesswoman-with-braided-hair-over-white.jpg?s=612x612&w=gi&k=20&c=ttZAIqd70SLAm1JgkkSDX5xcG4uXahLd1DpIYuF9J3E=" alt="Sarah Lewis Document" class="profile-pic">
-                            <div class="document-details">
-                                <p class="document-owner">Sarah Lewis</p>
-                                <p class="document-type">Registration Document</p>
-                            </div>
-                        </div>
-                        <div class="document-actions">
-                            <button class="action accept">Accept</button>
-                            <button class="action reject">Reject</button>
-                        </div>
-                    </div>
-                    </div>  
-
                 </div>
             </section>
         </main>
 
     </div>
 
+    <script>
+    // function updateDocument(userId, docType, action) {
+    //     fetch('/index.php?action=approveDocument', {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/x-www-form-urlencoded',
+    //             'X-Requested-With': 'XMLHttpRequest'
+    //         },
+    //         body: new URLSearchParams({
+    //             user_id: userId,
+    //             doc_type: docType,
+    //             action: action
+    //         })
+    //     })
+    //     .then(res => res.json())
+    //     .then(data => {
+    //         console.log(".........action",data);
+            
+    //         if (data.status === 'success') {
+    //             alert(data.message || 'Document updated successfully');
+    //             // window.location.reload(); 
+    //         } else if (data.redirect) {
+    //             window.location.href = data.redirect;
+    //         } else {
+    //             alert(data.message || 'Something went wrong');
+    //         }
+    //     })
+    //     .catch(err => {
+    //         console.error(err);
+    //         alert('Server error');
+    //     });
+    // }
+
+    function updateDocument(userId, action) {
+        console.log(".........userId, action",userId, action);
+        
+        fetch('/index.php?action=approveDocument', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+            body: new URLSearchParams({user_id: userId, action: action})
+        })
+        .then(r => r.json())
+        .then(d => {
+            if (d.status === 'success') location.reload();
+            else alert(d.message);
+        });
+    }
+    </script>
+
 </body>
 </html>
-<?php
-
-// include "./views/footer.php";
-?>

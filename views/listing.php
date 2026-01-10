@@ -121,7 +121,7 @@ function onClearFilters(){
       <div>
       Furnished:
       <span class="status">
-         <?= $acc['accommodation_is_furnished'] ? 'True' : 'False' ?>
+         <?= $acc['accommodation_is_furnished'] ? 'Yes' : 'No' ?>
       </span>
       </div>
       <span class="status">

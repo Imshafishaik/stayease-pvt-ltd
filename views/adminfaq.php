@@ -34,8 +34,7 @@
                 <h3 class="sidebar-title">Quick Links</h3>
                 <ul class="quick-links scrollbar">
                     <li><a href="/index.php?action=adminprofile">User Management</a></li>
-                    <li><a href="/index.php?action=adm_mng_faq">Faq Management</a></li>
-                    <li><a href="#">User Management</a></li>                  
+                    <li><a href="/index.php?action=adm_mng_faq">Faq Management</a></li>                 
                 </ul>
             </div>
 
