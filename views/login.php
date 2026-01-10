@@ -20,8 +20,8 @@ include "./views/header.php";
                     <h2>Login to Your Account</h2>
                     
                     <form id="loginForm">
-                        <input type="email" name="email" placeholder="Email" required>
-                        <input type="password" name="password" placeholder="Password" required>
+                        <input type="email" id="email" name="email" placeholder="Email" required>
+                        <input type="password" id="password" name="password" placeholder="Password" required>
                         <a href="/index.php?action=forgot" class="forgot-password">forgot password?</a>
                         <p id="loginResponse" style="color:red;"></p>
                         <button type="submit" class="btn btn-login">Login</button>
@@ -37,23 +37,55 @@ include "./views/header.php";
 document.getElementById("loginForm").addEventListener("submit", function (e) {
     e.preventDefault();
 
-    let formData = new FormData(this);
-    let xhr = new XMLHttpRequest();
+    const email = document.getElementById("email")?.value?.trim();
+    const password = document.getElementById("password")?.value;
+    const responseEl = document.getElementById("loginResponse");
+
+    responseEl.innerText = "";
+
+    // EMAIL VALIDATION
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        responseEl.innerText = "Please enter a valid email address.";
+        return;
+    }
+
+    // PASSWORD LENGTH
+    if (password.length < 8) {
+        responseEl.innerText = "Password must be at least 8 characters long.";
+        return;
+    }
+
+    // PASSWORD COMPLEXITY
+    const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
+    if (!passwordRegex.test(password)) {
+        responseEl.innerText =
+            "Password must contain at least 1 uppercase letter and 1 number.";
+        return;
+    }
+
+
+    const formData = new FormData(this);
+    const xhr = new XMLHttpRequest();
 
     xhr.open("POST", "/index.php?action=login", true);
 
     xhr.onload = function () {
-        console.log("RAW:", xhr.responseText);
-
-        if (xhr.status === 200) {
-            let res = JSON.parse(xhr.responseText);
+        try {
+            const res = JSON.parse(xhr.responseText);
 
             if (res.status === "success") {
                 window.location.href = "/index.php?action=home";
             } else {
-                document.getElementById("loginResponse").innerText = res.message;
+                responseEl.innerText = res.message;
             }
+        } catch (e) {
+            responseEl.innerText = "Unexpected server response.";
         }
+    };
+
+    xhr.onerror = function () {
+        responseEl.innerText = "Server error. Please try again.";
     };
 
     xhr.send(formData);

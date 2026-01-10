@@ -27,8 +27,8 @@ include "./views/header.php";
 
                     <input type="text" name="name" placeholder="Full Name" required>
                     <input type="email" name="email" placeholder="Email" required>
-                    <input type="password" name="password" placeholder="Password" required>
-                    <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+                    <input type="password" name="password" placeholder="Password" id="password" required>
+                    <input type="password" name="confirm_password" placeholder="Confirm Password" id="confirm_password" required>
 
                     <select name="select_user_type" id="user-type" required>
                         <option value="">Select User Type</option>
@@ -91,11 +91,48 @@ include "./views/header.php";
         }
     });
 
-    document.getElementById("signupForm").addEventListener("submit", function (e) {
+    const form =  document.getElementById("signupForm");
+    const responseEl = document.getElementById("response");
+    form.addEventListener("submit", function (e) {
         e.preventDefault();
-
-        const responseEl = document.getElementById("response");
         responseEl.innerText = "";
+
+        const email = form.email.value.trim();
+        const password = form.password.value;
+        const confirmPassword = form.confirm_password.value;
+
+        // EMAIL VALIDATION
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        showError("Please enter a valid email address.");
+        return;
+    }
+
+    // PASSWORD LENGTH
+    if (password.length < 8) {
+        showError("Password must be at least 8 characters long.");
+        return;
+    }
+
+    // PASSWORD COMPLEXITY
+    const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
+    if (!passwordRegex.test(password)) {
+        showError("Password must contain at least 1 uppercase letter and 1 number.");
+        return;
+    }
+
+    // PASSWORD MATCH
+    if (password !== confirmPassword) {
+        showError("Password and Confirm Password do not match.");
+        return;
+    }
+
+    // TERMS CHECK
+    if (!form.terms_accepted.checked) {
+        showError("You must accept the Terms & Conditions.");
+        return;
+    }
+        
 
         const formData = new FormData(this);
 
@@ -108,8 +145,7 @@ include "./views/header.php";
             if (data.status === "success") {
                 window.location.href = "/index.php?action=loginpage";
             } else {
-                responseEl.innerText = data.message;
-                responseEl.style.color = "red";
+                showError(data.message);
             }
         })
         .catch(err => {
@@ -118,6 +154,11 @@ include "./views/header.php";
             responseEl.style.color = "red";
         });
     });
+
+    function showError(message) {
+        responseEl.innerText = message;
+        responseEl.style.color = "red";
+    }
 </script>
 
 </body>
