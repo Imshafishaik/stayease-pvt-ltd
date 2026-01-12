@@ -1,5 +1,7 @@
 <?php 
 // include "./views/header.php";
+require __DIR__ . "/../helpers/user.php";
+require_once __DIR__ . "/../helpers/user.php";
 
 ?>
 <!DOCTYPE html>
@@ -20,13 +22,18 @@
             </div> -->
         </div>
 
+        
         <div class="nav-right">
-            <a href="ownerlisting.php?action=owner" class="active">Overview</a>
-            <a href="#">Rent</a>
-            <a href="#">Listings</a>
-            <a href="#">Activity</a>
-            <a href="rentupload.php?action=rentupload" class="upload-btn">Upload</a>
-            <div class="profile-pic"></div>
+            <?php if (admin_user_id()): ?>
+            <div class="profile-dropdown">
+                <button class="profile-btn" id="profileBtn">
+                    <?= htmlspecialchars(admin_user_name()) ?>  
+                </button>
+                <a href="/index.php?action=logout" class="logout">Logout</a>
+            </div>
+            <?php else: ?>
+            <a href="/index.php?action=7654" class="login-btn">Login</a>
+            <?php endif; ?>
         </div>
     </nav>
     <main class="main">

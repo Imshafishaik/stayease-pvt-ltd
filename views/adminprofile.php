@@ -1,5 +1,6 @@
 <?php
 require __DIR__ . "/../config/database.php";
+require_once __DIR__ . "/../helpers/user.php";
 
 // include "./views/header.php";
 $students_admin = $students_admin ?? [];
@@ -10,7 +11,7 @@ $owner_admin = $owner_admin ?? [];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EaseStay Admin Dashboard</title>
+    <title>Stayease | Admin Dashboard</title>
     <link rel="stylesheet" href="../css/adminprofile.css"> 
     <link rel="icon" type="image/png" href="../images/homeimages/logo.jpg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -20,20 +21,19 @@ $owner_admin = $owner_admin ?? [];
 
     <nav class="navbar_faq">
         <div class="nav-left">
-            <!-- <div class="logo">StayEase</div> -->
-            <!-- <div class="search-box">
-                <input type="text" placeholder="Search houses, amenities, and owners">
-                <i class="fa fa-search"></i>
-            </div> -->
         </div>
 
         <div class="nav-right">
-            <a href="ownerlisting.php?action=owner" class="active">Overview</a>
-            <a href="#">Rent</a>
-            <a href="#">Listings</a>
-            <a href="#">Activity</a>
-            <a href="rentupload.php?action=rentupload" class="upload-btn">Upload</a>
-            <div class="profile-pic"></div>
+            <?php if (admin_user_id()): ?>
+            <div class="profile-dropdown">
+                <button class="profile-btn" id="profileBtn">
+                    <?= htmlspecialchars(admin_user_name()) ?>  
+                </button>
+                <a href="/index.php?action=logout" class="logout">Logout</a>
+            </div>
+            <?php else: ?>
+            <a href="/index.php?action=7654" class="login-btn">Login</a>
+            <?php endif; ?>
         </div>
     </nav>
 
@@ -56,11 +56,11 @@ $owner_admin = $owner_admin ?? [];
                         <?php foreach ($students_admin as $stu_adm): ?>
                             <div class="document-card">
                                 <div class="document-info">
-                                    <a href="<?= htmlspecialchars($stu_adm['user_doc_one']) ?>">
+                                    <a href="<?= htmlspecialchars($stu_adm['user_doc_one']) ?>" target="_blank">
                                         <img src="<?= htmlspecialchars($stu_adm['user_doc_one']) ?>" class="profile-pic">
                                     </a>
 
-                                    <a href="<?= htmlspecialchars($stu_adm['user_doc_two']) ?>">
+                                    <a href="<?= htmlspecialchars($stu_adm['user_doc_two']) ?>" target="_blank">
                                         <img src="<?= htmlspecialchars($stu_adm['user_doc_two']) ?>" class="profile-pic">
                                     </a>
 
@@ -112,11 +112,11 @@ $owner_admin = $owner_admin ?? [];
                         <?php foreach ($owner_admin as $own_admin): ?>
                             <div class="document-card">
                                 <div class="document-info">
-                                    <a href="<?= htmlspecialchars($own_admin['user_doc_one']) ?>">
+                                    <a href="<?= htmlspecialchars($own_admin['user_doc_one']) ?>" target="_blank">
                                         <img src="<?= htmlspecialchars($own_admin['user_doc_one']) ?>" class="profile-pic">
                                     </a>
 
-                                    <a href="<?= htmlspecialchars($own_admin['user_doc_two']) ?>">
+                                    <a href="<?= htmlspecialchars($own_admin['user_doc_two']) ?>" target="_blank">
                                         <img src="<?= htmlspecialchars($own_admin['user_doc_two']) ?>" class="profile-pic">
                                     </a>
 
@@ -162,37 +162,6 @@ $owner_admin = $owner_admin ?? [];
     </div>
 
     <script>
-    // function updateDocument(userId, docType, action) {
-    //     fetch('/index.php?action=approveDocument', {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/x-www-form-urlencoded',
-    //             'X-Requested-With': 'XMLHttpRequest'
-    //         },
-    //         body: new URLSearchParams({
-    //             user_id: userId,
-    //             doc_type: docType,
-    //             action: action
-    //         })
-    //     })
-    //     .then(res => res.json())
-    //     .then(data => {
-    //         console.log(".........action",data);
-            
-    //         if (data.status === 'success') {
-    //             alert(data.message || 'Document updated successfully');
-    //             // window.location.reload(); 
-    //         } else if (data.redirect) {
-    //             window.location.href = data.redirect;
-    //         } else {
-    //             alert(data.message || 'Something went wrong');
-    //         }
-    //     })
-    //     .catch(err => {
-    //         console.error(err);
-    //         alert('Server error');
-    //     });
-    // }
 
     function updateDocument(userId, action) {
         console.log(".........userId, action",userId, action);
