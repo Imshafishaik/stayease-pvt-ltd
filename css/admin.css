@@ -9,9 +9,9 @@
 /* Body background */
 body {
     min-height: 100vh;
-    /* display: flex;
+    display: flex;
     justify-content: center;
-    align-items: center; */
+    align-items: center;
 }
 
 /* Form container */
@@ -19,6 +19,7 @@ body {
     display: flex;
     justify-content: center;
 }
+
 .form-container {
     background-color: #fff;
     width: 100%;
