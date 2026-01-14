@@ -83,9 +83,7 @@ $page = $page ?? 1;
       </a>
     <?php endfor; ?>
 
-    <?php if ($page < $totalPages): ?>
-      <a href="/index.php?action=favourites&page=<?= $page+1 ?>">Next »</a>
-    <?php endif; ?>
+
 
 </div>
 <?php endif; ?>
