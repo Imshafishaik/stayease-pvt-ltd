@@ -25,9 +25,7 @@ include "./views/header.php";
   <h1><?= htmlspecialchars($accommodation['accommodation_name']) ?></h1>
   <p><?= htmlspecialchars($accommodation['accommodation_description']) ?></p>
 
-  <div class="price">
-    €<?= number_format($accommodation['accommodation_price'], 2) ?>/month
-  </div>
+  
 
   <!-- REVIEWS -->
   <section class="reviews">
