@@ -15,9 +15,7 @@ include "./views/header.php";
     <section class="orders">
     <h2>My Orders</h2>
 
-    <?php if (empty($orders)): ?>
-        <p>No orders found.</p>
-    <?php endif; ?>
+    
 
     <?php foreach ($orders as $order): ?>
         <div class="order-card">
