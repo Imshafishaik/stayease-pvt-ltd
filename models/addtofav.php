@@ -62,7 +62,14 @@ class FavouriteModel {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-  
+    public function countUserFavourites(int $userId): int
+    {
+        $stmt = $this->pdo->prepare(
+            "SELECT COUNT(*) FROM favourites WHERE user_id = ?"
+        );
+        $stmt->execute([$userId]);
+        return (int) $stmt->fetchColumn();
+    }
 
 }
 
