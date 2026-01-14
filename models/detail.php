@@ -22,16 +22,5 @@ class DetailModel {
         return $stmt->fetchAll(PDO::FETCH_COLUMN);
     }
 
-    public function getReviews($accommodationId) {
-        $sql = "
-            SELECT r.*, u.user_name
-            FROM accommodation_reviews r
-            JOIN users u ON r.user_id = u.user_id
-            WHERE r.accommodation_id = ?
-            ORDER BY r.created_at DESC
-        ";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([$accommodationId]);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
+    
 }
