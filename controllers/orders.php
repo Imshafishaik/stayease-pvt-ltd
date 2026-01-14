@@ -94,10 +94,7 @@ public function updateBooking() {
     $orderId = (int) ($_POST['order_id'] ?? 0);
     $status  = $_POST['status'] ?? '';
 
-    if (!$orderId || !in_array($status, ['accepted', 'rejected'])) {
-        echo json_encode(['status' => 'error', 'message' => 'Invalid request']);
-        exit;
-    }
+    
 
     $this->model->updateStatus($orderId, $status);
 
