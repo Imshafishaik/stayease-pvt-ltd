@@ -8,20 +8,7 @@ class AccomodationDetailController{
         $this->model = new DetailModel($pdo);
     }
 
-    public function detail() {
-        $id = (int)($_GET['id'] ?? 0);
-        if (!$id) {
-            header("Location: /index.php?action=listing");
-            exit;
-        }
-
-        $accommodation = $this->model->getAccommodation($id);
-        $images        = $this->model->getImages($id);
-        // $faqs          = $this->model->getFaqs($id);
-        $reviews       = $this->model->getReviews($id);
-
-        require __DIR__ . "/../views/detail.php";
-    }
+    
 }
 
 ?>
