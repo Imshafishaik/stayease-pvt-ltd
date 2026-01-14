@@ -62,12 +62,7 @@ class OrderModel {
     }
 
     // Update status
-    public function updateStatus($orderId, $status) {
-        $stmt = $this->pdo->prepare(
-            "UPDATE orders SET order_status = ? WHERE order_id = ?"
-        );
-        return $stmt->execute([$status, $orderId]);
-    }
+    
 
     public function getOwnerRequests(int $userId) {
     $sql = "
