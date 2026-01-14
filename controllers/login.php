@@ -1,11 +1,16 @@
 <?php
-require __DIR__ . "/../models/login.php";
+require_once __DIR__ . "/../models/login.php";
+require_once __DIR__ . "/../helpers/resetpasswordemail.php";
 
 class LoginController {
     private LoginModel $model;
 
     public function __construct(PDO $pdo) {
         $this->model = new LoginModel($pdo);
+    }
+
+    public function loginpage(){
+        require __DIR__ . "/../views/login.php";
     }
 
     public function login() {
@@ -58,9 +63,9 @@ class LoginController {
             }
 
             // ✅ Start session safely
-            if (session_status() === PHP_SESSION_NONE) {
-                session_start();
-            }
+            // if (session_status() === PHP_SESSION_NONE) {
+            //     session_start();
+            // }
 
             $_SESSION['user_id']   = $user['user_id'];
             $_SESSION['user_name'] = $user['user_name'];
@@ -90,5 +95,74 @@ class LoginController {
             ]);
             exit;
         }
+    }
+    public function forgotpass(){
+        require __DIR__ . "/../views/forgotpass.php";
+    }
+    public function forgot()
+{
+    if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+        require __DIR__ . "/../views/forgotpass.php";
+        exit;
+    }
+
+    header('Content-Type: application/json');
+
+    $email = trim($_POST['email'] ?? '');
+
+    if ($email === '') {
+        echo json_encode([
+            'status' => 'error',
+            'message' => 'Email is required'
+        ]);
+        exit;
+    }
+
+    $user = $this->model->getUserByEmail($email);
+
+    if (!$user) {
+        echo json_encode([
+            'status' => 'error',
+            'message' => 'No account found with this email'
+        ]);
+        exit;
+    }
+
+    $token = bin2hex(random_bytes(32));
+    $expires = date('Y-m-d H:i:s', strtotime('+1 hour'));
+
+    $this->model->saveResetToken($user['user_id'], $token, $expires);
+
+    sendResetPasswordMail($email, $token);
+
+    echo json_encode([
+        'status' => 'success',
+        'message' => 'Reset link sent to your email'
+    ]);
+    exit;
+}
+
+
+    public function logout() {
+        
+        $_SESSION = [];
+
+        if (ini_get("session.use_cookies")) {
+            $params = session_get_cookie_params();
+            setcookie(
+                session_name(), 
+                '', 
+                time() - 42000,
+                $params["path"], 
+                $params["domain"],
+                $params["secure"], 
+                $params["httponly"]
+            );
+        }
+
+        session_destroy();
+
+        header("Location: /index.php?action=home");
+        exit;
     }
 }

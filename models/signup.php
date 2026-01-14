@@ -18,21 +18,23 @@ class SignupModel {
         string $email,
         string $password,
         string $userType,
-        ?string $passport,
-        ?string $visa
+        ?string $docOne,
+        ?string $docTwo,
     ): bool {
         $stmt = $this->pdo->prepare("
-            INSERT INTO users (user_name, user_email, user_password, user_type, user_doc_one,user_doc_two)
-            VALUES (?, ?, ?, ?, ?, ?)
-        ");
+            INSERT INTO users (
+            user_name, user_email, user_password,
+            user_type, user_doc_one, user_doc_two,
+            user_check, terms_accepted, terms_accepted_at
+            ) VALUES (?, ?, ?, ?, ?, ?, false, true, NOW())");
 
         return $stmt->execute([
             $name,
             $email,
             $password,
             $userType,
-            $passport,
-            $visa
+            $docOne,
+            $docTwo
         ]);
     }
 }

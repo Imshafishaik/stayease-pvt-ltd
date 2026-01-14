@@ -1,8 +1,9 @@
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
     margin: 0;
     padding: 0;
     background-color: #f2f2f2; 
+    box-sizing: border-box;
     color: #333;
 }
 
@@ -21,6 +22,7 @@ body {
 }
 .container-interface-img img{
     border-radius: 20px;
+    width: 97%;
 }
 .head-in-container{
     margin: 20px 32px ;
@@ -38,13 +40,12 @@ body {
 
 .container-search{
     margin: 0 32px;
-    width: 100%;
 }
 
 .container-search input{
     border-width: 0;
     border-radius: 40px;
-    width: 89%;
+    width: 94%;
     border-color:none;
     padding: 10px 5px;
 }
@@ -88,7 +89,7 @@ body {
     border-radius: 10px;
     padding: 20px;
 }
-.owner-container button{
+.owner-container a{
     /* height: 30px; */
     background-color: #ff774a;
     border-radius: 40px;
@@ -98,36 +99,128 @@ padding: 15px 30px;
     color: white;
     cursor: pointer;
     font-size: smaller;
+    text-decoration: none;
 }
-.owner-container button:hover{
+.owner-container a:hover{
     background-color: #0056b3;
 }
 .owner{
     margin: 0 32px;
     align-items: center;
 }
-.contact-info{
-    height: 225px;
-    background-color:black ;
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-    font-family:  sans-serif;
-    color: white;
+
+.cards {
+  padding: 20px 40px 60px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
 }
-.contact{
-    padding-top: 30px;
-    display: flex;
-    justify-content: center;
+
+.card {
+  background: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
-.contact-info-content-1 li{
+
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 20px;
+}
+
+.card-content h3 {
+  margin-bottom: 10px;
+}
+
+.card-content p {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #777;
+}
+
+.card-footer-btns{
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-footer-btns a{
+  margin-top: 10px;
+  text-decoration: none;
+  border: none;
+  background-color: #10b981;
+  padding: 5px 15px;
+  border-radius: 8px;
+  color: #fff;
+}
+
+.listing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns */
+    gap: 24px;
+    margin: 30px 20px;
+    padding: 0 16px;
+}
+
+.listing-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    text-align: center;
+    transition: transform 0.2s ease;
+}
+
+.listing-card:hover {
+    transform: translateY(-5px);
+}
+
+.listing-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.listing-card h3 {
+    margin: 12px 0 6px;
+    font-size: 18px;
+}
+
+.listing-card p {
+    margin: 6px 0;
+    color: #555;
+}
+
+.listing-card a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 14px;
+    background: #10b981;
+    color: #fff;
+    border-radius: 6px;
     text-decoration: none;
-    list-style: none;
-    padding: 5px;
 }
-.contact-info-content-2 li{
-    float: left;
-    text-decoration: none;
-    list-style: none;
-    padding: 10px;
+
+@media (max-width: 900px) {
+    .listing-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .listing-grid {
+        grid-template-columns: 1fr;
+    }
 }

@@ -1,0 +1,22 @@
+.reviews {
+    max-width: 700px;
+    margin: 40px auto;
+    background: #fff;
+    padding: 25px;
+    border-radius: 10px;
+}
+
+.review-card {
+    border-bottom: 1px solid #eee;
+    padding: 15px 0;
+}
+
+.review-card span {
+    color: gold;
+    font-size: 14px;
+}
+
+.avg-rating {
+    font-size: 20px;
+    margin-bottom: 15px;
+}

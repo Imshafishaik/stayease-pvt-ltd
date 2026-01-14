@@ -1,7 +1,10 @@
 body {
+
     margin: 0;
-    font-family: "Inter", Arial, sans-serif;
-    background: #fafafa;
+    padding: 0;
+    background-color: #f2f2f2; 
+    box-sizing: border-box;
+    color: #333;
 }
 
 /* NAVBAR */
@@ -12,7 +15,7 @@ body {
     background: #fff;
     border-bottom: 1px solid #e6e6e6;
     position: sticky;
-    top: 0;
+    top: 70px;
     z-index: 20;
 }
 
@@ -85,7 +88,7 @@ body {
 }
 
 .header_owner_listing{
-    height: 550px;
+    height: 500px;
 }
 
 .backgound-imgs {
@@ -128,9 +131,15 @@ body {
 /* LISTING CARDS */
 .listing-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(400px, 2fr));
     gap: 25px;
     padding: 40px;
+}
+
+.card img {
+  width: 400px;
+  height: 200px;
+  object-fit: cover;
 }
 
 .listing-card {
@@ -190,4 +199,93 @@ body {
     color: white;
     border-radius: 6px;
     cursor: pointer;
+}
+
+.listing-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 2fr));
+    gap: 25px;
+    padding: 40px;
+}
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin: 30px 0;
+    gap: 10px;
+}
+.pagination a {
+    padding: 8px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    background: #e5e7eb;
+    color: #111;
+    font-weight: bold;
+}
+.pagination a.active {
+    background: #10b981;
+    color: #fff;
+}
+.pagination a:hover {
+    background: #059669;
+    color: #fff;
+}
+
+.listing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin: 30px 20px;
+    padding: 0 16px;
+}
+
+.listing-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    text-align: center;
+    transition: transform 0.2s ease;
+}
+
+.listing-card:hover {
+    transform: translateY(-5px);
+}
+
+.listing-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.listing-card h3 {
+    margin: 12px 0 6px;
+    font-size: 18px;
+}
+
+.listing-card p {
+    margin: 6px 0;
+    color: #555;
+}
+
+.acc_name  {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 14px;
+    background: #10b981;
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+@media (max-width: 900px) {
+    .listing-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .listing-grid {
+        grid-template-columns: 1fr;
+    }
 }

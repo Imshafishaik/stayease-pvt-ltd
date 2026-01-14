@@ -1,7 +1,10 @@
 body {
+
     margin: 0;
-    font-family: "Inter", Arial, sans-serif;
-    background: #fafafa;
+    padding: 0;
+    background-color: #f2f2f2; 
+    box-sizing: border-box;
+    color: #333;
 }
 
 /* NAVBAR */
@@ -12,7 +15,7 @@ body {
     background: #fff;
     border-bottom: 1px solid #e6e6e6;
     position: sticky;
-    top: 0;
+    top: 70px;
     z-index: 20;
 }
 

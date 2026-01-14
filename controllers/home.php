@@ -9,8 +9,11 @@ class HomeController{
     }
 
     public function home(){
+        $topListings = $this->model->getTopListingsByReviews(6);
         require __DIR__ . "/../views/home.php";
     }
+
+    
 }
 
 ?>

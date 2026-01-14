@@ -1,12 +1,20 @@
+body {
 
-.navbar {
+    margin: 0;
+    padding: 0;
+    background-color: #f2f2f2; 
+    box-sizing: border-box;
+    color: #333;
+}
+
+.navbar_faq {
     display: flex;
     justify-content: space-between;
     padding: 15px 40px;
     background: #fff;
     border-bottom: 1px solid #e6e6e6;
     position: sticky;
-    top: 0;
+    top: 0px;
     z-index: 20;
 }
 
@@ -125,12 +133,12 @@ body {
 
 .main {
     display: flex;
-    height: 85vh;
 }
  
 .sidebar {
-    width: 300px;
+    width: 20%;
     padding: 20px 40px;
+    margin-right: 20px;
     background-color: #ffffff;
     border-right: 1px solid #e9ecef;
 }
@@ -158,12 +166,16 @@ body {
     color: #17a2b8; 
 }
 
-.content {
+/* .content {
     padding: 30px;
     display: flex;
     gap: 30px; 
     align-items: center;
     justify-items: center;
+} */
+
+.content{
+    width: 70%;
 }
 
 .documents {

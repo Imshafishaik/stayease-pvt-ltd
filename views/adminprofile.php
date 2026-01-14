@@ -1,37 +1,39 @@
 <?php
 require __DIR__ . "/../config/database.php";
+require_once __DIR__ . "/../helpers/user.php";
 
-include "./header.php"
+// include "./views/header.php";
+$students_admin = $students_admin ?? [];
+$owner_admin = $owner_admin ?? [];
 ?>
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en">    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EaseStay Admin Dashboard</title>
+    <title>Stayease | Admin Dashboard</title>
     <link rel="stylesheet" href="../css/adminprofile.css"> 
+    <link rel="icon" type="image/png" href="../images/homeimages/logo.jpg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
 <body>
 
-    <nav class="navbar">
+    <nav class="navbar_faq">
         <div class="nav-left">
-            <!-- <div class="logo">StayEase</div> -->
-            <!-- <div class="search-box">
-                <input type="text" placeholder="Search houses, amenities, and owners">
-                <i class="fa fa-search"></i>
-            </div> -->
         </div>
 
         <div class="nav-right">
-            <a href="ownerlisting.php?action=owner" class="active">Overview</a>
-            <a href="#">Rent</a>
-            <a href="adminprofile.php?action=adminprofile">Listings</a>
-            <a href="#">Activity</a>
-            <a href="rentupload.php?action=rentupload" class="upload-btn">Upload</a>
-            <div class="profile-pic"></div>
+            <?php if (admin_user_id()): ?>
+            <div class="profile-dropdown">
+                <button class="profile-btn" id="profileBtn">
+                    <?= htmlspecialchars(admin_user_name()) ?>  
+                </button>
+                <a href="/index.php?action=logout" class="logout">Logout</a>
+            </div>
+            <?php else: ?>
+            <a href="/index.php?action=7654" class="login-btn">Login</a>
+            <?php endif; ?>
         </div>
     </nav>
 
@@ -39,26 +41,8 @@ include "./header.php"
             <div class="sidebar">
                 <h3 class="sidebar-title">Quick Links</h3>
                 <ul class="quick-links scrollbar">
-                    <li><a href="#">User Management</a></li>
-                    <li><a href="#">House Management</a></li>
-                    <li><a href="#">User Management</a></li>
-                    <li><a href="#">House Management</a></li>
-                    <li><a href="#">User Management</a></li>
-                    <li><a href="#">House Management</a></li>
-                    <li><a href="#">User Management</a></li>
-                    <li><a href="#">House Management</a></li>
-                    <li><a href="#">User Management</a></li>
-                    <li><a href="#">House Management</a></li>
-                    <li><a href="#">User Management</a></li>
-                    <li><a href="#">House Management</a></li>
-                    <li><a href="#">User Management</a></li>
-                    <li><a href="#">House Management</a></li>
-                    <li><a href="#">User Management</a></li>
-                    <li><a href="#">House Management</a></li>
-                    <li><a href="#">User Management</a></li>
-                    <li><a href="#">House Management</a></li>
-      
-                                  
+                    <li><a href="/index.php?action=adminprofile">User Management</a></li>
+                    <li><a href="/index.php?action=adm_mng_faq">Faq Management</a></li>               
                 </ul>
             </div>
 
@@ -67,213 +51,133 @@ include "./header.php"
                 <div class="documents" >
                     <h2 class="documents-header">User Documents</h2>
                     <div class="scrollbar">
-                    <div class="document-card" >
-                        <div class="document-info" >
-                            <img src="https://img.freepik.com/darmowe-zdjecie/portret-przystojny-usmiechajacy-sie-stylowy-hipster-lambersexual-model-sexy-mezczyzna-ubrany-w-tshirt-i-dzinsy-moda-mezczyzna-na-bialym-tle-na-niebieskiej-scianie-w-studio_158538-26731.jpg?semt=ais_incoming&w=740&q=80" alt="John Smith" class="profile-pic">
-                            <div class="document-details">
-                                <p class="document-owner">John Smith</p>
-                                <p class="document-type">Passport</p>
-                            </div>
-                        </div>
-                        <div class="document-actions">
-                            <button class="action accept">Accept</button>
-                            <button class="action reject">Reject</button>
-                        </div>
-                    </div>
+                    <div class="student-documents">
 
-                    <div class="document-card">
-                        <div class="document-info">
-                            <img src="https://media.istockphoto.com/id/1326417862/fr/photo/jeune-femme-qui-rit-tout-en-se-relaxant-%C3%A0-la-maison.jpg?s=612x612&w=0&k=20&c=9kSRtp-LQLeKGWiBqBBNNmPKpzxoO445dyE3bLWQVm4=" alt="Emily Johnson" class="profile-pic">
-                            <div class="document-details">
-                                <p class="document-owner">Emily Johnson</p>
-                                <p class="document-type">Visa</p>
-                            </div>
-                        </div>
-                        <div class="document-actions">
-                            <button class="action accept">Accept</button>
-                            <button class="action reject">Reject</button>
-                        </div>
-                    </div>
+                        <?php foreach ($students_admin as $stu_adm): ?>
+                            <div class="document-card">
+                                <div class="document-info">
+                                    <a href="<?= htmlspecialchars($stu_adm['user_doc_one']) ?>" target="_blank">
+                                        <img src="<?= htmlspecialchars($stu_adm['user_doc_one']) ?>" class="profile-pic">
+                                    </a>
 
-                    <div class="document-card">
-                        <div class="document-info">
-                            <img src="https://media.istockphoto.com/id/1326417862/fr/photo/jeune-femme-qui-rit-tout-en-se-relaxant-%C3%A0-la-maison.jpg?s=612x612&w=0&k=20&c=9kSRtp-LQLeKGWiBqBBNNmPKpzxoO445dyE3bLWQVm4=" alt="Emily Johnson" class="profile-pic">
-                            <div class="document-details">
-                                <p class="document-owner">Emily Johnson</p>
-                                <p class="document-type">Visa</p>
-                            </div>
-                        </div>
-                        <div class="document-actions">
-                            <button class="action accept">Accept</button>
-                            <button class="action reject">Reject</button>
-                        </div>
-                    </div>
+                                    <a href="<?= htmlspecialchars($stu_adm['user_doc_two']) ?>" target="_blank">
+                                        <img src="<?= htmlspecialchars($stu_adm['user_doc_two']) ?>" class="profile-pic">
+                                    </a>
 
-                    <div class="document-card">
-                        <div class="document-info">
-                            <img src="https://media.istockphoto.com/id/1326417862/fr/photo/jeune-femme-qui-rit-tout-en-se-relaxant-%C3%A0-la-maison.jpg?s=612x612&w=0&k=20&c=9kSRtp-LQLeKGWiBqBBNNmPKpzxoO445dyE3bLWQVm4=" alt="Emily Johnson" class="profile-pic">
-                            <div class="document-details">
-                                <p class="document-owner">Emily Johnson</p>
-                                <p class="document-type">Visa</p>
-                            </div>
-                        </div>
-                        <div class="document-actions">
-                            <button class="action accept">Accept</button>
-                            <button class="action reject">Reject</button>
-                        </div>
-                    </div>
+                                    <div class="document-details">
+                                        <p class="document-owner">
+                                            <?= htmlspecialchars($stu_adm['user_name']) ?>
+                                        </p>
+                                        <p class="document-type">Student</p>
+                                    </div>
+                                </div>
 
-                    <div class="document-card" >
-                        <div class="document-info" >
-                            <img src="https://img.freepik.com/darmowe-zdjecie/portret-przystojny-usmiechajacy-sie-stylowy-hipster-lambersexual-model-sexy-mezczyzna-ubrany-w-tshirt-i-dzinsy-moda-mezczyzna-na-bialym-tle-na-niebieskiej-scianie-w-studio_158538-26731.jpg?semt=ais_incoming&w=740&q=80" alt="John Smith" class="profile-pic">
-                            <div class="document-details">
-                                <p class="document-owner">John Smith</p>
-                                <p class="document-type">Passport</p>
-                            </div>
-                        </div>
-                        <div class="document-actions">
-                            <button class="action accept">Accept</button>
-                            <button class="action reject">Reject</button>
-                        </div>
-                    </div>
+                                <div class="document-actions">
+                                    <!-- <button
+                                        type="button"
+                                        class="action accept"
+                                        onclick="updateDocument(<?= (int)$stu_adm['user_id'] ?>, 'student', 'accept')">
+                                        Accept
+                                    </button>
 
-                    <div class="document-card">
-                        <div class="document-info">
-                            <img src="https://media.istockphoto.com/id/1326417862/fr/photo/jeune-femme-qui-rit-tout-en-se-relaxant-%C3%A0-la-maison.jpg?s=612x612&w=0&k=20&c=9kSRtp-LQLeKGWiBqBBNNmPKpzxoO445dyE3bLWQVm4=" alt="Emily Johnson" class="profile-pic">
-                            <div class="document-details">
-                                <p class="document-owner">Emily Johnson</p>
-                                <p class="document-type">Visa</p>
-                            </div>
-                        </div>
-                        <div class="document-actions">
-                            <button class="action accept">Accept</button>
-                            <button class="action reject">Reject</button>
-                        </div>
-                    </div>
+                                    <button
+                                        type="button"
+                                        class="action reject"
+                                        onclick="updateDocument(<?= (int)$stu_adm['user_id'] ?>, 'student', 'reject')">
+                                        Reject
+                                    </button> -->
 
-                    <div class="document-card" >
-                        <div class="document-info" >
-                            <img src="https://img.freepik.com/darmowe-zdjecie/portret-przystojny-usmiechajacy-sie-stylowy-hipster-lambersexual-model-sexy-mezczyzna-ubrany-w-tshirt-i-dzinsy-moda-mezczyzna-na-bialym-tle-na-niebieskiej-scianie-w-studio_158538-26731.jpg?semt=ais_incoming&w=740&q=80" alt="John Smith" class="profile-pic">
-                            <div class="document-details">
-                                <p class="document-owner">John Smith</p>
-                                <p class="document-type">Passport</p>
-                            </div>
-                        </div>
-                        <div class="document-actions">
-                            <button class="action accept">Accept</button>
-                            <button class="action reject">Reject</button>
-                        </div>
-                    </div>
+                                    <button class="action accept" onclick="updateDocument(<?= (int)$stu_adm['user_id'] ?>,'accept')">
+                                        Accept
+                                    </button>
 
-                    <div class="document-card">
-                        <div class="document-info">
-                            <img src="https://media.istockphoto.com/id/1326417862/fr/photo/jeune-femme-qui-rit-tout-en-se-relaxant-%C3%A0-la-maison.jpg?s=612x612&w=0&k=20&c=9kSRtp-LQLeKGWiBqBBNNmPKpzxoO445dyE3bLWQVm4=" alt="Emily Johnson" class="profile-pic">
-                            <div class="document-details">
-                                <p class="document-owner">Emily Johnson</p>
-                                <p class="document-type">Visa</p>
+                                    <button class="action reject" onclick="updateDocument(<?= (int)$stu_adm['user_id'] ?>,'reject')">
+                                        Reject
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                        <div class="document-actions">
-                            <button class="action accept">Accept</button>
-                            <button class="action reject">Reject</button>
-                        </div>
-                    </div>
+                        <?php endforeach; ?>
+
                     </div>
                 </div>
+            </section>
 
-                <div class="documents">
-                    <h2 class="documents-header">House Documents</h2>
+            <section class="content">
+
+                <div class="documents" >
+                    <h2 class="documents-header">House Owner Documents</h2>
                     <div class="scrollbar">
-                    <div class="document-card">
-                        <div class="document-info">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWeSGMK9-ESewPZwZuUxlj5RrLl9HWVGknog&s" alt="Michael Brown Document" class="profile-pic">
-                            <div class="document-details">
-                                <p class="document-owner">Michael Brown</p>
-                                <p class="document-type">Registration Document</p>
-                            </div>
-                        </div>
-                        <div class="document-actions">
-                            <button class="action accept">Accept</button>
-                            <button class="action reject">Reject</button>
-                        </div>
-                    </div>
+                    <div class="student-documents">
 
-                    <div class="document-card">
-                        <div class="document-info">
-                            <img src="https://media.gettyimages.com/id/685132223/fr/photo/businesswoman-with-braided-hair-over-white.jpg?s=612x612&w=gi&k=20&c=ttZAIqd70SLAm1JgkkSDX5xcG4uXahLd1DpIYuF9J3E=" alt="Sarah Lewis Document" class="profile-pic">
-                            <div class="document-details">
-                                <p class="document-owner">Sarah Lewis</p>
-                                <p class="document-type">Registration Document</p>
-                            </div>
-                        </div>
-                        <div class="document-actions">
-                            <button class="action accept">Accept</button>
-                            <button class="action reject">Reject</button>
-                        </div>
-                    </div>
+                        <?php foreach ($owner_admin as $own_admin): ?>
+                            <div class="document-card">
+                                <div class="document-info">
+                                    <a href="<?= htmlspecialchars($own_admin['user_doc_one']) ?>" target="_blank">
+                                        <img src="<?= htmlspecialchars($own_admin['user_doc_one']) ?>" class="profile-pic">
+                                    </a>
 
-                    <div class="document-card">
-                        <div class="document-info">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWeSGMK9-ESewPZwZuUxlj5RrLl9HWVGknog&s" alt="Michael Brown Document" class="profile-pic">
-                            <div class="document-details">
-                                <p class="document-owner">Michael Brown</p>
-                                <p class="document-type">Registration Document</p>
-                            </div>
-                        </div>
-                        <div class="document-actions">
-                            <button class="action accept">Accept</button>
-                            <button class="action reject">Reject</button>
-                        </div>
-                    </div>
+                                    <a href="<?= htmlspecialchars($own_admin['user_doc_two']) ?>" target="_blank">
+                                        <img src="<?= htmlspecialchars($own_admin['user_doc_two']) ?>" class="profile-pic">
+                                    </a>
 
-                    <div class="document-card">
-                        <div class="document-info">
-                            <img src="https://media.gettyimages.com/id/685132223/fr/photo/businesswoman-with-braided-hair-over-white.jpg?s=612x612&w=gi&k=20&c=ttZAIqd70SLAm1JgkkSDX5xcG4uXahLd1DpIYuF9J3E=" alt="Sarah Lewis Document" class="profile-pic">
-                            <div class="document-details">
-                                <p class="document-owner">Sarah Lewis</p>
-                                <p class="document-type">Registration Document</p>
-                            </div>
-                        </div>
-                        <div class="document-actions">
-                            <button class="action accept">Accept</button>
-                            <button class="action reject">Reject</button>
-                        </div>
-                    </div>
+                                    <div class="document-details">
+                                        <p class="document-owner">
+                                            <?= htmlspecialchars($own_admin['user_name']) ?>
+                                        </p>
+                                        <p class="document-type">Student</p>
+                                    </div>
+                                </div>
 
-                    <div class="document-card">
-                        <div class="document-info">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWeSGMK9-ESewPZwZuUxlj5RrLl9HWVGknog&s" alt="Michael Brown Document" class="profile-pic">
-                            <div class="document-details">
-                                <p class="document-owner">Michael Brown</p>
-                                <p class="document-type">Registration Document</p>
-                            </div>
-                        </div>
-                        <div class="document-actions">
-                            <button class="action accept">Accept</button>
-                            <button class="action reject">Reject</button>
-                        </div>
-                    </div>
+                                <div class="document-actions">
+                                    <!-- <button
+                                        type="button"
+                                        class="action accept"
+                                        onclick="updateDocument(<?= (int)$own_admin['user_id'] ?>, 'student', 'accept')">
+                                        Accept
+                                    </button>
 
-                    <div class="document-card">
-                        <div class="document-info">
-                            <img src="https://media.gettyimages.com/id/685132223/fr/photo/businesswoman-with-braided-hair-over-white.jpg?s=612x612&w=gi&k=20&c=ttZAIqd70SLAm1JgkkSDX5xcG4uXahLd1DpIYuF9J3E=" alt="Sarah Lewis Document" class="profile-pic">
-                            <div class="document-details">
-                                <p class="document-owner">Sarah Lewis</p>
-                                <p class="document-type">Registration Document</p>
-                            </div>
-                        </div>
-                        <div class="document-actions">
-                            <button class="action accept">Accept</button>
-                            <button class="action reject">Reject</button>
-                        </div>
-                    </div>
-                    </div>  
+                                    <button
+                                        type="button"
+                                        class="action reject"
+                                        onclick="updateDocument(<?= (int)$own_admin['user_id'] ?>, 'student', 'reject')">
+                                        Reject
+                                    </button> -->
 
+                                    <button class="action accept" onclick="updateDocument(<?= (int)$own_admin['user_id'] ?>,'accept')">
+                                        Accept
+                                    </button>
+
+                                    <button class="action reject" onclick="updateDocument(<?= (int)$own_admin['user_id'] ?>,'reject')">
+                                        Reject
+                                    </button>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+
+                    </div>
                 </div>
             </section>
         </main>
 
     </div>
+
+    <script>
+
+    function updateDocument(userId, action) {
+        console.log(".........userId, action",userId, action);
+        
+        fetch('/index.php?action=approveDocument', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+            body: new URLSearchParams({user_id: userId, action: action})
+        })
+        .then(r => r.json())
+        .then(d => {
+            if (d.status === 'success') location.reload();
+            else alert(d.message);
+        });
+    }
+    </script>
 
 </body>
 </html>

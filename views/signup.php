@@ -1,7 +1,6 @@
 <?php
 require __DIR__ . "/../config/database.php";
-
-include "./header.php";
+include "./views/header.php";
 ?>
 
 <!DOCTYPE html>
@@ -9,121 +8,160 @@ include "./header.php";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register Page</title>
+    <title>Stayease | Register Page</title>
+
     <link rel="stylesheet" href="../../css/login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
+
 <body>
-    <!-- <header>
-        <nav class="navbar">
-            <a href="login.php" class="nav-link">Login</a> 
-            <a href="signup.php" class="nav-link">Register</a>
-            <a href="#" class="nav-link">Listings</a>
-            <a href="#" class="nav-link">Admin</a>
-        </nav>
-    </header> -->
-    <main class="main-content">
-        <div class="forms-container">
-            <div class="form-column">
-                <div class="form-wrapper">
-                    <h2>Register a New Student Account</h2>
-                        <form id="signupForm" enctype="multipart/form-data">
-                            <input type="text" name="name" placeholder="Full Name" required>
-                            <input type="email" name="email" placeholder="Email" required>
-                            <input type="password" name="password" placeholder="Password" required>
-                            <input type="password" placeholder="Confirm Password" required>
 
-                            <select name="select_user_type">
-                            <option>Student</option>
-                            <option>House Owner</option>
-                            </select>
+<main class="main-content">
+    <div class="forms-container">
+        <div class="form-column">
+            <div class="form-wrapper">
 
-                            <div class="file-upload">
-                            <input type="file" name="passport" id="passport-upload" hidden>
-                            <label for="passport-upload"><span>Upload Passport</span><i class="fas fa-cloud-upload-alt"></i></label>
-                            </div>
+                <h2>Register a New Student Account</h2>
 
-                            <div class="file-upload">
-                            <input type="file" name="visa" id="visa-upload" hidden>
-                            <label for="visa-upload"><span>Upload Visa</span><i class="fas fa-cloud-upload-alt"></i></label>
-                            </div>
+                <form id="signupForm" enctype="multipart/form-data">
 
-                            <button type="submit" class="btn btn-register">Register</button>
-                            </form>
+                    <input type="text" name="name" placeholder="Full Name" required>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="password" name="password" placeholder="Password" id="password" required>
+                    <input type="password" name="confirm_password" placeholder="Confirm Password" id="confirm_password" required>
 
-                            <div id="response"></div>
+                    <select name="select_user_type" id="user-type" required>
+                        <option value="">Select User Type</option>
+                        <option value="student">Student</option>
+                        <option value="owner">House Owner</option>
+                    </select>
 
-                    <p class="switch-form">Already Have an account? <a href="/views/login.php?action=login">Login</a></p>
-                </div>
-            </div>
+                    <!-- Student Files -->
+                    <div id="student-files" style="display: none;">
+                        <input type="file" name="passport" id="passport-upload">
+                        <input type="file" name="visa" id="visa-upload">
+                    </div>
 
-            <!-- <div class="form-column">
-                <div class="form-wrapper">
-                    <h2>Register as House Owner</h2>
-                    <form>
-                        <input type="text" placeholder="Full Name" required>
-                        <input type="email" placeholder="Email" required>
-                        <input type="password" placeholder="Password" required>
-                        <input type="password" placeholder="Confirm Password" required>
-                        <select>
-                            <option>Dropdown</option>
-                        </select>
-                        <div class="file-upload">
-                            <input type="file" id="docs-upload" hidden>
-                            <label for="docs-upload"><span>Upload House Documents</span><i class="fas fa-cloud-upload-alt"></i></label>
-                        </div>
-                        <div class="file-upload">
-                            <input type="file" id="reg-upload" hidden>
-                            <label for="reg-upload"><span>Upload House Registration</span><i class="fas fa-cloud-upload-alt"></i></label>
-                        </div>
-                        <button type="submit" class="btn btn-register">Register</button>
-                    </form>
-                    <p class="switch-form">Already Have an account? <a href="Login.html">Login</a></p>
-                </div>
-            </div> -->
-        </div>
-    </main>
+                    <!-- House Owner Files -->
+                    <div id="house-files" style="display: none;">
+                        <input type="file" name="house-document" id="house-document-upload">
+                        <input type="file" name="house-registration" id="house-registration-upload">
+                    </div>
 
-    <footer>
-        <div class="footer-content">
-            <div class="contact-info">
-                <h4>Contact Us</h4>
-                <p>Email: support@accommodateme.com</p>
-                <p>Phone: +33 1 23 45 67 89</p>
-            </div>
-            <div class="social-icons">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
+                    <div class="terms-box">
+                        <label>
+                            <input type="checkbox" name="terms_accepted" required>
+                            I agree to the 
+                            <a href="/index.php?action=terms" target="_blank">
+                                Terms & Conditions
+                            </a>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn btn-register">Register</button>
+                </form>
+
+                <div id="response"></div>
+
+                <p class="switch-form">
+                    Already have an account?
+                    <a href="/index.php?action=loginpage">Login</a>
+                </p>
+
             </div>
         </div>
-    </footer>
-    <script>
-document.getElementById("signupForm").addEventListener("submit", function(e) {
-    e.preventDefault();
+    </div>
+</main>
 
-    let formData = new FormData(this);
-    let xhr = new XMLHttpRequest();
+<script>
+    const userTypeSelect = document.getElementById("user-type");
+    const studentFiles = document.getElementById("student-files");
+    const houseFiles = document.getElementById("house-files");
 
-    xhr.open("POST", "/index.php?action=signup", true);
-    xhr.onload = function () {
-        if (xhr.status === 200) {
-            console.log("..........xhr.status",xhr)
-            let res = JSON.parse(xhr.responseText);
-            console.log(".......res.status",res)
-            if (res.status == "success") {
-                console.log(".......res.status",res.status)
-                window.location.href = "/views/login.php?action=login";
-            } else {
-                document.getElementById("response").innerText = res.message;
-            }
+    userTypeSelect.addEventListener("change", function () {
+        if (this.value === "student") {
+            studentFiles.style.display = "block";
+            houseFiles.style.display = "none";
+        } else if (this.value === "owner") {
+            studentFiles.style.display = "none";
+            houseFiles.style.display = "block";
+        } else {
+            studentFiles.style.display = "none";
+            houseFiles.style.display = "none";
         }
-    };
+    });
 
-    xhr.send(formData);
-});
+    const form =  document.getElementById("signupForm");
+    const responseEl = document.getElementById("response");
+    form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        responseEl.innerText = "";
+
+        const email = form.email.value.trim();
+        const password = form.password.value;
+        const confirmPassword = form.confirm_password.value;
+
+        // EMAIL VALIDATION
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        showError("Please enter a valid email address.");
+        return;
+    }
+
+    // PASSWORD LENGTH
+    if (password.length < 8) {
+        showError("Password must be at least 8 characters long.");
+        return;
+    }
+
+    // PASSWORD COMPLEXITY
+    const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
+    if (!passwordRegex.test(password)) {
+        showError("Password must contain at least 1 uppercase letter and 1 number.");
+        return;
+    }
+
+    // PASSWORD MATCH
+    if (password !== confirmPassword) {
+        showError("Password and Confirm Password do not match.");
+        return;
+    }
+
+    // TERMS CHECK
+    if (!form.terms_accepted.checked) {
+        showError("You must accept the Terms & Conditions.");
+        return;
+    }
+        
+
+        const formData = new FormData(this);
+
+        fetch("/index.php?action=signup", {
+            method: "POST",
+            body: formData
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.status === "success") {
+                window.location.href = "/index.php?action=loginpage";
+            } else {
+                showError(data.message);
+            }
+        })
+        .catch(err => {
+            console.error(err);
+            responseEl.innerText = "File too large it shuld be less than 2MB.";
+            responseEl.style.color = "red";
+        });
+    });
+
+    function showError(message) {
+        responseEl.innerText = message;
+        responseEl.style.color = "red";
+    }
 </script>
-
 
 </body>
 </html>
+
+<?php include "./views/footer.php"; ?>

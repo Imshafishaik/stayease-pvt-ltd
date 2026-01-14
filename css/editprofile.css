@@ -1,0 +1,108 @@
+/* Reset */
+* {
+    box-sizing: border-box;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Page background */
+body {
+    margin: 0;
+    padding: 0;
+    background: #f4f6f9;
+}
+
+/* Container */
+.profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Card */
+.profile-card {
+    background: #ffffff;
+    width: 420px;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* Title */
+.profile-card h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #333;
+}
+
+/* Inputs */
+.profile-card input[type="text"],
+.profile-card input[type="email"],
+.profile-card input[type="password"],
+.profile-card input[type="file"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+.profile-card input[type="file"] {
+    padding: 8px;
+}
+
+/* Document section */
+.docs {
+    margin-bottom: 15px;
+}
+
+.docs a {
+    display: inline-block;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    padding: 8px 12px;
+    background: #e9f1ff;
+    color: #2b6cb0;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 13px;
+}
+
+.docs a:hover {
+    background: #d0e2ff;
+}
+
+/* Button */
+.profile-card button {
+    width: 100%;
+    padding: 12px;
+    background: #4f46e5;
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.profile-card button:hover {
+    background: #4338ca;
+}
+
+/* Response message */
+#response {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 14px;
+    color: red;
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    .profile-card {
+        width: 90%;
+        padding: 20px;
+    }
+}

@@ -1,9 +1,14 @@
 <?php
 require __DIR__ . "/../config/database.php";
 
-include "./header.php"
-?>
+include "./views/header.php";
 
+$accommodations = $accommodations ?? [];
+$totalPages = $totalPages ?? 0;
+$page = $page ?? 1;
+    
+$owner_info = $owner_info ?? [];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +20,7 @@ include "./header.php"
 </head>
 <body>
 
-    <!-- NAVBAR -->
+  <!-- NAVBAR -->
     <nav class="navbar">
         <div class="nav-left">
             <!-- <div class="logo">StayEase</div> -->
@@ -26,12 +31,8 @@ include "./header.php"
         </div>
 
         <div class="nav-right">
-            <a href="#" class="active">Overview</a>
-            <a href="#">Rent</a>
-            <a href="adminprofile.php?action=adminprofile">Listings</a>
-            <a href="#">Activity</a>
-            <a href="rentupload.php?action=rentupload" class="upload-btn">Upload</a>
-            <div class="profile-pic"></div>
+            <a href="/index.php?action=rentupload" class="upload-btn">Upload</a>
+            <a href="/index.php?action=ownerdashboard" class="upload-btn">My Dashboard</a>
         </div>
     </nav>
 
@@ -41,53 +42,79 @@ include "./header.php"
         <img class="backgound-imgs" src="../images/homeimages/image3.png" alt="header">
         <div class="profile-wrapper">
             <img class="backgound-img" src="../images/homeimages/image3.png" class="profile-avatar" alt="avatar">
-            <h2>Sunny Villa</h2>
-            <p>Barcelona, Spain</p>
-            <span class="count">1200 Houses</span>
+            <h2><?= htmlspecialchars($owner_info['user_name']) ?></h2>
+            <span class="count"><?= $owner_info['house_count'] ?> Houses</span>
         </div>
     </header>
     </div>
     <!-- LISTINGS SECTION -->
     <section class="listing-container">
+<?php if (empty($accommodations)): ?>
+    <p>No accommodations found.</p>
+<?php else: ?>
+    <div class="listing-grid">
+<?php foreach ($accommodations as $acc): ?>
+  <div class="listing-card"> 
+    <a href="/index.php?action=accomodation_detail&id=<?= $acc['accommodation_id'] ?>">
+    <img src="<?= htmlspecialchars((!empty($acc['photo_img'] ?? '')) ? $acc['photo_img'] : 'https://media.istockphoto.com/id/1326417862/fr/photo/jeune-femme-qui-rit-tout-en-se-relaxant-%C3%A0-la-maison.jpg?s=612x612&w=0&k=20&c=9kSRtp-LQLeKGWiBqBBNNmPKpzxoO445dyE3bLWQVm4=') ?>" alt="Property Image" />
+    </a>
+    <a class="acc_name" href="/index.php?action=accomodation_detail&id=<?= $acc['accommodation_id'] ?>"><?= htmlspecialchars($acc['accommodation_name']) ?></a>
 
-        <!-- Card 1 -->
-        <div class="listing-card">
-            <div class="image-wrapper">
-                <img src="../images/homeimages/image2.avif" alt="">
-                <button class="edit-btn">Edit</button>
-            </div>
-            <div class="listing-info">
-                <h4>Charming Paris Room no 1</h4>
-                <p>Located in the heart of Paris, this cozy apartment offers a unique blend of comfort and convenience.</p>
-                <div class="details-row">
-                    <span>€ 1500</span>
-                    <span>Favourite: Yes</span>
-                    <span>Available: Yes</span>
-                </div>
-            </div>
-        </div>
+    <p>
+      <?= htmlspecialchars($acc['city']) ?>, <?= htmlspecialchars($acc['state']) ?>, <?= htmlspecialchars($acc['country']) ?>
+    </p>
 
-        <!-- Card 2 -->
-        <div class="listing-card">
-            <div class="image-wrapper">
-                <img src="../images/homeimages/image3.png" alt="">
-            </div>
-            <div class="listing-info">
-                <h4>Cozy Cottage</h4>
-                <p>Located in the heart of Paris, this cozy apartment offers a unique blend of comfort and convenience.</p>
-                <div class="details-row">
-                    <span>€ 950</span>
-                    <span>Favourite: Yes</span>
-                    <span>Available: Yes</span>
-                </div>
-            </div>
-        </div>
+    <p><?= htmlspecialchars($acc['accommodation_description']) ?></p>
+
+    <div class="card-footer">
+      <span>€<?= number_format($acc['accommodation_price'], 2) ?>/month</span>
+      <span class="status">
+        <?= $acc['accommodation_available'] ? 'Available Now' : 'Not Available' ?>
+      </span>
+    </div>
+
+    
+  </div>
+<?php endforeach; ?>
+</div>
+<?php endif; ?>
+
+
+
 
     </section>
 
-    <div class="load-more">
+    <!-- <div class="load-more">
         <button>Load more</button>
-    </div>
+    </div> -->
+
+    <?php if ($totalPages > 1): ?>
+  <div class="pagination">
+
+    <?php if ($page > 1): ?>
+      <a href="/index.php?action=owner&page=<?= $page-1 ?>">« Prev</a>
+    <?php endif; ?>
+
+    <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+      <a href="/index.php?action=owner&page=<?= $i ?>"
+         class="<?= $i === $page ? 'active' : '' ?>">
+        <?= $i ?>
+      </a>
+    <?php endfor; ?>
+
+    <?php if ($page < $totalPages): ?>
+      <a href="/index.php?action=owner&page=<?= $page+1 ?>">Next »</a>
+    <?php endif; ?>
+
+  </div>
+<?php endif; ?>
+
+
+</body>
 
 </body>
 </html>
+
+<?php
+include "./views/footer.php"
+?>
