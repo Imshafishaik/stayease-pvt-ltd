@@ -5,7 +5,7 @@ class HomeController{
     private $model;
 
     public function __construct($pdo){
-        
+        $this->model = new HomeModel($pdo);
     }
 
     public function home(){
