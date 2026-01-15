@@ -26,7 +26,9 @@
         LIMIT :limit
     ";
 
-    
+    $stmt = $this->pdo->prepare($sql);
+    $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+    $stmt->execute();
 
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
