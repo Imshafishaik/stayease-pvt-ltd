@@ -34,7 +34,7 @@ $accommodations = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
       </div>
       
-        <h2 class="head-in-container">Top listings</h2>
+        
         <!-- <div class="card-container"> -->
     
 
