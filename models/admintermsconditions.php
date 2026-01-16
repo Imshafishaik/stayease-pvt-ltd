@@ -17,8 +17,8 @@
     public function updateTerms(string $content): bool {
         $stmt = $this->pdo->prepare(
             "UPDATE terms_conditions
-             SET content = ?, updated_at = NOW()
-             WHERE id = 1"
+            SET content = ?, updated_at = NOW()
+            WHERE id = 1"
         );
         return $stmt->execute([$content]);
     }

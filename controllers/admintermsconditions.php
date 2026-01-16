@@ -38,25 +38,30 @@ class AdmintermsconditionsController{
     // }
 
     public function edit_terms_conditions() {
+        header('Content-Type: application/json; charset=utf-8');
 
-    header('Content-Type: application/json; charset=utf-8');
-
-    try {
-        $content = trim($_POST['content'] ?? '');
-
-        if ($content === '') {
-            throw new Exception("Terms content cannot be empty");
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            echo json_encode(["status" => "error", "message" => "Invalid request"]);
+            exit;
         }
 
-        $this->model->updateTerms($content);
+        try {
+            $content = $_POST['content'] ?? '';
 
-        echo json_encode(["status" => "success"]);
-        exit;
+            if (trim($content) === '') {
+                throw new Exception("Terms content cannot be empty");
+            }
 
-    } catch (Throwable $e) {
-        error_log($e->getMessage());
-        echo json_encode(["status" => "error", "message" => $e->getMessage()]);
-        exit;
+            // Save raw HTML
+            $this->model->updateTerms($content);
+
+            echo json_encode(["status" => "success"]);
+            exit;
+
+        } catch (Throwable $e) {
+            error_log($e->getMessage());
+            echo json_encode(["status" => "error", "message" => $e->getMessage()]);
+            exit;
+        }
     }
-}
 }

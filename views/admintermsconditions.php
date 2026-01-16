@@ -47,22 +47,49 @@ require_once __DIR__ . "/../helpers/user.php";
             <section class="content">
             <h1>Terms & Conditions Management</h1>
             <form id="termsForm">
-                <textarea name="content" rows="15" cols="100"><?= htmlspecialchars($terms) ?></textarea>
-                <br><br>
+                <textarea id="editor" name="content">
+                    <?= htmlspecialchars($terms) ?>
+                </textarea>
+
+                <br>
                 <button type="submit">Save</button>
-                <div id="response"></div>
             </form>
+            <div id="response"></div>
             </section>
     </main>
 
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
+
     <script>
-        const form = document.getElementById("termsForm");
+let editorInstance;
+
+ClassicEditor
+    .create(document.querySelector('#editor'), {
+        toolbar: [
+            'heading', '|',
+            'bold', 'italic', 'underline', 'link', '|',
+            'bulletedList', 'numberedList', '|',
+            'blockQuote', 'insertTable', '|',
+            'undo', 'redo'
+        ]
+    })
+    .then(editor => {
+        editorInstance = editor;
+    })
+    .catch(error => {
+        console.error(error);
+    });
+
+const form = document.getElementById("termsForm");
 const responseEl = document.getElementById("response");
 
 form.addEventListener("submit", function(e) {
     e.preventDefault();
 
-    const formData = new FormData(this);
+    const htmlContent = editorInstance.getData();
+
+    const formData = new FormData();
+    formData.append("content", htmlContent);
 
     fetch("/index.php?action=edit_terms_conditions", {
         method: "POST",
@@ -83,7 +110,7 @@ form.addEventListener("submit", function(e) {
         responseEl.style.color = "red";
     });
 });
-    </script>
+</script>
 
 </body>
 </html>

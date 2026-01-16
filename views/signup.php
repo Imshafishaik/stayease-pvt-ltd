@@ -10,7 +10,7 @@ include "./views/header.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stayease | Register Page</title>
 
-    <link rel="stylesheet" href="../../css/login.css">
+    <link rel="stylesheet" href="../css/login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
@@ -39,7 +39,9 @@ include "./views/header.php";
                     <!-- Student Files -->
                     <div id="student-files" style="display: none;">
                         <input type="file" name="passport" id="passport-upload">
+                        <label for="passport-upload"><span>Upload Passport</span><i class="fas fa-cloud-upload-alt"></i></label>
                         <input type="file" name="visa" id="visa-upload">
+                        <label for="visa-upload"><span>Upload Visa</span><i class="fas fa-cloud-upload-alt"></i></label>    
                     </div>
 
                     <!-- House Owner Files -->

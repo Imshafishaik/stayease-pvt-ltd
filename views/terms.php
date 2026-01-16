@@ -11,7 +11,7 @@
 <body>
 
 <div class="terms-container">
-    <?= htmlspecialchars($terms) ?>
+    <?= html_entity_decode($terms) ?>
 </div>
 
 </body>

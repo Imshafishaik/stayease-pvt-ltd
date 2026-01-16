@@ -23,27 +23,61 @@ $id = $_GET['id'] ?? null;
         ⭐ <?= $avgRating ?: 'No ratings yet' ?>
     </div> -->
 
-    <form method="post" action="/index.php?action=submitReview">
+    <form id="reviewForm">
+    <input type="hidden" name="accommodation_id" value="<?= $id ?>">
 
-        <input type="hidden" name="accommodation_id" value="<?= $id ?>">
-        
-        <label>Rating</label>
-        <select name="rating" required>
-            <option value="">Select</option>
-            <option value="5">⭐⭐⭐⭐⭐</option>
-            <option value="4">⭐⭐⭐⭐</option>
-            <option value="3">⭐⭐⭐</option>
-            <option value="2">⭐⭐</option>
-            <option value="1">⭐</option>
-        </select>
+    <label>Rating</label>
+    <select name="rating" required>
+        <option value="">Select</option>
+        <option value="5">⭐⭐⭐⭐⭐</option>
+        <option value="4">⭐⭐⭐⭐</option>
+        <option value="3">⭐⭐⭐</option>
+        <option value="2">⭐⭐</option>
+        <option value="1">⭐</option>
+    </select>
 
-        <label>Comment</label>
-        <textarea name="review" required placeholder="Write your review..."></textarea>
+    <label>Comment</label>
+    <textarea name="review" required placeholder="Write your review..."></textarea>
 
-        <button type="submit">Submit Review</button>
-    </form>
+    <button type="submit">Submit Review</button>
+</form>
+
+<div id="reviewResponse"></div>
+
     
 </section>
+
+<script>
+const reviewForm = document.getElementById("reviewForm");
+const responseEl = document.getElementById("reviewResponse");
+
+reviewForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const formData = new FormData(reviewForm);
+
+    fetch("/index.php?action=submitReview", {
+        method: "POST",
+        body: formData
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.status === "success") {
+            responseEl.innerText = "Review submitted successfully!";
+            responseEl.style.color = "green";
+            window.location.href = "/index.php?action=accomodation_detail&id=<?= $id ?>";
+            // reviewForm.reset();
+        } else {
+            responseEl.innerText = data.message;
+            responseEl.style.color = "red";
+        }
+    })
+    .catch(() => {
+        responseEl.innerText = "Something went wrong";
+        responseEl.style.color = "red";
+    });
+});
+</script>
 
 
 </body>
