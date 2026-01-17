@@ -44,8 +44,8 @@
             AND user_check = false;
         ";
         
-        $stmt = $this->pdo->query($sql); 
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+       
 
         }
     }
