@@ -47,7 +47,6 @@ $owner_admin = $owner_admin ?? [];
             </div>
 
             <section class="content">
-
                 <div class="documents" >
                     <h2 class="documents-header">User Documents</h2>
                     <div class="scrollbar">
@@ -73,19 +72,6 @@ $owner_admin = $owner_admin ?? [];
                                 </div>
 
                                 <div class="document-actions">
-                                    <!-- <button
-                                        type="button"
-                                        class="action accept"
-                                        onclick="updateDocument(<?= (int)$stu_adm['user_id'] ?>, 'student', 'accept')">
-                                        Accept
-                                    </button>
-
-                                    <button
-                                        type="button"
-                                        class="action reject"
-                                        onclick="updateDocument(<?= (int)$stu_adm['user_id'] ?>, 'student', 'reject')">
-                                        Reject
-                                    </button> -->
 
                                     <button class="action accept" onclick="updateDocument(<?= (int)$stu_adm['user_id'] ?>,'accept')">
                                         Accept
@@ -129,7 +115,6 @@ $owner_admin = $owner_admin ?? [];
                                 </div>
 
                                 <div class="document-actions">
-                                
 
                                     <button class="action accept" onclick="updateDocument(<?= (int)$own_admin['user_id'] ?>,'accept')">
                                         Accept
@@ -153,7 +138,7 @@ $owner_admin = $owner_admin ?? [];
 
     function updateDocument(userId, action) {
         console.log(".........userId, action",userId, action);
-        
+       
         fetch('/index.php?action=approveDocument', {
             method: 'POST',
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
