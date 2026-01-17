@@ -17,7 +17,6 @@ class AccomodationDetailController{
 
         $accommodation = $this->model->getAccommodation($id);
         $images        = $this->model->getImages($id);
-        // $faqs          = $this->model->getFaqs($id);
         $reviews       = $this->model->getReviews($id);
 
         require __DIR__ . "/../views/detail.php";

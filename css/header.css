@@ -32,6 +32,16 @@
     font-size: 15px;
 }
 
+.nav-links a.active {
+  color: #fff;
+  background-color: #111;
+    padding: 6px 12px;
+    
+  border-radius: 4px;
+  pointer-events: none;   /* disables click */
+  cursor: default;
+}
+
 .nav-links a:hover {
     color: #f0a500;
 }

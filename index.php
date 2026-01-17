@@ -44,7 +44,6 @@ $faq_admin_controller = new AdminFaqController($pdo);
 $review_controller= new ReviewController($pdo);
 $orders_controller= new OrderController($pdo);
 $add_to_fav_controller= new FavouriteController($pdo);
-$forgot_controller= new ForgotController($pdo);
 $reset_pass_controller= new PasswordResetController($pdo);
 $profile_controller = new ProfileController($pdo);
 $admintermsconditions_controller = new AdmintermsconditionsController($pdo);
