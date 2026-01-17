@@ -72,7 +72,7 @@ function submitAnswer(faqId) {
 
     fetch("/index.php?action=admin_answer_faq", {
     method: "POST",
-    credentials: "same-origin", // ⭐ REQUIRED FOR SESSION
+    credentials: "same-origin",
     headers: {
         "Content-Type": "application/x-www-form-urlencoded"
     },

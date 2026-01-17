@@ -129,19 +129,7 @@ $owner_admin = $owner_admin ?? [];
                                 </div>
 
                                 <div class="document-actions">
-                                    <!-- <button
-                                        type="button"
-                                        class="action accept"
-                                        onclick="updateDocument(<?= (int)$own_admin['user_id'] ?>, 'student', 'accept')">
-                                        Accept
-                                    </button>
-
-                                    <button
-                                        type="button"
-                                        class="action reject"
-                                        onclick="updateDocument(<?= (int)$own_admin['user_id'] ?>, 'student', 'reject')">
-                                        Reject
-                                    </button> -->
+                                
 
                                     <button class="action accept" onclick="updateDocument(<?= (int)$own_admin['user_id'] ?>,'accept')">
                                         Accept
