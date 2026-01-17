@@ -43,6 +43,9 @@
             WHERE user_type = 'owner'
             AND user_check = false;
         ";
-        return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+        
+        $stmt = $this->pdo->query($sql); 
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
         }
     }
