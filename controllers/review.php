@@ -9,24 +9,57 @@ class ReviewController {
     }
 
     public function submitReview() {
-        // session_start();
-        header('Content-Type: application/json');
+    session_start();
+    header('Content-Type: application/json');
 
+    try {
+        // User must be logged in
         if (!isset($_SESSION['user_id'])) {
-            echo json_encode(['status' => 'error', 'message' => 'Login required']);
+            echo json_encode([
+                'status' => 'error',
+                'message' => 'Login required'
+            ]);
             exit;
         }
 
+        // Validate POST data
+        $accommodationId = $_POST['accommodation_id'] ?? '';
+        $rating = $_POST['rating'] ?? '';
+        $review = trim($_POST['review'] ?? '');
+
+        if ($accommodationId === '' || $rating === '' || $review === '') {
+            throw new Exception("All fields are required");
+        }
+
+        if (!in_array($rating, ['1','2','3','4','5'])) {
+            throw new Exception("Invalid rating");
+        }
+
+        // Save or update review
         $this->model->addReview(
-            $_POST['accommodation_id'],
+            $accommodationId,
             $_SESSION['user_id'],
-            $_POST['rating'],
-            $_POST['review']
+            $rating,
+            $review
         );
-require __DIR__ . '/../views/review.php';
-        // echo json_encode(['status' => 'success']);
-        
+
+        // Return JSON response (AJAX)
+        echo json_encode([
+            'status' => 'success',
+            'message' => 'Review submitted successfully'
+        ]);
+        exit;
+
+    } catch (Throwable $e) {
+        error_log($e->getMessage());
+        echo json_encode([
+            'status' => 'error',
+            'message' => $e->getMessage()
+        ]);
+        exit;
     }
+}
+
 
     public function review(){
         require __DIR__ . '/../views/review.php';

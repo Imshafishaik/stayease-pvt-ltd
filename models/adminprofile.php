@@ -28,8 +28,7 @@
 
         public function rejectUserDocument(int $userId): void{
             $stmt = $this->pdo->prepare("
-                UPDATE users
-                SET user_check = NULL
+                DELETE from users
                 WHERE user_id = :id
             ");
             $stmt->execute(['id' => $userId]);

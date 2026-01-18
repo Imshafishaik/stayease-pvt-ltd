@@ -7,17 +7,17 @@ class ReviewModel {
     }
 
     public function addReview($accommodationId, $userId, $rating, $review) {
-        $sql = "
-            INSERT INTO accommodation_reviews 
-            (accommodation_id, user_id, rating, review_text)
-            VALUES (?, ?, ?, ?)
-            ON CONFLICT (accommodation_id, user_id)
-            DO UPDATE SET rating = EXCLUDED.rating,
-                          review_text = EXCLUDED.review_text
-        ";
-        $stmt = $this->pdo->prepare($sql);
-        return $stmt->execute([$accommodationId, $userId, $rating, $review]);
-    }
+    $sql = "
+        INSERT INTO accommodation_reviews 
+        (accommodation_id, user_id, rating, review_text)
+        VALUES (?, ?, ?, ?)
+        ON CONFLICT (accommodation_id, user_id)
+        DO UPDATE SET rating = EXCLUDED.rating,
+                      review_text = EXCLUDED.review_text
+    ";
+    $stmt = $this->pdo->prepare($sql);
+    return $stmt->execute([$accommodationId, $userId, $rating, $review]);
+}
 
     public function getByAccommodation($accommodationId) {
         $sql = "

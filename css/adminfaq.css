@@ -76,7 +76,7 @@ p {
 }
  
 .sidebar {
-    width: 20%;
+    min-width: 20%;
     padding: 20px 40px;
     margin-right: 20px;
     background-color: #ffffff;

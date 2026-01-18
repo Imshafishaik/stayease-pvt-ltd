@@ -2,7 +2,6 @@
 // include "./views/header.php";
 require __DIR__ . "/../helpers/user.php";
 require_once __DIR__ . "/../helpers/user.php";
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,54 +44,73 @@ require_once __DIR__ . "/../helpers/user.php";
                     <li><a href="/index.php?action=adm_terms_conditions">Terms & Conditions</a></li>                               
                 </ul>
             </div>
+            <section class="content">
+            <h1>Terms & Conditions Management</h1>
+            <form id="termsForm">
+                <textarea id="editor" name="content">
+                    <?= htmlspecialchars($terms) ?>
+                </textarea>
 
-<section class="content">
-<?php if (empty($faqs)): ?>
-    <p>All FAQs are answered</p>
-<?php endif; ?>
+                <br>
+                <button type="submit">Save</button>
+            </form>
+            <div id="response"></div>
+            </section>
+    </main>
 
-<?php foreach ($faqs as $faq): ?>
-    <div class="faq-box">
-        <p><strong>Q:</strong> <?= htmlspecialchars($faq['question']) ?></p>
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
 
-        <?php if (!$faq['answer']): ?>
-    <button onclick="submitAnswer(<?= $faq['faq_id'] ?>)">Submit</button>
-<?php else: ?>
-    <p> <?= htmlspecialchars($faq['answer']) ?></p>
-    <small class="answered-label">Answered</small>
-<?php endif; ?>
+    <script>
+let editorInstance;
 
-        <!-- <button onclick="submitAnswer(<?= $faq['faq_id'] ?>)">Submit</button> -->
-    </div>
-<?php endforeach; ?>
-</section>
-</main>
-<script>
-function submitAnswer(faqId) {
-    const answer = document.getElementById("answer-" + faqId).value;
+ClassicEditor
+    .create(document.querySelector('#editor'), {
+        toolbar: [
+            'heading', '|',
+            'bold', 'italic', 'underline', 'link', '|',
+            'bulletedList', 'numberedList', '|',
+            'blockQuote', 'insertTable', '|',
+            'undo', 'redo'
+        ]
+    })
+    .then(editor => {
+        editorInstance = editor;
+    })
+    .catch(error => {
+        console.error(error);
+    });
 
-    fetch("/index.php?action=admin_answer_faq", {
-    method: "POST",
-    credentials: "same-origin", // ⭐ REQUIRED FOR SESSION
-    headers: {
-        "Content-Type": "application/x-www-form-urlencoded"
-    },
-    body: `faq_id=${faqId}&answer=${encodeURIComponent(answer)}`
-})
+const form = document.getElementById("termsForm");
+const responseEl = document.getElementById("response");
 
+form.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const htmlContent = editorInstance.getData();
+
+    const formData = new FormData();
+    formData.append("content", htmlContent);
+
+    fetch("/index.php?action=edit_terms_conditions", {
+        method: "POST",
+        body: formData
+    })
     .then(res => res.json())
     .then(data => {
         if (data.status === "success") {
-            location.reload();
+            responseEl.innerText = "Terms updated successfully";
+            responseEl.style.color = "green";
         } else {
-            alert(data.message);
+            responseEl.innerText = data.message;
+            responseEl.style.color = "red";
         }
+    })
+    .catch(() => {
+        responseEl.innerText = "Something went wrong";
+        responseEl.style.color = "red";
     });
-}
+});
 </script>
+
 </body>
 </html>
-
-
-
-<?php include "./views/footer.php"; ?>

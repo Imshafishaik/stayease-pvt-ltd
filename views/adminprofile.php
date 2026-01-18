@@ -42,7 +42,8 @@ $owner_admin = $owner_admin ?? [];
                 <h3 class="sidebar-title">Quick Links</h3>
                 <ul class="quick-links scrollbar">
                     <li><a href="/index.php?action=adminprofile">User Management</a></li>
-                    <li><a href="/index.php?action=adm_mng_faq">Faq Management</a></li>               
+                    <li><a href="/index.php?action=adm_mng_faq">Faq Management</a></li> 
+                     <li><a href="/index.php?action=adm_terms_conditions">Terms & Conditions</a></li>               
                 </ul>
             </div>
 

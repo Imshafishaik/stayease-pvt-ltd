@@ -26,6 +26,7 @@ require "./controllers/addtofav.php";
 require "./controllers/forgot.php";
 require "./controllers/resetpass.php";
 require "./controllers/profile.php";
+require "./controllers/admintermsconditions.php";
 
 // Instantiate controllers
 $home_controller = new HomeController($pdo);
@@ -43,9 +44,9 @@ $faq_admin_controller = new AdminFaqController($pdo);
 $review_controller= new ReviewController($pdo);
 $orders_controller= new OrderController($pdo);
 $add_to_fav_controller= new FavouriteController($pdo);
-$forgot_controller= new ForgotController($pdo);
 $reset_pass_controller= new PasswordResetController($pdo);
 $profile_controller = new ProfileController($pdo);
+$admintermsconditions_controller = new AdmintermsconditionsController($pdo);
 
 // Get request parameters
 $action = $_GET['action'] ?? 'index';
@@ -59,7 +60,7 @@ switch ($action) {
     case 'logout': $login_controller->logout(); break;
     case 'signuppage':     $signup_controller->signuppage(); break;
     case 'signup':     $signup_controller->signup(); break;
-    case 'terms':     $signup_controller->terms(); break;
+    case 'terms':     $admintermsconditions_controller->terms(); break;
     case 'contact':     $contact_controller->contact(); break;
     case 'emailSend':     $contact_controller->emailSend(); break;
     case 'owner':      $owners_controller->owner(); break;
@@ -81,6 +82,8 @@ switch ($action) {
     case 'admin_registering': $admin_controller->adminRegister(); break;
     case 'admin_logining': $admin_controller->adminLogin(); break;
     case 'adm_mng_faq': $faq_admin_controller->adminfaq(); break;
+    case 'adm_terms_conditions': $admintermsconditions_controller->admintermsconditions(); break;
+    case 'edit_terms_conditions': $admintermsconditions_controller->edit_terms_conditions(); break;
     case 'review': $review_controller->review(); break;
     case 'orders': $orders_controller->ordersPage(); break;
     case 'placeOrder': $orders_controller->placeOrder(); break;

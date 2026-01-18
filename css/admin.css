@@ -31,6 +31,20 @@ body {
     margin: 15px;
 }
 
+.sidebar {
+    min-width: 20%;
+    padding: 20px 40px;
+    margin-right: 20px;
+    background-color: #ffffff;
+    border-right: 1px solid #e9ecef;
+}
+
+.sidebar-title {
+    margin-bottom: 15px;
+    font-size: 22px;
+    font-weight: 600;
+}
+
 /* Form heading */
 .form-container h2 {
     color: #333;

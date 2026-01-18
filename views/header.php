@@ -1,6 +1,8 @@
 <?php
 
 require __DIR__ . "/../helpers/user.php";
+
+$action = $_GET['action'] ?? 'home';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,16 +23,15 @@ require __DIR__ . "/../helpers/user.php";
     <div class="menu-toggle" id="menuToggle">☰</div>
 
     <nav class="nav-links" id="navLinks">
-        <a href="/index.php?action=home">Home</a>
-        <a href="/index.php?action=listing">Find Accommodation</a>
+        <a class="<?= $action === 'home' ? 'active' : '' ?>" href="/index.php?action=home">Home</a>
+        <a class="<?= $action === 'listing' ? 'active' : '' ?>" href="/index.php?action=listing">Find Accommodation</a>
 
         <?php if (auth_user_id() && auth_user_type() === 'owner'): ?>
-            <a href="/index.php?action=owner">For Owners</a>
+            <a class="<?= $action === 'owner' ? 'active' : '' ?>" href="/index.php?action=owner">For Owners</a>
         <?php endif; ?>
 
-        <a href="/index.php?action=contact">Contact Us</a>
-        <a href="/index.php?action=getfaqs">FAQs</a>
-
+        <a class="<?= $action === 'contact' ? 'active' : '' ?>" href="/index.php?action=contact">Contact Us</a>
+        <a class="<?= $action === 'getfaqs' ? 'active' : '' ?>" href="/index.php?action=getfaqs">FAQs</a>
         <?php if (auth_user_id()): ?>
             <div class="profile-dropdown">
                 <button class="profile-btn" id="profileBtn">
@@ -48,7 +49,7 @@ require __DIR__ . "/../helpers/user.php";
                 </div>
             </div>
         <?php else: ?>
-            <a href="/index.php?action=loginpage" class="login-btn">Login</a>
+            <a href="/index.php?action=signuppage" class="login-btn">Register</a>
         <?php endif; ?>
     </nav>
 </header>
