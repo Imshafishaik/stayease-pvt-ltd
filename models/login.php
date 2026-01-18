@@ -20,7 +20,7 @@
 
     public function getUserById(string $userId): ?array {
         $stmt = $this->pdo->prepare("
-            SELECT user_id, user_name, user_password, user_type
+            SELECT user_id, user_name, user_email, user_password, user_type,user_check
             FROM users
             WHERE user_id = ?
         ");

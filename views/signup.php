@@ -38,16 +38,26 @@ include "./views/header.php";
 
                     <!-- Student Files -->
                     <div id="student-files" style="display: none;">
-                        <input type="file" name="passport" id="passport-upload">
+                        <div class="file-upload">
+                        <input type="file" accept=".pdf" name="passport" id="passport-upload" hidden>
                         <label for="passport-upload"><span>Upload Passport</span><i class="fas fa-cloud-upload-alt"></i></label>
-                        <input type="file" name="visa" id="visa-upload">
-                        <label for="visa-upload"><span>Upload Visa</span><i class="fas fa-cloud-upload-alt"></i></label>    
+                        </div>
+                        <div class="file-upload">
+                        <input type="file" accept=".pdf" name="visa" id="visa-upload" hidden>
+                        <label for="visa-upload"><span>Upload Visa</span><i class="fas fa-cloud-upload-alt"></i></label> 
+                        </div>   
                     </div>
 
                     <!-- House Owner Files -->
                     <div id="house-files" style="display: none;">
-                        <input type="file" name="house-document" id="house-document-upload">
-                        <input type="file" name="house-registration" id="house-registration-upload">
+                        <div class="file-upload">
+                        <input type="file" accept=".pdf" name="house-document" id="house-document-upload" hidden>
+                        <label for="house-document-upload"><span>Upload House Document</span><i class="fas fa-cloud-upload-alt"></i></label>
+                        </div>
+                        <div class="file-upload">
+                        <input type="file" accept=".pdf" name="house-registration" id="house-registration-upload" hidden>
+                        <label for="house-registration-upload"><span>Upload House Registration</span><i class="fas fa-cloud-upload-alt"></i></label>
+                        </div>
                     </div>
 
                     <div class="terms-box">
@@ -145,7 +155,7 @@ include "./views/header.php";
         .then(res => res.json())
         .then(data => {
             if (data.status === "success") {
-                window.location.href = "/index.php?action=loginpage";
+                window.location.href = "/index.php?action=usercheck";
             } else {
                 showError(data.message);
             }

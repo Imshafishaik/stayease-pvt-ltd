@@ -5,6 +5,8 @@ body {
     background-color: #f5f7fa;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    color: #333;
 }
 
 h2 {
@@ -117,15 +119,6 @@ p {
     align-items: center;
     justify-items: center;
 } */
-
-body {
-
-    margin: 0;
-    padding: 0;
-    background-color: #f2f2f2; 
-    box-sizing: border-box;
-    color: #333;
-}
 
 .navbar_faq {
     display: flex;

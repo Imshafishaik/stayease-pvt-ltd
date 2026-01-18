@@ -23,7 +23,6 @@ require "./controllers/adminfaq.php";
 require "./controllers/review.php";
 require "./controllers/orders.php";
 require "./controllers/addtofav.php";
-require "./controllers/forgot.php";
 require "./controllers/resetpass.php";
 require "./controllers/profile.php";
 require "./controllers/admintermsconditions.php";
@@ -59,6 +58,7 @@ switch ($action) {
     case 'login':     $login_controller->login(); break;
     case 'logout': $login_controller->logout(); break;
     case 'signuppage':     $signup_controller->signuppage(); break;
+    case 'usercheck':     $login_controller->usercheck(); break;
     case 'signup':     $signup_controller->signup(); break;
     case 'terms':     $admintermsconditions_controller->terms(); break;
     case 'contact':     $contact_controller->contact(); break;

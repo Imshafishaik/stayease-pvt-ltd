@@ -1,5 +1,4 @@
 body {
-
     margin: 0;
     padding: 0;
     background-color: #f2f2f2; 
@@ -30,7 +29,7 @@ header {
     display: flex;
     justify-content: center;
     padding: 0 20px;
-    height: 70vh;
+    min-height: 80vh;
     align-items: center;
 }
 
@@ -61,6 +60,10 @@ header {
     text-align: center;
     font-size: 1.5em;
     color: #333;
+}
+
+.terms-box{
+    margin: 0 0 20px 0;
 }
 
 

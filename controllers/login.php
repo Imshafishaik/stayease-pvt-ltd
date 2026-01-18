@@ -13,6 +13,10 @@ class LoginController {
         require __DIR__ . "/../views/login.php";
     }
 
+    public function usercheck(){
+        require __DIR__ . "/../views/usercheck.php";
+    }
+
     public function login() {
         // Clear any previous output
         if (ob_get_length()) ob_clean();
@@ -99,8 +103,7 @@ class LoginController {
     public function forgotpass(){
         require __DIR__ . "/../views/forgotpass.php";
     }
-    public function forgot()
-{
+    public function forgot(){
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         require __DIR__ . "/../views/forgotpass.php";
         exit;
