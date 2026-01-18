@@ -85,7 +85,7 @@ switch ($action) {
     case 'orders': $orders_controller->ordersPage(); break;
     case 'placeOrder': $orders_controller->placeOrder(); break;
     case 'ownerdashboard': $orders_controller->getOwnerDashboard(); break;
-    case 'updateorderstatus' : $orders_controller->updateOrderStatus(); break;
+    // case 'updateorderstatus' : $orders_controller->updateOrderStatus(); break;
     case 'updateBooking': $orders_controller->updateBooking(); break;
     case 'submitReview': $review_controller->submitReview(); break;
     case 'admin_answer_faq': $faq_admin_controller->answer(); break;
