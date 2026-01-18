@@ -16,7 +16,8 @@ include "./views/header.php";
         <div class="forms-container">
             <div class="form-column">
                 <div class="form-wrapper">
-                    
+                    <h2>Reset Your Password</h2>
+                    <p class="form-description">Enter your email address and we'll send you a link to reset your password.</p>
                     <form id="forgotForm">
                         <input type="email" name="email" placeholder="Enter your email" required>
                         <p id="forgotResponse"></p>
