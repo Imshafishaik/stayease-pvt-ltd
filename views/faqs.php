@@ -19,7 +19,6 @@ $faqs = $faqs ?? [];
 
   <h1>Community Questions & Answers</h1>
 
-  <!-- POST QUESTION -->
   <?php if (isset($_SESSION['user_id'])): ?>
     <form class="question-form" method="post" action="/index.php?action=postfaq">
       <textarea name="question" placeholder="Ask a question..." required></textarea>
