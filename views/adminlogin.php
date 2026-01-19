@@ -1,7 +1,5 @@
 <?php
 require __DIR__ . "/../config/database.php";
-
-// include "./views/header.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,7 +36,6 @@ document.getElementById('admin-login-form').addEventListener('submit', function(
         const msgDiv = document.getElementById('login-msg');
         if (data.status === 'success') {
             msgDiv.innerHTML = `<p style="color:green;">${data.message}</p>`;
-            // Redirect to dashboard after 1s
             setTimeout(() => { window.location.href = '/index.php?action=adminprofile'; }, 1000);
         } else {
             msgDiv.innerHTML = `<p style="color:red;">${data.message}</p>`;
@@ -50,7 +47,3 @@ document.getElementById('admin-login-form').addEventListener('submit', function(
 
 </body>
 </html>
-
-<?php
-// include "./views/footer.php"
-?>

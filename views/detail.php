@@ -40,7 +40,7 @@ include "./views/header.php";
           <!-- <strong><?= htmlspecialchars($review['name']) ?></strong> -->
           <span><?= str_repeat("⭐", (int)$review['rating']) ?></span>
           <p><?= htmlspecialchars($review['review_text']) ?></p>
-          <small><?= date("d M Y", strtotime($review['created_at'])) ?></small>
+          <!-- <small><?= date("d M Y", strtotime($review['created_at'])) ?></small> -->
         </div>
       <?php endforeach; ?>
     <?php endif; ?>

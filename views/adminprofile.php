@@ -58,18 +58,18 @@ $owner_admin = $owner_admin ?? [];
                             <div class="document-card">
                                 <div class="document-info">
                                     <a href="<?= htmlspecialchars($stu_adm['user_doc_one']) ?>" target="_blank">
-                                        <img src="<?= htmlspecialchars($stu_adm['user_doc_one']) ?>" class="profile-pic">
+                                        Student Passport Document<!-- <img src="<?= htmlspecialchars($stu_adm['user_doc_one']) ?>" class="profile-pic"> -->
                                     </a>
 
                                     <a href="<?= htmlspecialchars($stu_adm['user_doc_two']) ?>" target="_blank">
-                                        <img src="<?= htmlspecialchars($stu_adm['user_doc_two']) ?>" class="profile-pic">
+                                        Student Visa Document<!-- <img src="<?= htmlspecialchars($stu_adm['user_doc_two']) ?>" class="profile-pic"> -->
                                     </a>
 
                                     <div class="document-details">
                                         <p class="document-owner">
-                                            <?= htmlspecialchars($stu_adm['user_name']) ?>
+                                            <!-- <?= htmlspecialchars($stu_adm['user_type']) ?> -->
                                         </p>
-                                        <p class="document-type">Student</p>
+                                        <!-- <p class="document-type">Student</p> -->
                                     </div>
                                 </div>
 
@@ -114,18 +114,18 @@ $owner_admin = $owner_admin ?? [];
                             <div class="document-card">
                                 <div class="document-info">
                                     <a href="<?= htmlspecialchars($own_admin['user_doc_one']) ?>" target="_blank">
-                                        <img src="<?= htmlspecialchars($own_admin['user_doc_one']) ?>" class="profile-pic">
+                                        House Registration Document<!-- <img src="<?= htmlspecialchars($own_admin['user_doc_one']) ?>" class="profile-pic"> -->
                                     </a>
 
                                     <a href="<?= htmlspecialchars($own_admin['user_doc_two']) ?>" target="_blank">
-                                        <img src="<?= htmlspecialchars($own_admin['user_doc_two']) ?>" class="profile-pic">
+                                        House Owner Document<!-- <img src="<?= htmlspecialchars($own_admin['user_doc_two']) ?>" class="profile-pic"> -->
                                     </a>
 
                                     <div class="document-details">
                                         <p class="document-owner">
-                                            <?= htmlspecialchars($own_admin['user_name']) ?>
+                                            <!-- <?= htmlspecialchars($own_admin['user_name']) ?> -->
                                         </p>
-                                        <p class="document-type">Student</p>
+                                        <!-- <p class="document-type">Student</p> -->
                                     </div>
                                 </div>
 

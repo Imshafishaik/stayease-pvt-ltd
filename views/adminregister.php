@@ -27,7 +27,7 @@ require __DIR__ . "/../config/database.php";
 </div>
 </div>
 <script>
-document.getElementById('admin-register-form').addEventListener('submit', function(e) {
+document.getElementById('admin-register-form')?.addEventListener('submit', function(e) {
     e.preventDefault();
     let formData = new FormData(this);
 
@@ -40,7 +40,7 @@ document.getElementById('admin-register-form').addEventListener('submit', functi
         const msgDiv = document.getElementById('register-msg');
         if (data.status === 'success') {
             msgDiv.innerHTML = `<p style="color:green;">${data.message}</p>`;
-            this.reset();
+            setTimeout(() => { window.location.href = '/index.php?action=7654'; }, 1000);
         } else {
             msgDiv.innerHTML = `<p style="color:red;">${data.message}</p>`;
         }
@@ -51,7 +51,3 @@ document.getElementById('admin-register-form').addEventListener('submit', functi
 
 </body>
 </html>
-
-<?php
-// include "./views/footer.php"
-?>

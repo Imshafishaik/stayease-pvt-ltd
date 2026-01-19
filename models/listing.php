@@ -103,7 +103,7 @@ public function countFiltered($search, $city, $price) {
 
     public function getPrice(){
         $sql = "
-        SELECT accommodation_price from accommodation;
+        SELECT DISTINCT accommodation_price from accommodation ORDER BY accommodation_price ASC;
     ";
     $stmt = $this->pdo->prepare($sql);
         $stmt->execute([]);

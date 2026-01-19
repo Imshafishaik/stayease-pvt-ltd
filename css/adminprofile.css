@@ -208,6 +208,15 @@ body {
     align-items: center;
 }
 
+.document-info a{
+    text-decoration: underline;
+    color: #1e73ff;
+    border-radius: 8px;
+    font-weight: 600;
+    background-color: black;
+    padding: 6px 10px;
+    margin-right: 10px;
+}
 
 .profile-pic {
     width: 50px;

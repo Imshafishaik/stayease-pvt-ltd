@@ -23,7 +23,7 @@ class AdminFaqController {
 
     // Handle answering FAQ
    public function answer() {
-    // session_start();
+    session_start();
 
     if (!isset($_SESSION['admin_id'])) {
         http_response_code(403);

@@ -15,11 +15,6 @@ require_once __DIR__ . "/../helpers/user.php";
 <body>
 <nav class="navbar_faq">
         <div class="nav-left">
-            <!-- <div class="logo">StayEase</div> -->
-            <!-- <div class="search-box">
-                <input type="text" placeholder="Search houses, amenities, and owners">
-                <i class="fa fa-search"></i>
-            </div> -->
         </div>
 
         
@@ -46,26 +41,36 @@ require_once __DIR__ . "/../helpers/user.php";
                 </ul>
             </div>
 
-<section class="content">
-<?php if (empty($faqs)): ?>
-    <p>All FAQs are answered</p>
-<?php endif; ?>
+        <section class="content">
 
-<?php foreach ($faqs as $faq): ?>
-    <div class="faq-box">
-        <p><strong>Q:</strong> <?= htmlspecialchars($faq['question']) ?></p>
+        <?php if (empty($faqs)): ?>
+            <p>No FAQs</p>
+        <?php endif; ?>
 
-        <?php if (!$faq['answer']): ?>
-    <button onclick="submitAnswer(<?= $faq['faq_id'] ?>)">Submit</button>
-<?php else: ?>
-    <p> <?= htmlspecialchars($faq['answer']) ?></p>
-    <small class="answered-label">Answered</small>
-<?php endif; ?>
+        <?php foreach ($faqs as $faq): ?>
+            <div class="faq-box">
+                <p><strong>Q:</strong> <?= htmlspecialchars($faq['question']) ?></p>
 
-        <!-- <button onclick="submitAnswer(<?= $faq['faq_id'] ?>)">Submit</button> -->
-    </div>
-<?php endforeach; ?>
-</section>
+                <?php if (empty($faq['answer'])): ?>
+                    <!-- Show textarea + submit button if NOT answered -->
+                    <textarea 
+                        id="answer-<?= $faq['faq_id'] ?>" 
+                        placeholder="Type your answer here..."
+                        rows="4"
+                    ></textarea>
+
+                    <button onclick="submitAnswer(<?= $faq['faq_id'] ?>)">
+                        Submit Answer
+                    </button>
+                <?php else: ?>
+                    <!-- Show answer if already answered -->
+                    <p><strong>A:</strong> <?= htmlspecialchars($faq['answer']) ?></p>
+                    <small class="answered-label">Answered</small>
+                <?php endif; ?>
+            </div>
+        <?php endforeach; ?>
+
+        </section>
 </main>
 <script>
 function submitAnswer(faqId) {
@@ -73,14 +78,12 @@ function submitAnswer(faqId) {
 
     fetch("/index.php?action=admin_answer_faq", {
     method: "POST",
-    credentials: "same-origin", // ⭐ REQUIRED FOR SESSION
+    credentials: "same-origin",
     headers: {
         "Content-Type": "application/x-www-form-urlencoded"
     },
     body: `faq_id=${faqId}&answer=${encodeURIComponent(answer)}`
-})
-
-    .then(res => res.json())
+}).then(res => res.json())
     .then(data => {
         if (data.status === "success") {
             location.reload();
@@ -93,6 +96,3 @@ function submitAnswer(faqId) {
 </body>
 </html>
 
-
-
-<?php include "./views/footer.php"; ?>
